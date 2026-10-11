@@ -22,7 +22,7 @@ const exercises = [
     },
     {
         id: 8,
-        fen: '6Rk/7p/8/5N2/8/8/8/5K2 b - - 0 1',
+        fen: '5R1k/7p/8/5N2/8/8/8/5K2 b - - 0 1',
         question: 'Black King:',
         options: [
             { text: 'can capture checking White Rook', isCorrect: true },
@@ -84,7 +84,7 @@ const exercises = [
     },
     {
         id: 15,
-        fen: '3R2k1/6p1/5P1p/8/5K2/8/8/8 b - - 0 1',
+        fen: '3R2k1/5p1p/5P2/8/5K2/8/8/8 b - - 0 1',
         question: 'Black King:',
         options: [
             { text: 'can capture attacker', isCorrect: false },
@@ -106,7 +106,7 @@ const exercises = [
     },
     {
         id: 17,
-        fen: 'r1k5/1p1P4/2p1Q3/8/8/8/7K/8 b - - 0 1',
+        fen: '1rk5/1ppP4/3Q4/8/8/8/7K/8 b - - 0 1',
         question: 'Here the lowly Pawn is giving check. Black King:',
         options: [
             { text: 'can capture attacker', isCorrect: false },
@@ -117,7 +117,7 @@ const exercises = [
     },
     {
         id: 18,
-        fen: '4R1k1/5p1p/3Q4/8/5K2/8/8/8 b - - 0 1',
+        fen: '4R1k1/5ppp/2Q5/8/5K2/8/8/8 b - - 0 1',
         question: 'Black King:',
         options: [
             { text: 'can capture attacker', isCorrect: false },
@@ -128,7 +128,7 @@ const exercises = [
     },
     {
         id: 19,
-        fen: '8/8/2P5/3K1k2/2R3p1/2q5/8/8 b - - 0 1',
+        fen: '8/8/2P5/2RK1k2/6p1/2q5/8/8 b - - 0 1',
         question: 'Draw an arrow to show how I (Black) mated Paul Keres in this position.',
         options: [
             { text: 'Move Queen to d3', isCorrect: true },
@@ -136,9 +136,7 @@ const exercises = [
         ],
         explanation: 'Queen moves to d3. This mate actually happened! The position is taken from our game in the 1959 Bled Tournament (Yugoslavia)[cite: 51].'
     }
-
 ];
-
 let currentExerciseIndex = 0;
 let board = null;
 
