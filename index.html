@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bobby Fischer Teaches Chess - Interactive</title>
+    <!-- Include Chessboard.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 40px auto; }
+        #board { width: 400px; margin-bottom: 20px; }
+        .controls { margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <h2>Exercise 1 (Frame 6)</h2>
+    <p>The White Queen is giving check. Can the Black King capture it?</p>
+    
+    <div id="board"></div>
+    
+    <div class="controls">
+        <button onclick="checkAnswer(true)">Can Capture</button>
+        <button onclick="checkAnswer(false)">Cannot Capture</button>
+    </div>
+    <div id="feedback" style="margin-top: 15px; font-weight: bold;"></div>
+
+    <!-- Include jQuery, Chessboard.js, and Chess.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
