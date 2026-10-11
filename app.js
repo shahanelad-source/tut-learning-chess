@@ -128,7 +128,7 @@ const exercises = [
     {
         id: 19,
         fen: '8/8/2P5/2RK1k2/6p1/2q5/8/8 b - - 0 1',
-        question: 'Drag the piece to show how I (Black) mated Paul Keres in this position.',
+        question: 'Drag the Black Queen to the correct square to show how I (Black) mated Paul Keres in this position.',
         isInteractive: true,
         correctMove: { from: 'c3', to: 'd3' },
         explanation: 'Queen moves to d3. This mate actually happened! The position is taken from our game in the 1959 Bled Tournament (Yugoslavia)[cite: 51].'
@@ -143,20 +143,28 @@ $(document).ready(function() {
         pieceTheme: 'https://chessboardjs.com/img/chesspieces/wikipedia/{piece}.png',
         draggable: true,
         onDragStart: onDragStart,
-        onDrop: onDrop
+        onDrop: onDrop,
+        orientation: 'white' // Book diagrams are shown from White's perspective[cite: 30]
     });
     loadExercise(currentExerciseIndex);
 });
 
-// Prevent dragging on multiple-choice exercises
+// Controls which pieces can be picked up
 function onDragStart(source, piece, position, orientation) {
     const exercise = exercises[currentExerciseIndex];
+    
+    // Prevent dragging on multiple-choice exercises
     if (!exercise.isInteractive) {
         return false; 
     }
+    
+    // For Frame 19, it is Black's turn, so prevent dragging White pieces
+    if (piece.search(/^w/) !== -1) {
+        return false;
+    }
 }
 
-// Validate the move when the piece is dropped
+// Validates the move when the piece is dropped
 function onDrop(source, target) {
     const exercise = exercises[currentExerciseIndex];
     
@@ -164,8 +172,8 @@ function onDrop(source, target) {
         if (source === exercise.correctMove.from && target === exercise.correctMove.to) {
             checkAnswer(true, exercise.explanation);
         } else {
-            checkAnswer(false, "Incorrect move. Try again.");
-            return 'snapback'; // Snaps the piece back to its original square
+            checkAnswer(false, "Incorrect move. Try dragging the piece to a different square.");
+            return 'snapback'; // Instantly snaps the piece back to its original square if wrong
         }
     }
 }
@@ -180,17 +188,21 @@ function loadExercise(index) {
     feedbackEl.innerText = '';
     document.getElementById('next-btn').style.display = 'none';
     
+    // Update the board
     board.position(exercise.fen);
     
     const controlsEl = document.getElementById('controls');
     controlsEl.innerHTML = ''; 
     
-    // Only generate buttons if the exercise has options
+    // Only generate buttons if the exercise has multiple-choice options
     if (exercise.options) {
         exercise.options.forEach(option => {
             const btn = document.createElement('button');
             btn.innerText = option.text;
             btn.onclick = () => checkAnswer(option.isCorrect, exercise.explanation);
+            btn.style.marginRight = '10px';
+            btn.style.padding = '8px 16px';
+            btn.style.cursor = 'pointer';
             controlsEl.appendChild(btn);
         });
     }
@@ -209,7 +221,7 @@ function checkAnswer(isCorrect, explanationText) {
             feedbackEl.innerText += " You have completed all available exercises!";
         }
         
-        // Hide multiple choice controls upon correct answer
+        // Hide multiple-choice controls upon correct answer
         document.getElementById('controls').innerHTML = ''; 
     } else {
         feedbackEl.style.color = 'red';
