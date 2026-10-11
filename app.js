@@ -39,7 +39,7 @@ const exercises = [
             { text: 'cannot capture checking White Rook', isCorrect: true }
         ],
         explanation: 'cannot capture checking White Rook. The Rook is protected by the Knight[cite: 40].'
-    }
+    },
     {
         id: 10,
         fen: '1R6/kp6/p7/8/8/7p/1K6/8 b - - 0 1',
