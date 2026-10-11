@@ -21,7 +21,7 @@ const exercises = [
     },
     {
         id: 8,
-        fen: "5R1k/7p/8/5N2/8/8/8/5K2 b - - 0 1",
+        fen: "6Rk/4N2p/8/8/8/8/8/4K3 b - - 0 1",
         question: "Black King:",
         options: [
             { text: "can capture checking White Rook", isCorrect: true },
@@ -31,7 +31,7 @@ const exercises = [
     },
     {
         id: 9,
-        fen: "6Rk/4N2p/8/8/8/8/8/4K3 b - - 0 1",
+        fen: "5R1k/7p/8/5N2/8/8/8/5K2 b - - 0 1",
         question: "Black King:",
         options: [
             { text: "can capture checking White Rook", isCorrect: false },
