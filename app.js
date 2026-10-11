@@ -31,7 +31,7 @@ const exercises = [
     },
     {
         id: 9,
-        fen: "5R1k/7p/8/5N2/8/8/8/5K2 b - - 0 1",
+        fen: "6Rk/4N2p/8/8/8/8/8/4K3 b - - 0 1",
         question: "Black King:",
         options: [
             { text: "can capture checking White Rook", isCorrect: false },
@@ -41,7 +41,7 @@ const exercises = [
     },
     {
         id: 10,
-        fen: "1R6/kp6/p7/8/8/7p/1K6/8 b - - 0 1",
+        fen: "R7/kp6/1p6/8/8/8/1K6/8 b - - 0 1",
         question: "Black King:",
         options: [
             { text: "can capture checking White Rook", isCorrect: true },
@@ -51,7 +51,7 @@ const exercises = [
     },
     {
         id: 11,
-        fen: "k1R5/pp6/8/8/4K3/8/8/8 b - - 0 1",
+        fen: "k1R5/pp6/8/8/8/4K3/8/8 b - - 0 1",
         question: "Black King:",
         options: [
             { text: "can capture checking White Rook", isCorrect: false },
