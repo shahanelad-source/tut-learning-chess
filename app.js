@@ -128,11 +128,9 @@ const exercises = [
     {
         id: 19,
         fen: '8/8/2P5/2RK1k2/6p1/2q5/8/8 b - - 0 1',
-        question: 'Draw an arrow to show how I (Black) mated Paul Keres in this position.',
-        options: [
-            { text: 'Move Queen to d3', isCorrect: true },
-            { text: 'Move Queen to c4', isCorrect: false }
-        ],
+        question: 'Drag the piece to show how I (Black) mated Paul Keres in this position.',
+        isInteractive: true,
+        correctMove: { from: 'c3', to: 'd3' },
         explanation: 'Queen moves to d3. This mate actually happened! The position is taken from our game in the 1959 Bled Tournament (Yugoslavia)[cite: 51].'
     }
 ];
@@ -143,10 +141,34 @@ let board = null;
 $(document).ready(function() {
     board = Chessboard('board', {
         pieceTheme: 'https://chessboardjs.com/img/chesspieces/wikipedia/{piece}.png',
-        draggable: false
+        draggable: true,
+        onDragStart: onDragStart,
+        onDrop: onDrop
     });
     loadExercise(currentExerciseIndex);
 });
+
+// Prevent dragging on multiple-choice exercises
+function onDragStart(source, piece, position, orientation) {
+    const exercise = exercises[currentExerciseIndex];
+    if (!exercise.isInteractive) {
+        return false; 
+    }
+}
+
+// Validate the move when the piece is dropped
+function onDrop(source, target) {
+    const exercise = exercises[currentExerciseIndex];
+    
+    if (exercise.isInteractive) {
+        if (source === exercise.correctMove.from && target === exercise.correctMove.to) {
+            checkAnswer(true, exercise.explanation);
+        } else {
+            checkAnswer(false, "Incorrect move. Try again.");
+            return 'snapback'; // Snaps the piece back to its original square
+        }
+    }
+}
 
 function loadExercise(index) {
     const exercise = exercises[index];
@@ -163,12 +185,15 @@ function loadExercise(index) {
     const controlsEl = document.getElementById('controls');
     controlsEl.innerHTML = ''; 
     
-    exercise.options.forEach(option => {
-        const btn = document.createElement('button');
-        btn.innerText = option.text;
-        btn.onclick = () => checkAnswer(option.isCorrect, exercise.explanation);
-        controlsEl.appendChild(btn);
-    });
+    // Only generate buttons if the exercise has options
+    if (exercise.options) {
+        exercise.options.forEach(option => {
+            const btn = document.createElement('button');
+            btn.innerText = option.text;
+            btn.onclick = () => checkAnswer(option.isCorrect, exercise.explanation);
+            controlsEl.appendChild(btn);
+        });
+    }
 }
 
 function checkAnswer(isCorrect, explanationText) {
@@ -183,9 +208,12 @@ function checkAnswer(isCorrect, explanationText) {
             document.getElementById('next-btn').style.display = 'none';
             feedbackEl.innerText += " You have completed all available exercises!";
         }
+        
+        // Hide multiple choice controls upon correct answer
+        document.getElementById('controls').innerHTML = ''; 
     } else {
         feedbackEl.style.color = 'red';
-        feedbackEl.innerText = 'Incorrect. Try again.';
+        feedbackEl.innerText = explanationText || 'Incorrect. Try again.';
     }
 }
 
