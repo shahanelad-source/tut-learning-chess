@@ -199,6 +199,7 @@ const exercises = [
 let currentExerciseIndex = 0;
 let board = null;
 
+// Inside your $(document).ready function:
 $(document).ready(function() {
     initializePlatform();
 });
@@ -211,8 +212,15 @@ function initializePlatform() {
         draggable: true,
         onDragStart: onDragStart,
         onDrop: onDrop,
-        orientation: 'white' 
+        orientation: 'white',
+        width: '100%' // Makes chessboard responsive to its container
     });
+    
+    // Automatically resize the board if the screen rotates or changes size
+    $(window).resize(function() {
+        board.resize();
+    });
+
     loadExercise(currentExerciseIndex);
 }
 
