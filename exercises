@@ -1,0 +1,40 @@
+[
+    {
+        "id": 19,
+        "fen": "8/8/2P5/2RK1k2/6p1/2q5/8/8 b - - 0 1",
+        "question": "Drag the Black Queen to the correct square to show how I (Black) mated Paul Keres in this position.",
+        "isInteractive": true,
+        "correctMove": { "from": "c3", "to": "d3" },
+        "explanation": "Queen moves to d3. This mate actually happened! The position is taken from our game in the 1959 Bled Tournament (Yugoslavia)[cite: 51]."
+    },
+    {
+        "id": 81,
+        "fen": "4R1k1/5p1p/2b2r2/8/8/8/8/6K1 b - - 0 1",
+        "question": "Observe the position and then decide whether Black has a useful interposition against the check.",
+        "options": [
+            { "text": "yes", "isCorrect": true },
+            { "text": "no", "isCorrect": false }
+        ],
+        "explanation": "Black has a useful interposition, with either the Rook or the Bishop[cite: 119]."
+    },
+    {
+        "id": 82,
+        "fen": "6k1/5p1p/5n2/8/8/8/8/4R1K1 w - - 0 1",
+        "question": "Does Black have a useful interposition?",
+        "options": [
+            { "text": "yes", "isCorrect": true },
+            { "text": "no", "isCorrect": false }
+        ],
+        "explanation": "Black has a useful interposition, with the Knight[cite: 120]."
+    },
+    {
+        "id": 83,
+        "fen": "4R1k1/5p1p/3b4/8/8/8/8/6K1 b - - 0 1",
+        "question": "Does Black have a useful interposition?",
+        "options": [
+            { "text": "yes", "isCorrect": false },
+            { "text": "no", "isCorrect": true }
+        ],
+        "explanation": "Black's interpositions are useless; therefore, White mates[cite: 121]."
+    }
+]
