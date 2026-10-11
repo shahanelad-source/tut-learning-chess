@@ -21,7 +21,7 @@ const exercises = [
     },
     {
         id: 8,
-        fen: "6Rk/6p1/8/8/5N2/8/8/5K2 b - - 0 1",
+        fen: "6Rk/7p/8/5N/8/8/8/6K b - - 0 1",
         question: "Black King:",
         options: [
             { text: "can capture checking White Rook", isCorrect: true },
