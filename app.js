@@ -57,7 +57,7 @@ const exercises = [
             { text: "can capture checking White Rook", isCorrect: false },
             { text: "cannot capture checking White Rook", isCorrect: true }
         ],
-        explanation: "cannot capture checking White Rook. Black is \"mated\"-or checkmated. Remember, the King can only move one square, so the Rook is beyond the Black King's reach[cite: 42]."
+        explanation: "cannot capture checking White Rook. Black is \"mated\"—or checkmated. Remember, the King can only move one square, so the Rook is beyond the Black King's reach[cite: 42]."
     },
     {
         id: 13,
@@ -161,6 +161,38 @@ const exercises = [
             { label: "Which White piece is giving check?", answer: "None" }
         ],
         explanation: "Queen guards square A, Bishop guards square B, Knight guards square C, King guards square D, Pawn guards square E. No White piece is giving check (Black has no possible move; therefore, the game is a stalemate, or draw)[cite: 53]."
+    },
+    {
+        id: 22,
+        fen: "Q2k4/8/2P5/1KB5/8/8/8/8 w - - 0 1",
+        question: "Observe this position; then drag the White Queen to show White's mating move[cite: 57, 58].",
+        isInteractive: true,
+        correctMove: { from: "a8", to: "c8" },
+        explanation: "White plays Queen to c8, delivering checkmate[cite: 57, 58]."
+    },
+    {
+        id: 23,
+        fen: "7k/7P/4KN2/8/8/B7/8/8 b - - 0 1",
+        question: "Black is in check again. Drag the Black King to the one square to which Black can flee[cite: 58].",
+        isInteractive: true,
+        correctMove: { from: "h8", to: "g7" },
+        explanation: "Black King flees to g7[cite: 58, 59]."
+    },
+    {
+        id: 24,
+        fen: "6k1/6P1/4KN2/8/8/B7/8/8 b - - 0 1",
+        question: "Again, drag the Black King to show his flight square[cite: 59].",
+        isInteractive: true,
+        correctMove: { from: "g7", to: "f8" },
+        explanation: "Black King flees to f8[cite: 59, 60]."
+    },
+    {
+        id: 25,
+        fen: "7k/7R/8/8/8/8/8/4K3 b - - 0 1",
+        question: "Drag the Black King to show how he gets out of check[cite: 60].",
+        isInteractive: true,
+        correctMove: { from: "h8", to: "h7" },
+        explanation: "The King saves himself by capturing the Rook—so much the better[cite: 60, 61]."
     }
 ];
 
