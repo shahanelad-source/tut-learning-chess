@@ -1,40 +1,56 @@
 [
     {
-        "id": 19,
-        "fen": "8/8/2P5/2RK1k2/6p1/2q5/8/8 b - - 0 1",
-        "question": "Drag the Black Queen to the correct square to show how I (Black) mated Paul Keres in this position.",
-        "isInteractive": true,
-        "correctMove": { "from": "c3", "to": "d3" },
-        "explanation": "Queen moves to d3. This mate actually happened! The position is taken from our game in the 1959 Bled Tournament (Yugoslavia)[cite: 51]."
+        "id": 6,
+        "fen": "7k/6pQ/8/5B2/8/8/8/4K3 b - - 0 1",
+        "question": "The White Queen is giving check. The Black King:",
+        "options": [
+            { "text": "can capture", "isCorrect": false },
+            { "text": "cannot capture", "isCorrect": true }
+        ],
+        "explanation": "The Queen is protected by the Bishop; therefore the King cannot capture. In fact, the King has no safe place to move to. So Black is checkmated[cite: 35, 36, 37]."
     },
     {
-        "id": 81,
-        "fen": "4R1k1/5p1p/2b2r2/8/8/8/8/6K1 b - - 0 1",
-        "question": "Observe the position and then decide whether Black has a useful interposition against the check.",
+        "id": 7,
+        "fen": "1k6/1Q6/8/2B5/8/8/8/4K3 b - - 0 1",
+        "question": "The White Queen is giving check. The Black King:",
         "options": [
-            { "text": "yes", "isCorrect": true },
-            { "text": "no", "isCorrect": false }
+            { "text": "can capture", "isCorrect": true },
+            { "text": "cannot capture", "isCorrect": false }
         ],
-        "explanation": "Black has a useful interposition, with either the Rook or the Bishop[cite: 119]."
+        "explanation": "The Bishop is not protecting the Queen[cite: 37, 38]."
     },
     {
-        "id": 82,
-        "fen": "6k1/5p1p/5n2/8/8/8/8/4R1K1 w - - 0 1",
-        "question": "Does Black have a useful interposition?",
+        "id": 8,
+        "fen": "5R1k/7p/8/5N2/8/8/8/5K2 b - - 0 1",
+        "question": "Black King:",
         "options": [
-            { "text": "yes", "isCorrect": true },
-            { "text": "no", "isCorrect": false }
+            { "text": "can capture checking White Rook", "isCorrect": true },
+            { "text": "cannot capture checking White Rook", "isCorrect": false }
         ],
-        "explanation": "Black has a useful interposition, with the Knight[cite: 120]."
+        "explanation": "can capture checking White Rook[cite: 38, 39]."
     },
     {
-        "id": 83,
-        "fen": "4R1k1/5p1p/3b4/8/8/8/8/6K1 b - - 0 1",
-        "question": "Does Black have a useful interposition?",
+        "id": 9,
+        "fen": "6Rk/4N2p/8/8/8/8/8/4K3 b - - 0 1",
+        "question": "Black King:",
         "options": [
-            { "text": "yes", "isCorrect": false },
-            { "text": "no", "isCorrect": true }
+            { "text": "can capture checking White Rook", "isCorrect": false },
+            { "text": "cannot capture checking White Rook", "isCorrect": true }
         ],
-        "explanation": "Black's interpositions are useless; therefore, White mates[cite: 121]."
-    }
-]
+        "explanation": "cannot capture checking White Rook. The Rook is protected by the Knight[cite: 39, 40]."
+    },
+    {
+        "id": 10,
+        "fen": "1R6/kp6/p7/8/8/7p/1K6/8 b - - 0 1",
+        "question": "Black King:",
+        "options": [
+            { "text": "can capture checking White Rook", "isCorrect": true },
+            { "text": "cannot capture checking White Rook", "isCorrect": false }
+        ],
+        "explanation": "can capture checking White Rook[cite: 40, 41]."
+    },
+    {
+        "id": 11,
+        "fen": "k1R5/pp6/8/8/4K3/8/8/8 b - - 0 1",
+        "question": "Black King:",
+        "options":
