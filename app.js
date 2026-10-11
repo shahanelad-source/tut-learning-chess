@@ -40,72 +40,7 @@ const exercises = [
         ],
         explanation: 'cannot capture checking White Rook. The Rook is protected by the Knight[cite: 40].'
     }
-];
-
-let currentExerciseIndex = 0;
-let board = null;
-
-// Initialize the first exercise on load
-$(document).ready(function() {
-    board = Chessboard('board', {
-        pieceTheme: 'https://chessboardjs.com/img/chesspieces/wikipedia/{piece}.png',
-        draggable: false
-    });
-    loadExercise(currentExerciseIndex);
-});
-
-function loadExercise(index) {
-    const exercise = exercises[index];
-    
-    // Update text
-    document.getElementById('exercise-title').innerText = `Exercise ${index + 1} (Frame ${exercise.id})`;
-    document.getElementById('exercise-question').innerText = exercise.question;
-    
-    // Reset feedback and hide next button
-    const feedbackEl = document.getElementById('feedback');
-    feedbackEl.innerText = '';
-    document.getElementById('next-btn').style.display = 'none';
-    
-    // Set the board position
-    board.position(exercise.fen);
-    
-    // Generate multiple-choice buttons dynamically
-    const controlsEl = document.getElementById('controls');
-    controlsEl.innerHTML = ''; // Clear old buttons
-    
-    exercise.options.forEach(option => {
-        const btn = document.createElement('button');
-        btn.innerText = option.text;
-        btn.onclick = () => checkAnswer(option.isCorrect, exercise.explanation);
-        btn.style.marginRight = '10px';
-        controlsEl.appendChild(btn);
-    });
-}
-
-function checkAnswer(isCorrect, explanationText) {
-    const feedbackEl = document.getElementById('feedback');
-    if (isCorrect) {
-        feedbackEl.style.color = 'green';
-        feedbackEl.innerText = `Correct! ${explanationText}`;
-        
-        // Show the "Next Exercise" button if there are more exercises
-        if (currentExerciseIndex < exercises.length - 1) {
-            document.getElementById('next-btn').style.display = 'block';
-        } else {
-            document.getElementById('next-btn').style.display = 'none';
-            feedbackEl.innerText += " You have completed all available exercises!";
-        }
-    } else {
-        feedbackEl.style.color = 'red';
-        feedbackEl.innerText = 'Incorrect. Try again.';
-    }
-}
-
-function nextExercise() {
-    currentExerciseIndex++;
-    loadExercise(currentExerciseIndex);
-}
-{
+    {
         id: 10,
         fen: '1R6/kp6/p7/8/8/7p/1K6/8 b - - 0 1',
         question: 'Black King:',
@@ -201,3 +136,69 @@ function nextExercise() {
         ],
         explanation: 'Queen moves to d3. This mate actually happened! The position is taken from our game in the 1959 Bled Tournament (Yugoslavia)[cite: 51].'
     }
+
+];
+
+let currentExerciseIndex = 0;
+let board = null;
+
+// Initialize the first exercise on load
+$(document).ready(function() {
+    board = Chessboard('board', {
+        pieceTheme: 'https://chessboardjs.com/img/chesspieces/wikipedia/{piece}.png',
+        draggable: false
+    });
+    loadExercise(currentExerciseIndex);
+});
+
+function loadExercise(index) {
+    const exercise = exercises[index];
+    
+    // Update text
+    document.getElementById('exercise-title').innerText = `Exercise ${index + 1} (Frame ${exercise.id})`;
+    document.getElementById('exercise-question').innerText = exercise.question;
+    
+    // Reset feedback and hide next button
+    const feedbackEl = document.getElementById('feedback');
+    feedbackEl.innerText = '';
+    document.getElementById('next-btn').style.display = 'none';
+    
+    // Set the board position
+    board.position(exercise.fen);
+    
+    // Generate multiple-choice buttons dynamically
+    const controlsEl = document.getElementById('controls');
+    controlsEl.innerHTML = ''; // Clear old buttons
+    
+    exercise.options.forEach(option => {
+        const btn = document.createElement('button');
+        btn.innerText = option.text;
+        btn.onclick = () => checkAnswer(option.isCorrect, exercise.explanation);
+        btn.style.marginRight = '10px';
+        controlsEl.appendChild(btn);
+    });
+}
+
+function checkAnswer(isCorrect, explanationText) {
+    const feedbackEl = document.getElementById('feedback');
+    if (isCorrect) {
+        feedbackEl.style.color = 'green';
+        feedbackEl.innerText = `Correct! ${explanationText}`;
+        
+        // Show the "Next Exercise" button if there are more exercises
+        if (currentExerciseIndex < exercises.length - 1) {
+            document.getElementById('next-btn').style.display = 'block';
+        } else {
+            document.getElementById('next-btn').style.display = 'none';
+            feedbackEl.innerText += " You have completed all available exercises!";
+        }
+    } else {
+        feedbackEl.style.color = 'red';
+        feedbackEl.innerText = 'Incorrect. Try again.';
+    }
+}
+
+function nextExercise() {
+    currentExerciseIndex++;
+    loadExercise(currentExerciseIndex);
+}
