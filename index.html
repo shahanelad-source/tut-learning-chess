@@ -10,9 +10,18 @@
         .controls { margin-top: 15px; }
         button { padding: 8px 16px; cursor: pointer; margin-right: 10px; margin-bottom: 10px; }
         #next-btn { margin-top: 15px; background-color: #007bff; color: white; border: none; }
+        .menu-container { margin-bottom: 20px; padding: 10px; background: #f4f4f4; border-radius: 5px; }
+        select { padding: 5px; font-size: 16px; }
     </style>
 </head>
 <body>
+
+    <div class="menu-container">
+        <label for="exercise-menu"><strong>Jump to: </strong></label>
+        <select id="exercise-menu" onchange="jumpToExercise()">
+            <option>Loading...</option>
+        </select>
+    </div>
 
     <h2 id="exercise-title">Loading...</h2>
     <p id="exercise-question"></p>
