@@ -2,32 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bobby Fischer Teaches Chess - Interactive</title>
-    <!-- Include Chessboard.js CSS -->
+    <title>Bobby Fischer Teaches Chess</title>
     <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
     <style>
         body { font-family: sans-serif; max-width: 600px; margin: 40px auto; }
         #board { width: 400px; margin-bottom: 20px; }
         .controls { margin-top: 15px; }
+        button { padding: 8px 16px; cursor: pointer; }
+        #next-btn { margin-top: 15px; background-color: #007bff; color: white; border: none; }
     </style>
 </head>
 <body>
 
-    <h2>Exercise 1 (Frame 6)</h2>
-    <p>The White Queen is giving check. Can the Black King capture it?</p>
+    <h2 id="exercise-title"></h2>
+    <p id="exercise-question"></p>
     
     <div id="board"></div>
+    <div id="controls" class="controls"></div>
+    <div id="feedback" style="margin-top: 15px; font-weight: bold; min-height: 40px;"></div>
     
-    <div class="controls">
-        <button onclick="checkAnswer(true)">Can Capture</button>
-        <button onclick="checkAnswer(false)">Cannot Capture</button>
-    </div>
-    <div id="feedback" style="margin-top: 15px; font-weight: bold;"></div>
+    <button id="next-btn" style="display:none;" onclick="nextExercise()">Next Exercise</button>
 
-    <!-- Include jQuery, Chessboard.js, and Chess.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
