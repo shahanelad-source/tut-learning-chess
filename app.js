@@ -61,7 +61,7 @@ const exercises = [
     },
     {
         id: 13,
-        fen: "7k/7p/8/3BB3/5K2/8/8/8 b - - 0 1",
+        fen: "7k/7p/8/3B4/3B4/5K1/8/8 b - - 0 1",
         question: "Now you decide what Black can do in this position. Black King:",
         options: [
             { text: "can capture its attacker", isCorrect: false },
@@ -72,7 +72,7 @@ const exercises = [
     },
     {
         id: 14,
-        fen: "4k2q/2pp1Q2/8/p3N3/8/3p1PP1/4K3/8 b - - 0 1",
+        fen: "4k2q/2pp1Q2/8/1b2N3/p7/8/3P1PP1/4K3 b - - 0 1",
         question: "Again, observe the position and decide what the Black King can do.",
         options: [
             { text: "can capture attacker", isCorrect: false },
@@ -83,7 +83,7 @@ const exercises = [
     },
     {
         id: 15,
-        fen: "3R2k1/5p1p/5P2/8/5K2/8/8/8 b - - 0 1",
+        fen: "4R1k1/6p1/6Pp/8/8//8/6K1/8 b - - 0 1",
         question: "Black King:",
         options: [
             { text: "can capture attacker", isCorrect: false },
@@ -94,7 +94,7 @@ const exercises = [
     },
     {
         id: 16,
-        fen: "7k/4N1pR/8/8/3K4/8/8/8 b - - 0 1",
+        fen: "7k/4N1pR/8/8/8/8/3K4/8 b - - 0 1",
         question: "Black King:",
         options: [
             { text: "can capture attacker", isCorrect: true },
@@ -105,7 +105,7 @@ const exercises = [
     },
     {
         id: 17,
-        fen: "1rk5/1ppP4/3Q4/8/8/8/7K/8 b - - 0 1",
+        fen: "rk6/1pP5/1P2Q3/8/8/8/8/7K b - - 0 1",
         question: "Here the lowly Pawn is giving check. Black King:",
         options: [
             { text: "can capture attacker", isCorrect: false },
@@ -116,7 +116,7 @@ const exercises = [
     },
     {
         id: 18,
-        fen: "4R1k1/5ppp/2Q5/8/5K2/8/8/8 b - - 0 1",
+        fen: "5Rk1/6pp/2Q5/8/8/8/5K2/8 b - - 0 1",
         question: "Black King:",
         options: [
             { text: "can capture attacker", isCorrect: false },
@@ -127,7 +127,7 @@ const exercises = [
     },
     {
         id: 19,
-        fen: "8/8/2P5/2RK1k2/6p1/2q5/8/8 b - - 0 1",
+        fen: "8/8/2P5/3K1k2/2R3p1/2q5/8/8 b - - 0 1",
         question: "Drag the Black Queen to the correct square to show how I (Black) mated Paul Keres in this position.",
         isInteractive: true,
         correctMove: { from: "c3", to: "d3" },
