@@ -1,27 +1,17 @@
 let currentIndex = 0;
 let chess = null;
-
-// Function using a for loop to verify and load the exercise bank
-function getValidatedBank() {
-    const validated = [];
-    for (let i = 0; i < exerciseBank.length; i++) {
-        validated.push(exerciseBank[i]);
-    }
-    return validated;
-}
-
-const activeExercises = getValidatedBank();
+let currentMode = 'trainer'; // 'trainer' or 'builder'
 
 function initDropdown() {
     const selectEl = document.getElementById('exercise-select');
     if (!selectEl) return;
     
     selectEl.innerHTML = '';
-    for (let i = 0; i < activeExercises.length; i++) {
-        const ex = activeExercises[i];
+    for (let i = 0; i < exerciseBank.length; i++) {
+        const ex = exerciseBank[i];
         const option = document.createElement('option');
         option.value = i;
-        option.innerText = `${ex.chapter.split('[')[0].trim()} - Frame ${ex.frame}`;
+        option.innerText = `Frame ${ex.frame} (${ex.chapter.split(':')[0]})`;
         selectEl.appendChild(option);
     }
 
@@ -31,20 +21,41 @@ function initDropdown() {
     };
 }
 
+function switchMode(mode) {
+    currentMode = mode;
+    const trainerBtn = document.getElementById('mode-trainer');
+    const builderBtn = document.getElementById('mode-builder');
+    const trainerPanel = document.getElementById('trainer-panel');
+    const builderPanel = document.getElementById('builder-panel');
+
+    if (mode === 'trainer') {
+        trainerBtn.className = "px-3 py-1.5 rounded bg-amber-500 text-slate-950 font-bold transition cursor-pointer";
+        builderBtn.className = "px-3 py-1.5 rounded text-slate-300 hover:text-white transition cursor-pointer";
+        trainerPanel.classList.remove('hidden');
+        builderPanel.classList.add('hidden');
+    } else {
+        builderBtn.className = "px-3 py-1.5 rounded bg-emerald-500 text-slate-950 font-bold transition cursor-pointer";
+        trainerBtn.className = "px-3 py-1.5 rounded text-slate-300 hover:text-white transition cursor-pointer";
+        builderPanel.classList.remove('hidden');
+        trainerPanel.classList.add('hidden');
+    }
+    loadExercise(currentIndex);
+}
+
 function loadExercise(index) {
     currentIndex = index;
-    const data = activeExercises[index];
+    const data = exerciseBank[index];
 
     const selectEl = document.getElementById('exercise-select');
     if (selectEl) selectEl.value = index;
 
+    // Trainer View Data
     document.getElementById('chapter-tag').innerText = data.chapter;
     document.getElementById('frame-title').innerText = data.title;
     document.getElementById('frame-text').innerText = data.text;
 
     const container = document.getElementById('options-container');
     container.innerHTML = '';
-    
     for (let i = 0; i < data.options.length; i++) {
         const opt = data.options[i];
         const btn = document.createElement('button');
@@ -54,8 +65,39 @@ function loadExercise(index) {
         container.appendChild(btn);
     }
 
+    // Builder View Data
+    document.getElementById('builder-title').innerText = `Frame ${data.frame} Builder`;
+    document.getElementById('builder-text').innerText = data.text;
+    document.getElementById('fen-input').value = data.fen;
+
     chess.load(data.fen);
     renderBoard();
+}
+
+function previewFen(fenStr) {
+    try {
+        chess.load(fenStr);
+        renderBoard();
+    } catch (e) {
+        // Invalid FEN while typing, ignore temporarily
+    }
+}
+
+function saveCurrentFen() {
+    const fenVal = document.getElementById('fen-input').value;
+    exerciseBank[currentIndex].fen = fenVal;
+    alert(`Saved FEN for Frame ${exerciseBank[currentIndex].frame}! Moving to next frame.`);
+    
+    if (currentIndex < exerciseBank.length - 1) {
+        loadExercise(currentIndex + 1);
+    }
+}
+
+function exportBankJson() {
+    const outputText = "const exerciseBank = " + JSON.stringify(exerciseBank, null, 4) + ";";
+    navigator.clipboard.writeText(outputText).then(() => {
+        alert("Copied complete updated exerciseBank.js to your clipboard! Paste it into your exerciseBank.js file.");
+    });
 }
 
 function renderBoard() {
@@ -96,9 +138,9 @@ function checkAnswer(selected, correct, explanation) {
     }
 }
 
-// Button Listeners
+// Navigation Listeners
 document.getElementById('next-btn').onclick = () => {
-    if (currentIndex < activeExercises.length - 1) {
+    if (currentIndex < exerciseBank.length - 1) {
         loadExercise(currentIndex + 1);
     }
 };
@@ -110,10 +152,10 @@ document.getElementById('prev-btn').onclick = () => {
 };
 
 document.getElementById('hint-btn').onclick = () => {
-    alert(activeExercises[currentIndex].explanation);
+    alert(exerciseBank[currentIndex].explanation);
 };
 
-// 🔥 CRITICAL FIX: Wait for the DOM to fully load before initializing the app
+// DOM Content Loaded Handler
 window.addEventListener('DOMContentLoaded', () => {
     chess = new Chess();
     initDropdown();
