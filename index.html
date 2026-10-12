@@ -6,8 +6,8 @@
     <title>Bobby Fischer Teaches Chess - Trainer</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chess.js Library (Fixes 'Chess is not defined' error) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.13.4/chess.min.js"></script>
+    <!-- Stable UMD build of Chess.js (fixes export syntax and 'Chess is not defined' errors) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col items-center justify-between p-4">
 
@@ -46,7 +46,7 @@
 
     </main>
 
-    <!-- Scripts (Chess.js must load first, then your bank, then app logic) -->
+    <!-- Scripts -->
     <script src="exerciseBank.js"></script>
     <script src="app.js"></script>
 </body>
