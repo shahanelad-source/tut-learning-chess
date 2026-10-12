@@ -306,3 +306,5 @@ function fetchAllBookExercises() {
 
     return exercisesBank;
 }
+// RUN THE FUNCTION TO FILL THE BANK UPON LOAD
+const exerciseBank = fetchAllBookExercises();
