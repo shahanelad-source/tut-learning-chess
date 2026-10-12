@@ -1,22 +1,58 @@
 let currentIndex = 0;
-const chess = new Chess();
+let chess = null;
+
+// Function using a for loop to verify and load the exercise bank
+function getValidatedBank() {
+    const validated = [];
+    for (let i = 0; i < exerciseBank.length; i++) {
+        validated.push(exerciseBank[i]);
+    }
+    return validated;
+}
+
+const activeExercises = getValidatedBank();
+
+function initDropdown() {
+    const selectEl = document.getElementById('exercise-select');
+    if (!selectEl) return;
+    
+    selectEl.innerHTML = '';
+    for (let i = 0; i < activeExercises.length; i++) {
+        const ex = activeExercises[i];
+        const option = document.createElement('option');
+        option.value = i;
+        option.innerText = `${ex.chapter.split('[')[0].trim()} - Frame ${ex.frame}`;
+        selectEl.appendChild(option);
+    }
+
+    selectEl.onchange = (e) => {
+        currentIndex = parseInt(e.target.value);
+        loadExercise(currentIndex);
+    };
+}
 
 function loadExercise(index) {
-    const data = exerciseBank[index];
-    document.getElementById('progress-indicator').innerText = `Exercise ${index + 1} of ${exerciseBank.length} (Frame ${data.frame})`;
+    currentIndex = index;
+    const data = activeExercises[index];
+
+    const selectEl = document.getElementById('exercise-select');
+    if (selectEl) selectEl.value = index;
+
     document.getElementById('chapter-tag').innerText = data.chapter;
     document.getElementById('frame-title').innerText = data.title;
     document.getElementById('frame-text').innerText = data.text;
 
     const container = document.getElementById('options-container');
     container.innerHTML = '';
-    data.options.forEach((opt, idx) => {
+    
+    for (let i = 0; i < data.options.length; i++) {
+        const opt = data.options[i];
         const btn = document.createElement('button');
-        btn.className = "w-full text-left px-4 py-3 bg-slate-900 hover:bg-slate-700 border border-slate-700 rounded text-xs text-slate-200 transition font-medium";
+        btn.className = "w-full text-left px-4 py-3 bg-slate-900 hover:bg-slate-700 border border-slate-700 rounded text-xs text-slate-200 transition font-medium cursor-pointer";
         btn.innerText = opt;
-        btn.onclick = () => checkAnswer(idx, data.correct, data.explanation);
+        btn.onclick = () => checkAnswer(i, data.correct, data.explanation);
         container.appendChild(btn);
-    });
+    }
 
     chess.load(data.fen);
     renderBoard();
@@ -24,6 +60,7 @@ function loadExercise(index) {
 
 function renderBoard() {
     const boardEl = document.getElementById('board');
+    if (!boardEl) return;
     boardEl.innerHTML = '';
     const board = chess.board();
 
@@ -59,23 +96,26 @@ function checkAnswer(selected, correct, explanation) {
     }
 }
 
+// Button Listeners
 document.getElementById('next-btn').onclick = () => {
-    if (currentIndex < exerciseBank.length - 1) {
-        currentIndex++;
-        loadExercise(currentIndex);
+    if (currentIndex < activeExercises.length - 1) {
+        loadExercise(currentIndex + 1);
     }
 };
 
 document.getElementById('prev-btn').onclick = () => {
     if (currentIndex > 0) {
-        currentIndex--;
-        loadExercise(currentIndex);
+        loadExercise(currentIndex - 1);
     }
 };
 
 document.getElementById('hint-btn').onclick = () => {
-    alert(exerciseBank[currentIndex].explanation);
+    alert(activeExercises[currentIndex].explanation);
 };
 
-// Initialize app with the first exercise
-loadExercise(currentIndex);
+// 🔥 CRITICAL FIX: Wait for the DOM to fully load before initializing the app
+window.addEventListener('DOMContentLoaded', () => {
+    chess = new Chess();
+    initDropdown();
+    loadExercise(currentIndex);
+});
