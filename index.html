@@ -1,2 +1,53 @@
-<script src="exerciseBank.js"></script>
-<script src="app.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bobby Fischer Teaches Chess - Trainer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chess.js Library for board parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.13.4/chess.min.js"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col items-center justify-between p-4">
+
+    <!-- Header -->
+    <header class="w-full max-w-4xl py-4 px-6 flex justify-between items-center border-b border-slate-800">
+        <h1 class="text-lg font-bold text-amber-400">♟️ BOBBY FISCHER TEACHES CHESS</h1>
+        <div id="progress-indicator" class="text-sm text-slate-400">Loading...</div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6 items-start my-auto">
+        
+        <!-- Left Panel: Chess Board & Controls -->
+        <div class="bg-slate-800 p-4 rounded-xl shadow-lg border border-slate-700 flex flex-col items-center">
+            <div id="board" class="w-full aspect-square grid grid-cols-8 grid-rows-8 border-4 border-slate-900 rounded-lg overflow-hidden shadow-inner"></div>
+            <div class="flex justify-between w-full mt-4">
+                <button id="prev-btn" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-xs font-medium transition cursor-pointer">Previous</button>
+                <button id="hint-btn" class="px-4 py-2 bg-amber-600/30 hover:bg-amber-600/50 text-amber-300 rounded text-xs font-medium transition cursor-pointer">Explanation</button>
+                <button id="next-btn" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded text-xs font-bold transition cursor-pointer">Next</button>
+            </div>
+        </div>
+
+        <!-- Right Panel: Questions & Options -->
+        <div class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700 flex flex-col justify-between min-h-[380px]">
+            <div>
+                <span id="chapter-tag" class="text-xs font-semibold px-2.5 py-1 bg-amber-500/20 text-amber-400 rounded-full">Chapter</span>
+                <h2 id="frame-title" class="text-md font-bold mt-4 text-slate-200">Exercise</h2>
+                <p id="frame-text" class="text-slate-300 mt-3 text-sm leading-relaxed">
+                    Loading exercise...
+                </p>
+            </div>
+            <div id="options-container" class="mt-6 flex flex-col gap-2 pt-4 border-t border-slate-700">
+                <!-- Dynamic options rendered here -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Pre-loaded exercise bank and application logic -->
+    <script src="exerciseBank.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
