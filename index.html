@@ -3,81 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bobby Fischer Teaches Chess - Trainer & Builder</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Bobby Fischer Chess Lesson</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Stable UMD build of Chess.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+    <style>
+        /* Speech Bubble Tail CSS */
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 10px 15px 10px 0;
+            border-style: solid;
+            border-color: transparent white transparent transparent;
+        }
+        /* Custom Scrollbar for options */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; }
+    </style>
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col items-center justify-between p-4">
+<body class="bg-[#302e2b] text-[#c3c3c2] font-sans h-screen flex flex-col max-w-md mx-auto relative overflow-hidden">
 
-    <!-- Header & Navigation -->
-    <header class="w-full max-w-4xl py-4 px-6 flex flex-col sm:flex-row justify-between items-center border-b border-slate-800 gap-4">
-        <h1 class="text-lg font-bold text-amber-400">♟️ BOBBY FISCHER TRAINER</h1>
-        
-        <div class="flex items-center gap-3">
-            <!-- Mode Switcher -->
-            <div class="bg-slate-800 p-1 rounded border border-slate-700 flex text-xs">
-                <button id="mode-trainer" onclick="switchMode('trainer')" class="px-3 py-1.5 rounded bg-amber-500 text-slate-950 font-bold transition cursor-pointer">Trainer</button>
-                <button id="mode-builder" onclick="switchMode('builder')" class="px-3 py-1.5 rounded text-slate-300 hover:text-white transition cursor-pointer">FEN Builder</button>
-            </div>
-
-            <!-- Jump Dropdown -->
-            <select id="exercise-select" class="bg-slate-800 border border-slate-700 text-slate-200 text-xs rounded px-3 py-1.5 focus:outline-none focus:border-amber-500 cursor-pointer max-w-[200px]">
-                <!-- Populated dynamically -->
-            </select>
+    <!-- Top Header -->
+    <header class="flex items-center justify-between p-4 bg-[#262522]">
+        <button class="text-[#c3c3c2] hover:text-white transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+        </button>
+        <div class="flex items-center gap-2">
+            <svg class="w-6 h-6 text-[#7fa650]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L8 6h8l-4-4zm-4 5v2h8V7H8zm-1 3v6h10v-6H7zm1.5 7h7l1.5 5H7l1.5-5z"></path></svg>
+            <h1 class="text-white font-bold text-lg">BobbyFischer.com</h1>
         </div>
+        <button class="text-[#c3c3c2] hover:text-white transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+        </button>
     </header>
 
-    <!-- Main Content Grid -->
-    <main class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6 items-start my-auto">
-        
-        <!-- Left Panel: Chess Board & Controls -->
-        <div class="bg-slate-800 p-4 rounded-xl shadow-lg border border-slate-700 flex flex-col items-center">
-            <div id="board" class="w-full aspect-square grid grid-cols-8 grid-rows-8 border-4 border-slate-900 rounded-lg overflow-hidden shadow-inner"></div>
-            <div class="flex justify-between w-full mt-4">
-                <button id="prev-btn" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded text-xs font-medium transition cursor-pointer">Previous</button>
-                <button id="hint-btn" class="px-4 py-2 bg-amber-600/30 hover:bg-amber-600/50 text-amber-300 rounded text-xs font-medium transition cursor-pointer">Explanation</button>
-                <button id="next-btn" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded text-xs font-bold transition cursor-pointer">Next</button>
-            </div>
+    <!-- Coach / Speech Bubble Area -->
+    <div class="flex items-center p-4 gap-4 bg-[#302e2b]">
+        <div class="w-14 h-14 bg-orange-200 rounded-full flex items-center justify-center text-3xl shrink-0 border-2 border-[#302e2b] shadow-lg">
+            🧑‍🏫
         </div>
-
-        <!-- Right Panel: Dynamic (Trainer vs Builder) -->
-        <div class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700 flex flex-col justify-between min-h-[380px]">
-            
-            <!-- Trainer View -->
-            <div id="trainer-panel" class="flex flex-col justify-between h-full">
-                <div>
-                    <span id="chapter-tag" class="text-xs font-semibold px-2.5 py-1 bg-amber-500/20 text-amber-400 rounded-full">Chapter</span>
-                    <h2 id="frame-title" class="text-md font-bold mt-4 text-slate-200">Exercise</h2>
-                    <p id="frame-text" class="text-slate-300 mt-3 text-sm leading-relaxed">Loading...</p>
-                </div>
-                <div id="options-container" class="mt-6 flex flex-col gap-2 pt-4 border-t border-slate-700"></div>
-            </div>
-
-            <!-- Builder View (Hidden by default) -->
-            <div id="builder-panel" class="hidden flex flex-col justify-between h-full">
-                <div>
-                    <span class="text-xs font-semibold px-2.5 py-1 bg-emerald-500/20 text-emerald-400 rounded-full">FEN Creator Game</span>
-                    <h2 id="builder-title" class="text-md font-bold mt-3 text-slate-200">Frame Builder</h2>
-                    <p id="builder-text" class="text-slate-300 mt-2 text-xs leading-relaxed">Type or paste the FEN string for this frame below. The board on the left will update instantly!</p>
-                </div>
-                
-                <div class="mt-4 flex flex-col gap-3">
-                    <label class="text-xs text-slate-400 font-medium">FEN String:</label>
-                    <input type="text" id="fen-input" oninput="previewFen(this.value)" class="bg-slate-900 border border-slate-700 text-amber-300 text-xs rounded p-2.5 font-mono focus:outline-none focus:border-amber-500" placeholder="e.g. 6Rk/7p/8/5N/8/8/8/6K b - - 0 1">
-                    
-                    <button onclick="saveCurrentFen()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold rounded text-xs transition cursor-pointer">💾 Save FEN & Next Frame</button>
-                    
-                    <button onclick="exportBankJson()" class="w-full py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 font-medium rounded text-xs transition cursor-pointer">📋 Copy Updated exerciseBank.js</button>
-                </div>
-            </div>
-
+        <div class="relative bg-white text-[#333333] px-4 py-3 rounded-2xl speech-bubble font-medium text-sm shadow-md w-full">
+            <span id="frame-text">Loading lesson...</span>
         </div>
+    </div>
 
-    </main>
+    <!-- Chess Board (Tournament Green) -->
+    <div id="board-container" class="w-full aspect-square relative select-none">
+        <div id="board" class="w-full h-full grid grid-cols-8 grid-rows-8"></div>
+        <!-- Coordinates Overlay -->
+        <div class="absolute top-0.5 left-1 text-[10px] text-[#ebecd0] font-bold">8</div>
+        <div class="absolute bottom-0.5 right-1 text-[10px] text-[#ebecd0] font-bold">h</div>
+    </div>
 
-    <!-- Scripts -->
+    <!-- Interactive Answer Area -->
+    <div class="flex-1 overflow-y-auto p-4 flex flex-col gap-2" id="options-container">
+        <!-- Buttons injected here by JS -->
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <footer class="flex justify-around items-center bg-[#262522] py-2 mt-auto border-t border-[#1e1e1e]">
+        <button onclick="document.getElementById('nav-modal').classList.remove('hidden')" class="flex flex-col items-center gap-1 text-[#8b8987] hover:text-white transition w-16">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            <span class="text-[10px] font-bold">Options</span>
+        </button>
+        <button id="btn-prev" class="flex flex-col items-center gap-1 text-[#8b8987] hover:text-white transition w-16">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1v12zm0 0v7"></path></svg>
+            <span class="text-[10px] font-bold">Abort</span>
+        </button>
+        <button id="btn-hint" class="flex flex-col items-center gap-1 text-[#8b8987] hover:text-white transition w-16">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+            <span class="text-[10px] font-bold">Hint</span>
+        </button>
+        <button id="btn-next" class="flex flex-col items-center gap-1 text-[#8b8987] hover:text-white transition w-16">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path></svg>
+            <span class="text-[10px] font-bold">Undo</span>
+        </button>
+    </footer>
+
+    <!-- Hidden Dropdown Modal for "Options" -->
+    <div id="nav-modal" class="hidden absolute inset-0 bg-black/70 flex items-end z-50">
+        <div class="w-full bg-[#262522] rounded-t-2xl p-4 flex flex-col gap-4">
+            <div class="flex justify-between items-center mb-2">
+                <h3 class="text-white font-bold">Jump to Frame</h3>
+                <button onclick="document.getElementById('nav-modal').classList.add('hidden')" class="text-gray-400">✕</button>
+            </div>
+            <select id="exercise-select" class="w-full bg-[#302e2b] text-white p-3 rounded-lg border border-[#403e3b] focus:outline-none"></select>
+        </div>
+    </div>
+
     <script src="exerciseBank.js"></script>
     <script src="app.js"></script>
 </body>
