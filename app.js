@@ -1,108 +1,66 @@
 let currentIndex = 0;
 let chess = null;
-let currentMode = 'trainer'; // 'trainer' or 'builder'
 
-function initDropdown() {
+function initApp() {
+    chess = new Chess();
     const selectEl = document.getElementById('exercise-select');
-    if (!selectEl) return;
     
-    selectEl.innerHTML = '';
-    for (let i = 0; i < exerciseBank.length; i++) {
-        const ex = exerciseBank[i];
+    exerciseBank.forEach((ex, i) => {
         const option = document.createElement('option');
         option.value = i;
-        option.innerText = `Frame ${ex.frame} (${ex.chapter.split(':')[0]})`;
+        option.innerText = `Frame ${ex.frame} - ${ex.chapter.split(':')[0]}`;
         selectEl.appendChild(option);
-    }
+    });
 
     selectEl.onchange = (e) => {
-        currentIndex = parseInt(e.target.value);
-        loadExercise(currentIndex);
+        document.getElementById('nav-modal').classList.add('hidden');
+        loadExercise(parseInt(e.target.value));
     };
-}
 
-function switchMode(mode) {
-    currentMode = mode;
-    const trainerBtn = document.getElementById('mode-trainer');
-    const builderBtn = document.getElementById('mode-builder');
-    const trainerPanel = document.getElementById('trainer-panel');
-    const builderPanel = document.getElementById('builder-panel');
+    // Map Bottom Bar Buttons
+    document.getElementById('btn-prev').onclick = () => loadExercise(Math.max(0, currentIndex - 1));
+    document.getElementById('btn-next').onclick = () => loadExercise(Math.min(exerciseBank.length - 1, currentIndex + 1));
+    document.getElementById('btn-hint').onclick = () => alert(exerciseBank[currentIndex].explanation || "No hint available.");
 
-    if (mode === 'trainer') {
-        trainerBtn.className = "px-3 py-1.5 rounded bg-amber-500 text-slate-950 font-bold transition cursor-pointer";
-        builderBtn.className = "px-3 py-1.5 rounded text-slate-300 hover:text-white transition cursor-pointer";
-        trainerPanel.classList.remove('hidden');
-        builderPanel.classList.add('hidden');
-    } else {
-        builderBtn.className = "px-3 py-1.5 rounded bg-emerald-500 text-slate-950 font-bold transition cursor-pointer";
-        trainerBtn.className = "px-3 py-1.5 rounded text-slate-300 hover:text-white transition cursor-pointer";
-        builderPanel.classList.remove('hidden');
-        trainerPanel.classList.add('hidden');
-    }
-    loadExercise(currentIndex);
+    loadExercise(0);
 }
 
 function loadExercise(index) {
     currentIndex = index;
     const data = exerciseBank[index];
+    document.getElementById('exercise-select').value = index;
 
-    const selectEl = document.getElementById('exercise-select');
-    if (selectEl) selectEl.value = index;
+    // Load Speech Bubble
+    let bubbleText = `<b>Frame ${data.frame}:</b><br/>${data.text}`;
+    if (data.needs_manual_fix) {
+        bubbleText += `<br/><span class="text-rose-500 text-[10px] uppercase font-bold mt-1 block">⚠️ FEN needs manual fix</span>`;
+    }
+    document.getElementById('frame-text').innerHTML = bubbleText;
 
-    // Trainer View Data
-    document.getElementById('chapter-tag').innerText = data.chapter;
-    document.getElementById('frame-title').innerText = data.title;
-    document.getElementById('frame-text').innerText = data.text;
-
+    // Render Answers
     const container = document.getElementById('options-container');
     container.innerHTML = '';
-    for (let i = 0; i < data.options.length; i++) {
-        const opt = data.options[i];
-        const btn = document.createElement('button');
-        btn.className = "w-full text-left px-4 py-3 bg-slate-900 hover:bg-slate-700 border border-slate-700 rounded text-xs text-slate-200 transition font-medium cursor-pointer";
-        btn.innerText = opt;
-        btn.onclick = () => checkAnswer(i, data.correct, data.explanation);
-        container.appendChild(btn);
-    }
-
-    // Builder View Data
-    document.getElementById('builder-title').innerText = `Frame ${data.frame} Builder`;
-    document.getElementById('builder-text').innerText = data.text;
-    document.getElementById('fen-input').value = data.fen;
-
-    chess.load(data.fen);
-    renderBoard();
-}
-
-function previewFen(fenStr) {
-    try {
-        chess.load(fenStr);
-        renderBoard();
-    } catch (e) {
-        // Invalid FEN while typing, ignore temporarily
-    }
-}
-
-function saveCurrentFen() {
-    const fenVal = document.getElementById('fen-input').value;
-    exerciseBank[currentIndex].fen = fenVal;
-    alert(`Saved FEN for Frame ${exerciseBank[currentIndex].frame}! Moving to next frame.`);
     
-    if (currentIndex < exerciseBank.length - 1) {
-        loadExercise(currentIndex + 1);
-    }
-}
-
-function exportBankJson() {
-    const outputText = "const exerciseBank = " + JSON.stringify(exerciseBank, null, 4) + ";";
-    navigator.clipboard.writeText(outputText).then(() => {
-        alert("Copied complete updated exerciseBank.js to your clipboard! Paste it into your exerciseBank.js file.");
+    data.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        // Styled like Chess.com action buttons
+        btn.className = "w-full text-center px-4 py-3.5 bg-[#454341] hover:bg-[#52504d] text-[#c3c3c2] hover:text-white rounded-lg text-sm font-bold transition shadow-sm border-b-4 border-[#33312e] active:translate-y-1 active:border-b-0";
+        btn.innerText = opt;
+        btn.onclick = () => checkAnswer(i, data.correct, btn);
+        container.appendChild(btn);
     });
+
+    // Render Board
+    try {
+        chess.load(data.fen);
+    } catch (e) {
+        chess.clear(); // Load empty board if FEN is broken
+    }
+    renderBoard();
 }
 
 function renderBoard() {
     const boardEl = document.getElementById('board');
-    if (!boardEl) return;
     boardEl.innerHTML = '';
     const board = chess.board();
 
@@ -110,12 +68,12 @@ function renderBoard() {
         for (let c = 0; c < 8; c++) {
             const squareEl = document.createElement('div');
             const isLight = (r + c) % 2 === 0;
-            squareEl.className = `w-full h-full flex items-center justify-center text-4xl select-none ${isLight ? 'bg-amber-100 text-slate-900' : 'bg-amber-800 text-slate-100'}`;
+            // Tournament Green Colors
+            squareEl.className = `w-full h-full flex items-center justify-center text-3xl select-none ${isLight ? 'bg-[#ebecd0] text-[#302e2b]' : 'bg-[#779556] text-[#ebecd0]'}`;
             
             const piece = board[r][c];
-            if (piece) {
-                squareEl.innerText = getPieceSymbol(piece);
-            }
+            if (piece) squareEl.innerText = getPieceSymbol(piece);
+            
             boardEl.appendChild(squareEl);
         }
     }
@@ -129,35 +87,22 @@ function getPieceSymbol(piece) {
     return symbols[piece.color === 'w' ? piece.type.toUpperCase() : piece.type.toLowerCase()];
 }
 
-function checkAnswer(selected, correct, explanation) {
+function checkAnswer(selected, correct, btnEl) {
     const container = document.getElementById('options-container');
+    const explanation = exerciseBank[currentIndex].explanation || "Review the board carefully.";
+    
+    // Disable all buttons
+    Array.from(container.children).forEach(b => b.disabled = true);
+
     if (selected === correct) {
-        container.innerHTML = `<div class="p-3 bg-emerald-950 border border-emerald-600 rounded text-emerald-300 text-xs">✅ Correct! ${explanation}</div>`;
+        btnEl.className = "w-full text-center px-4 py-3.5 bg-[#81b64c] text-white rounded-lg text-sm font-bold shadow-sm border-b-4 border-[#5b8532]";
+        btnEl.innerText = "✓ Correct! " + explanation;
+        setTimeout(() => document.getElementById('btn-next').click(), 2500);
     } else {
-        container.innerHTML = `<div class="p-3 bg-rose-950 border border-rose-600 rounded text-rose-300 text-xs">❌ Not quite. ${explanation}</div>`;
+        btnEl.className = "w-full text-center px-4 py-3.5 bg-[#fa412d] text-white rounded-lg text-sm font-bold shadow-sm border-b-4 border-[#c22e1d]";
+        btnEl.innerText = "✗ Incorrect. " + explanation;
+        setTimeout(() => loadExercise(currentIndex), 3000); // Reset after 3 seconds
     }
 }
 
-// Navigation Listeners
-document.getElementById('next-btn').onclick = () => {
-    if (currentIndex < exerciseBank.length - 1) {
-        loadExercise(currentIndex + 1);
-    }
-};
-
-document.getElementById('prev-btn').onclick = () => {
-    if (currentIndex > 0) {
-        loadExercise(currentIndex - 1);
-    }
-};
-
-document.getElementById('hint-btn').onclick = () => {
-    alert(exerciseBank[currentIndex].explanation);
-};
-
-// DOM Content Loaded Handler
-window.addEventListener('DOMContentLoaded', () => {
-    chess = new Chess();
-    initDropdown();
-    loadExercise(currentIndex);
-});
+window.addEventListener('DOMContentLoaded', initApp);
