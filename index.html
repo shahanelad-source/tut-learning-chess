@@ -1,99 +1,1240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bobby Fischer Chess Lesson</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
-    <style>
-        /* Speech Bubble Tail CSS */
-        .speech-bubble::before {
-            content: '';
-            position: absolute;
-            left: -10px;
-            top: 50%;
-            transform: translateY(-50%);
-            border-width: 10px 15px 10px 0;
-            border-style: solid;
-            border-color: transparent white transparent transparent;
-        }
-        /* Custom Scrollbar for options */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Bobby Fischer Teaches Chess — Practice</title>
+
+  <!-- Chessboard.js CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css" />
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-2: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --success: #10b981;
+      --success-bg: rgba(16, 185, 129, 0.15);
+      --error: #ef4444;
+      --error-bg: rgba(239, 68, 68, 0.15);
+      --warning: #f59e0b;
+      --border: #334155;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Navigation Bar */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .progress-pill {
+      background: var(--surface-2);
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .progress-bar-track {
+      max-width: 1100px;
+      margin: 8px auto 0;
+      height: 5px;
+      background: var(--surface-2);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--success);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* Controls Bar */
+    .controls-bar {
+      max-width: 1100px;
+      margin: 8px auto 0;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    select, button, input[type="text"] {
+      font-family: inherit;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      padding: 7px 10px;
+    }
+
+    select {
+      flex: 1;
+      min-width: 0;
+      text-overflow: ellipsis;
+    }
+
+    .icon-btn {
+      background: var(--surface-2);
+      border: none;
+      color: var(--text);
+      padding: 7px 11px;
+      cursor: pointer;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      transition: background 0.15s;
+    }
+
+    .icon-btn:hover {
+      background: #475569;
+    }
+
+    /* Main Workspace */
+    main {
+      flex: 1;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: minmax(280px, 460px) 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 800px) {
+      main {
+        grid-template-columns: 1fr;
+        padding: 12px 12px 84px 12px;
+        gap: 14px;
+      }
+    }
+
+    /* Board Container */
+    .board-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .board-wrapper {
+      width: 100%;
+      max-width: 440px;
+      aspect-ratio: 1 / 1;
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      /* Prevents page scrolling while dragging pieces on mobile */
+      touch-action: none;
+      user-select: none;
+    }
+
+    #board {
+      width: 100%;
+      height: 100%;
+    }
+
+    .board-toolbar {
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .turn-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .turn-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      border: 2px solid var(--border);
+    }
+
+    .turn-dot.white { background: #ffffff; }
+    .turn-dot.black { background: #1e293b; border-color: #94a3b8; }
+
+    /* Square Highlights for Tap-to-Move & Last Move */
+    .highlight-selected {
+      box-shadow: inset 0 0 0 4px #f59e0b !important;
+      background-color: rgba(245, 158, 11, 0.35) !important;
+    }
+
+    .highlight-legal {
+      position: relative;
+    }
+
+    .highlight-legal::after {
+      content: "";
+      position: absolute;
+      width: 28%;
+      height: 28%;
+      background: rgba(16, 185, 129, 0.75);
+      border-radius: 50%;
+      top: 36%;
+      left: 36%;
+      pointer-events: none;
+    }
+
+    .highlight-last-move {
+      background-color: rgba(59, 130, 246, 0.35) !important;
+    }
+
+    /* Tutor / Instruction Panel */
+    .tutor-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .frame-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chapter-badge {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .solved-badge {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: var(--success-bg);
+      color: var(--success);
+      display: none;
+    }
+
+    .solved-badge.visible {
+      display: inline-block;
+    }
+
+    .frame-title {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .prompt-text {
+      font-size: 1.02rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+      white-space: pre-line;
+    }
+
+    /* Multiple Choice & Input Area */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+    }
+
+    .option-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s;
+    }
+
+    .option-btn:hover {
+      border-color: var(--accent);
+      background: rgba(59, 130, 246, 0.1);
+    }
+
+    .option-btn.correct {
+      background: var(--success-bg);
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    .option-btn.wrong {
+      background: var(--error-bg);
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    .text-answer-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .text-answer-row input {
+      flex: 1;
+      padding: 10px 12px;
+      font-size: 0.95rem;
+    }
+
+    .primary-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .primary-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    /* Feedback & Explanation Box */
+    .feedback-box {
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: none;
+      line-height: 1.45;
+    }
+
+    .feedback-box.success {
+      display: block;
+      background: var(--success-bg);
+      border: 1px solid var(--success);
+      color: #6ee7b7;
+    }
+
+    .feedback-box.error {
+      display: block;
+      background: var(--error-bg);
+      border: 1px solid var(--error);
+      color: #fca5a5;
+    }
+
+    .feedback-box.info {
+      display: block;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid var(--accent);
+      color: #93c5fd;
+    }
+
+    .explanation-box {
+      background: rgba(255, 255, 255, 0.04);
+      border-left: 4px solid var(--accent);
+      padding: 12px 14px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: #cbd5e1;
+      display: none;
+      white-space: pre-line;
+    }
+
+    .explanation-box.visible {
+      display: block;
+    }
+
+    /* Action Buttons (Hint, Solution, Navigation) */
+    .helper-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding-top: 4px;
+    }
+
+    /* Bottom Navigation Bar (Sticky on Mobile) */
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 800px) {
+      .nav-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--surface);
+        padding: 10px 16px;
+        margin: 0;
+        z-index: 30;
+        box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.35);
+      }
+    }
+
+    .nav-btn {
+      flex: 1;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text);
+      text-align: center;
+    }
+
+    .nav-btn.next-highlight {
+      background: var(--success);
+      border-color: var(--success);
+      color: #052e16;
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
 </head>
-<body class="bg-[#302e2b] text-[#c3c3c2] font-sans h-screen flex flex-col max-w-md mx-auto relative overflow-hidden">
+<body>
 
-    <!-- Top Header -->
-    <header class="flex items-center justify-between p-4 bg-[#262522]">
-        <button class="text-[#c3c3c2] hover:text-white transition">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-        </button>
-        <div class="flex items-center gap-2">
-            <svg class="w-6 h-6 text-[#7fa650]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L8 6h8l-4-4zm-4 5v2h8V7H8zm-1 3v6h10v-6H7zm1.5 7h7l1.5 5H7l1.5-5z"></path></svg>
-            <h1 class="text-white font-bold text-lg">BobbyFischer.com</h1>
-        </div>
-        <button class="text-[#c3c3c2] hover:text-white transition">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-        </button>
-    </header>
-
-    <!-- Coach / Speech Bubble Area -->
-    <div class="flex items-center p-4 gap-4 bg-[#302e2b]">
-        <div class="w-14 h-14 bg-orange-200 rounded-full flex items-center justify-center text-3xl shrink-0 border-2 border-[#302e2b] shadow-lg">
-            🧑‍🏫
-        </div>
-        <div class="relative bg-white text-[#333333] px-4 py-3 rounded-2xl speech-bubble font-medium text-sm shadow-md w-full">
-            <span id="frame-text">Loading lesson...</span>
-        </div>
+  <header>
+    <div class="header-top">
+      <div class="brand">
+        <span>♟️ Fischer Chess Practice</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span id="progressPill" class="progress-pill">0 / 0 Solved</span>
+        <button class="icon-btn" id="uploadJsonBtn" title="Load custom exercises.json file">📂</button>
+        <button class="icon-btn" id="resetProgressBtn" title="Reset Solved Progress">🗑️</button>
+        <input type="file" id="jsonFileInput" accept=".json" class="hidden" />
+      </div>
     </div>
 
-    <!-- Chess Board (Tournament Green) -->
-    <div id="board-container" class="w-full aspect-square relative select-none">
-        <div id="board" class="w-full h-full grid grid-cols-8 grid-rows-8"></div>
-        <!-- Coordinates Overlay -->
-        <div class="absolute top-0.5 left-1 text-[10px] text-[#ebecd0] font-bold">8</div>
-        <div class="absolute bottom-0.5 right-1 text-[10px] text-[#ebecd0] font-bold">h</div>
+    <div class="progress-bar-track">
+      <div id="progressBarFill" class="progress-bar-fill"></div>
     </div>
 
-    <!-- Interactive Answer Area -->
-    <div class="flex-1 overflow-y-auto p-4 flex flex-col gap-2" id="options-container">
-        <!-- Buttons injected here by JS -->
+    <div class="controls-bar">
+      <select id="filterSelect" style="max-width: 125px;" aria-label="Filter exercises">
+        <option value="all">All Frames</option>
+        <option value="unsolved">Unsolved</option>
+        <option value="solved">Solved ✓</option>
+      </select>
+      <select id="exerciseSelect" aria-label="Jump to exercise"></select>
     </div>
+  </header>
 
-    <!-- Bottom Navigation Bar -->
-    <footer class="flex justify-around items-center bg-[#262522] py-2 mt-auto border-t border-[#1e1e1e]">
-        <button onclick="document.getElementById('nav-modal').classList.remove('hidden')" class="flex flex-col items-center gap-1 text-[#8b8987] hover:text-white transition w-16">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            <span class="text-[10px] font-bold">Options</span>
-        </button>
-        <button id="btn-prev" class="flex flex-col items-center gap-1 text-[#8b8987] hover:text-white transition w-16">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1v12zm0 0v7"></path></svg>
-            <span class="text-[10px] font-bold">Abort</span>
-        </button>
-        <button id="btn-hint" class="flex flex-col items-center gap-1 text-[#8b8987] hover:text-white transition w-16">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
-            <span class="text-[10px] font-bold">Hint</span>
-        </button>
-        <button id="btn-next" class="flex flex-col items-center gap-1 text-[#8b8987] hover:text-white transition w-16">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path></svg>
-            <span class="text-[10px] font-bold">Undo</span>
-        </button>
-    </footer>
-
-    <!-- Hidden Dropdown Modal for "Options" -->
-    <div id="nav-modal" class="hidden absolute inset-0 bg-black/70 flex items-end z-50">
-        <div class="w-full bg-[#262522] rounded-t-2xl p-4 flex flex-col gap-4">
-            <div class="flex justify-between items-center mb-2">
-                <h3 class="text-white font-bold">Jump to Frame</h3>
-                <button onclick="document.getElementById('nav-modal').classList.add('hidden')" class="text-gray-400">✕</button>
-            </div>
-            <select id="exercise-select" class="w-full bg-[#302e2b] text-white p-3 rounded-lg border border-[#403e3b] focus:outline-none"></select>
+  <main>
+    <!-- Left / Top: Interactive Board -->
+    <section class="board-section" id="boardSection">
+      <div class="board-wrapper">
+        <div id="board"></div>
+      </div>
+      <div class="board-toolbar">
+        <div class="turn-indicator" id="turnIndicator">
+          <span class="turn-dot white" id="turnDot"></span>
+          <span id="turnText">White to move</span>
         </div>
-    </div>
+        <div style="display: flex; gap: 6px;">
+          <button class="icon-btn" id="resetBoardBtn" title="Reset board position">↺ Reset</button>
+          <button class="icon-btn" id="flipBoardBtn" title="Flip board">⇅ Flip</button>
+        </div>
+      </div>
+    </section>
 
-    <script src="exerciseBank.js"></script>
-    <script src="app.js"></script>
+    <!-- Right / Bottom: Programmed Instruction Panel -->
+    <section class="tutor-panel">
+      <div>
+        <div class="frame-meta">
+          <span class="chapter-badge" id="chapterBadge">Chapter 1</span>
+          <span class="solved-badge" id="solvedBadge">✓ SOLVED</span>
+        </div>
+        <h1 class="frame-title" id="frameTitle">Loading exercises...</h1>
+      </div>
+
+      <div class="prompt-text" id="promptText">
+        Fetching exercises.json...
+      </div>
+
+      <!-- Multiple Choice Options -->
+      <div id="optionsContainer" class="options-grid hidden"></div>
+
+      <!-- Free Text / Move Notation Input (fallback or optional) -->
+      <div id="textInputContainer" class="text-answer-row hidden">
+        <input type="text" id="answerInput" placeholder="Type move (e.g. Qxh7#) or answer..." autocomplete="off" />
+        <button class="primary-btn" id="submitAnswerBtn">Check</button>
+      </div>
+
+      <!-- Feedback Banner -->
+      <div id="feedbackBox" class="feedback-box"></div>
+
+      <!-- Book Explanation -->
+      <div id="explanationBox" class="explanation-box"></div>
+
+      <!-- Helper Actions -->
+      <div class="helper-actions">
+        <button class="icon-btn" id="hintBtn">💡 Hint</button>
+        <button class="icon-btn" id="solutionBtn">👁️ Show Answer</button>
+        <button class="icon-btn hidden" id="markReadBtn">✓ Mark Completed</button>
+      </div>
+
+      <!-- Prev / Next Navigation -->
+      <div class="nav-bar">
+        <button class="nav-btn" id="prevBtn">← Prev</button>
+        <button class="nav-btn" id="nextBtn">Next →</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Dependencies: jQuery, Chessboard.js, Chess.js -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+
+  <script>
+    /********************************************************************
+     * 1. STATE & PROGRESS PERSISTENCE
+     ********************************************************************/
+    const STORAGE_KEY = 'bftc_practice_progress_v1';
+
+    let exercises = [];
+    let filteredIndices = [];
+    let currentIndex = 0; // index inside `exercises`
+
+    let game = new Chess();
+    let board = null;
+    let selectedSquare = null;
+    let currentStepIndex = 0; // For multi-move sequences
+    let exerciseSolvedInSession = false;
+
+    let progress = loadProgress();
+
+    function loadProgress() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        if (saved && Array.isArray(saved.solvedIds)) {
+          return {
+            currentIndex: Number(saved.currentIndex) || 0,
+            solvedIds: saved.solvedIds.map(String)
+          };
+        }
+      } catch (e) {
+        console.warn('Could not parse saved progress:', e);
+      }
+      return { currentIndex: 0, solvedIds: [] };
+    }
+
+    function saveProgress() {
+      progress.currentIndex = currentIndex;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+      updateProgressUI();
+    }
+
+    function markSolved(exId) {
+      const idStr = String(exId);
+      if (!progress.solvedIds.includes(idStr)) {
+        progress.solvedIds.push(idStr);
+      }
+      exerciseSolvedInSession = true;
+      saveProgress();
+      document.getElementById('solvedBadge').classList.add('visible');
+      document.getElementById('nextBtn').classList.add('next-highlight');
+      populateDropdown();
+    }
+
+    /********************************************************************
+     * 2. FLEXIBLE JSON SCHEMA ADAPTER
+     ********************************************************************/
+    function normalizeExercise(raw, idx) {
+      // Support user_correction overrides if present from review tool
+      const corr = (raw.user_correction && typeof raw.user_correction === 'object')
+        ? raw.user_correction
+        : {};
+
+      const id = raw.id ?? raw.frame ?? (idx + 1);
+      const frame = raw.frame ?? raw.id ?? (idx + 1);
+      const chapter = corr.chapter || raw.chapter || (raw.pdf_page ? `Page ${raw.pdf_page}` : 'Bobby Fischer Teaches Chess');
+      const title = corr.title || raw.title || `Frame #${frame}`;
+      const prompt = corr.prompt || corr.text || raw.prompt || raw.text || raw.question || 'Find the best continuation.';
+      const fen = (corr.fen ?? raw.fen ?? '').trim();
+      const explanation = corr.explanation || raw.explanation || '';
+
+      // Extract solution(s)
+      let rawSol = corr.solution ?? corr.correct ?? raw.solution ?? raw.correct ?? raw.bestMove ?? [];
+      let solutions = [];
+      if (Array.isArray(rawSol)) {
+        solutions = rawSol.map(s => String(s).trim()).filter(Boolean);
+      } else if (typeof rawSol === 'string' || typeof rawSol === 'number') {
+        // Split comma or slash separated alternatives if not a single phrase
+        const str = String(rawSol).trim();
+        solutions = str ? [str] : [];
+      }
+
+      // Extract options
+      let options = Array.isArray(corr.options || raw.options)
+        ? (corr.options || raw.options).map(String)
+        : [];
+
+      // Auto-detect Yes/No questions if options aren't explicitly listed
+      if (options.length === 0 && solutions.length === 1) {
+        const lowerSol = solutions[0].toLowerCase();
+        if (lowerSol === 'yes' || lowerSol === 'no') {
+          options = ['Yes', 'No'];
+        }
+      }
+
+      return {
+        id: String(id),
+        frame,
+        chapter,
+        title,
+        prompt,
+        fen,
+        solutions,
+        options,
+        explanation,
+        type: corr.type || raw.type || 'auto'
+      };
+    }
+
+    /********************************************************************
+     * 3. LOAD EXERCISES.JSON (WITH CACHE BUSTING)
+     ********************************************************************/
+    async function loadExercisesFromServer() {
+      try {
+        const response = await fetch(`./exercises.json?t=${Date.now()}`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        initDataset(data);
+      } catch (err) {
+        console.warn('Could not auto-fetch ./exercises.json:', err);
+        document.getElementById('frameTitle').textContent = 'Could not load exercises.json';
+        document.getElementById('promptText').textContent =
+          'Make sure exercises.json is uploaded in the same folder as index.html on GitHub, or tap the 📂 folder icon in the top bar to load your exercises.json file directly.';
+      }
+    }
+
+    function initDataset(data) {
+      const rawList = Array.isArray(data)
+        ? data
+        : (data.exercises || data.frames || Object.values(data));
+
+      exercises = rawList.map((item, idx) => normalizeExercise(item, idx));
+
+      if (exercises.length === 0) {
+        document.getElementById('frameTitle').textContent = 'No exercises found in JSON';
+        return;
+      }
+
+      if (progress.currentIndex >= exercises.length || progress.currentIndex < 0) {
+        progress.currentIndex = 0;
+      }
+      currentIndex = progress.currentIndex;
+
+      populateDropdown();
+      updateProgressUI();
+      renderExercise(currentIndex);
+    }
+
+    /********************************************************************
+     * 4. CHESSBOARD & TAP-TO-MOVE INITIALIZATION
+     ********************************************************************/
+    function initBoard() {
+      const config = {
+        draggable: true,
+        position: 'start',
+        pieceTheme: 'https://chessboardjs.com/img/chesspieces/wikipedia/{piece}.png',
+        onDragStart: onDragStart,
+        onDrop: onDrop,
+        onSnapEnd: onSnapEnd
+      };
+      board = Chessboard('board', config);
+
+      window.addEventListener('resize', () => {
+        if (board) board.resize();
+      });
+
+      // Enable Tap-to-Move on squares (essential for mobile comfort)
+      $('#board').on('click', '.square-55d63', function () {
+        const square = $(this).attr('data-square');
+        if (square) handleSquareTap(square);
+      });
+    }
+
+    function clearHighlights() {
+      selectedSquare = null;
+      $('#board .square-55d63').removeClass('highlight-selected highlight-legal');
+    }
+
+    function highlightLastMove(from, to) {
+      $('#board .square-55d63').removeClass('highlight-last-move');
+      if (from && to) {
+        $(`#board .square-${from}`).addClass('highlight-last-move');
+        $(`#board .square-${to}`).addClass('highlight-last-move');
+      }
+    }
+
+    function handleSquareTap(square) {
+      if (game.game_over()) return;
+
+      // If a square is already selected, try moving to the tapped square
+      if (selectedSquare) {
+        if (selectedSquare === square) {
+          clearHighlights();
+          return;
+        }
+        const pieceOnTarget = game.get(square);
+        // If tapping another friendly piece, switch selection to it
+        if (pieceOnTarget && pieceOnTarget.color === game.turn()) {
+          selectPieceSquare(square);
+          return;
+        }
+
+        // Attempt move
+        const moveAttempt = tryMakeMove(selectedSquare, square);
+        clearHighlights();
+        if (moveAttempt) {
+          board.position(game.fen());
+          validateBoardMove(moveAttempt);
+        }
+        return;
+      }
+
+      // Otherwise, select the square if it contains a piece of the side to move
+      const piece = game.get(square);
+      if (piece && piece.color === game.turn()) {
+        selectPieceSquare(square);
+      }
+    }
+
+    function selectPieceSquare(square) {
+      clearHighlights();
+      selectedSquare = square;
+      $(`#board .square-${square}`).addClass('highlight-selected');
+
+      const legalMoves = game.moves({ square: square, verbose: true });
+      legalMoves.forEach(m => {
+        $(`#board .square-${m.to}`).addClass('highlight-legal');
+      });
+    }
+
+    function onDragStart(source, piece) {
+      if (game.game_over()) return false;
+      if ((game.turn() === 'w' && piece.search(/^b/) !== -1) ||
+          (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
+        return false;
+      }
+    }
+
+    function onDrop(source, target) {
+      clearHighlights();
+      if (source === target) return;
+
+      const move = tryMakeMove(source, target);
+      if (move === null) return 'snapback';
+
+      // Defer validation slightly so snap finishes cleanly
+      setTimeout(() => validateBoardMove(move), 50);
+    }
+
+    function onSnapEnd() {
+      board.position(game.fen());
+    }
+
+    function tryMakeMove(from, to) {
+      return game.move({
+        from: from,
+        to: to,
+        promotion: 'q' // Default auto-queen for smooth mobile touch play
+      });
+    }
+
+    /********************************************************************
+     * 5. MOVE & ANSWER VALIDATION ENGINE
+     ********************************************************************/
+    function cleanNotation(str) {
+      return String(str)
+        .trim()
+        .replace(/[+#?!x=\-\s]/g, '')
+        .toLowerCase();
+    }
+
+    function isMoveMatchingTarget(moveObj, targetStr) {
+      if (!targetStr) return false;
+      const cleanTarget = cleanNotation(targetStr);
+      const cleanSan = cleanNotation(moveObj.san);
+      const uci = (moveObj.from + moveObj.to).toLowerCase();
+      const uciPromo = (moveObj.from + moveObj.to + (moveObj.promotion || '')).toLowerCase();
+
+      return (
+        cleanSan === cleanTarget ||
+        uci === cleanTarget ||
+        uciPromo === cleanTarget ||
+        moveObj.san.toLowerCase() === targetStr.trim().toLowerCase()
+      );
+    }
+
+    function validateBoardMove(moveObj) {
+      const ex = exercises[currentIndex];
+      highlightLastMove(moveObj.from, moveObj.to);
+      updateTurnIndicator();
+
+      const sols = ex.solutions;
+
+      // Case 1: No explicit solution recorded — accept any checkmate, or accept move
+      if (sols.length === 0) {
+        if (game.in_checkmate()) {
+          handleCorrectMove(ex, `Checkmate with ${moveObj.san}!`);
+        } else {
+          showFeedback('info', `Played ${moveObj.san}.`);
+        }
+        return;
+      }
+
+      // Determine if solutions array is a multi-move sequence or alternative 1st moves
+      const expectedTarget = sols[currentStepIndex] || sols[0];
+      const matchesCurrentStep = isMoveMatchingTarget(moveObj, expectedTarget);
+      const matchesAnyAlternative = currentStepIndex === 0 && sols.some(s => isMoveMatchingTarget(moveObj, s));
+
+      // Also accept if the puzzle is a 1-move checkmate and the user found a valid mate-in-1
+      const isMateInOneAlternative = (sols.length === 1 && game.in_checkmate() && expectedTarget.includes('#'));
+
+      if (matchesCurrentStep || matchesAnyAlternative || isMateInOneAlternative) {
+        // Check if there is a sequential reply move in `sols`
+        if (matchesCurrentStep && currentStepIndex + 1 < sols.length) {
+          const nextMoveStr = sols[currentStepIndex + 1];
+          // Test if `nextMoveStr` is a legal move for the opponent now
+          const opponentReply = playMoveByString(nextMoveStr);
+          if (opponentReply) {
+            currentStepIndex += 2;
+            showFeedback('info', `Good move (${moveObj.san})! Opponent replies ${opponentReply.san}. Find the next move...`);
+            setTimeout(() => {
+              board.position(game.fen());
+              highlightLastMove(opponentReply.from, opponentReply.to);
+              updateTurnIndicator();
+              if (currentStepIndex >= sols.length) {
+                handleCorrectMove(ex, `Correct sequence completed!`);
+              }
+            }, 450);
+            return;
+          }
+        }
+
+        handleCorrectMove(ex, `Correct! ${moveObj.san} is the right move.`);
+      } else {
+        // Wrong move on the board: show feedback and undo after brief pause
+        showFeedback('error', `${moveObj.san} is not the move Fischer is looking for. Try again!`);
+        setTimeout(() => {
+          game.undo();
+          board.position(game.fen());
+          highlightLastMove(null, null);
+          updateTurnIndicator();
+        }, 750);
+      }
+    }
+
+    function playMoveByString(moveStr) {
+      const legalMoves = game.moves({ verbose: true });
+      for (const m of legalMoves) {
+        if (isMoveMatchingTarget(m, moveStr)) {
+          return game.move(m);
+        }
+      }
+      return null;
+    }
+
+    function handleCorrectMove(ex, msg) {
+      showFeedback('success', msg);
+      if (ex.explanation) {
+        const expBox = document.getElementById('explanationBox');
+        expBox.textContent = ex.explanation;
+        expBox.classList.add('visible');
+      }
+      markSolved(ex.id);
+    }
+
+    function checkTextOrOptionAnswer(userAnswer, btnElement = null) {
+      const ex = exercises[currentIndex];
+      const cleanUser = cleanNotation(userAnswer);
+
+      // First check if the user typed a legal board move
+      if (ex.fen) {
+        const matchingBoardMove = playMoveByString(userAnswer);
+        if (matchingBoardMove) {
+          board.position(game.fen());
+          validateBoardMove(matchingBoardMove);
+          return;
+        }
+      }
+
+      const isCorrect = ex.solutions.some(sol => {
+        return cleanNotation(sol) === cleanUser ||
+               sol.trim().toLowerCase() === userAnswer.trim().toLowerCase();
+      });
+
+      if (isCorrect) {
+        if (btnElement) btnElement.classList.add('correct');
+        handleCorrectMove(ex, `Correct! (${userAnswer})`);
+      } else {
+        if (btnElement) btnElement.classList.add('wrong');
+        showFeedback('error', `"${userAnswer}" is not quite right. Try again or check the board!`);
+      }
+    }
+
+    /********************************************************************
+     * 6. RENDERING THE EXERCISE UI
+     ********************************************************************/
+    function renderExercise(index) {
+      if (!exercises.length) return;
+      currentIndex = Math.max(0, Math.min(index, exercises.length - 1));
+      currentStepIndex = 0;
+      exerciseSolvedInSession = false;
+      clearHighlights();
+      highlightLastMove(null, null);
+
+      const ex = exercises[currentIndex];
+      saveProgress();
+
+      // Header & Meta
+      document.getElementById('chapterBadge').textContent = ex.chapter;
+      document.getElementById('frameTitle').textContent = ex.title;
+      document.getElementById('promptText').textContent = ex.prompt;
+
+      const isSolved = progress.solvedIds.includes(ex.id);
+      document.getElementById('solvedBadge').classList.toggle('visible', isSolved);
+      document.getElementById('nextBtn').classList.remove('next-highlight');
+
+      // Reset Feedback & Explanation
+      const feedbackBox = document.getElementById('feedbackBox');
+      feedbackBox.className = 'feedback-box';
+      feedbackBox.textContent = '';
+
+      const expBox = document.getElementById('explanationBox');
+      expBox.classList.remove('visible');
+      expBox.textContent = '';
+
+      // Setup Board or Hide if Text-Only Frame
+      const boardSection = document.getElementById('boardSection');
+      if (ex.fen) {
+        boardSection.classList.remove('hidden');
+        const loaded = game.load(ex.fen);
+        if (!loaded) {
+          // Fallback if FEN is missing move counters
+          game.load(ex.fen + ' 0 1');
+        }
+        const turnColor = game.turn() === 'b' ? 'black' : 'white';
+        board.orientation(turnColor);
+        board.position(game.fen(), false);
+        setTimeout(() => board.resize(), 20);
+        updateTurnIndicator();
+      } else {
+        boardSection.classList.add('hidden');
+      }
+
+      // Setup Multiple Choice Options
+      const optionsContainer = document.getElementById('optionsContainer');
+      optionsContainer.innerHTML = '';
+      if (ex.options && ex.options.length > 0) {
+        optionsContainer.classList.remove('hidden');
+        ex.options.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.className = 'option-btn';
+          btn.textContent = opt;
+          btn.onclick = () => checkTextOrOptionAnswer(opt, btn);
+          optionsContainer.appendChild(btn);
+        });
+      } else {
+        optionsContainer.classList.add('hidden');
+      }
+
+      // Show text input if there are no options and either no board or non-move text solution
+      const textInputContainer = document.getElementById('textInputContainer');
+      const answerInput = document.getElementById('answerInput');
+      answerInput.value = '';
+
+      const markReadBtn = document.getElementById('markReadBtn');
+      if (!ex.fen && ex.options.length === 0 && ex.solutions.length === 0) {
+        // Pure instructional reading frame
+        textInputContainer.classList.add('hidden');
+        markReadBtn.classList.remove('hidden');
+        if (ex.explanation) {
+          expBox.textContent = ex.explanation;
+          expBox.classList.add('visible');
+        }
+      } else {
+        markReadBtn.classList.add('hidden');
+        // Show text box if no multiple choice options exist
+        textInputContainer.classList.toggle('hidden', ex.options.length > 0);
+      }
+
+      // Sync dropdown and Prev/Next buttons
+      document.getElementById('exerciseSelect').value = String(currentIndex);
+      document.getElementById('prevBtn').disabled = (currentIndex === 0);
+      document.getElementById('nextBtn').disabled = (currentIndex === exercises.length - 1);
+    }
+
+    function updateTurnIndicator() {
+      const turn = game.turn();
+      const dot = document.getElementById('turnDot');
+      const text = document.getElementById('turnText');
+
+      dot.className = 'turn-dot ' + (turn === 'w' ? 'white' : 'black');
+      let status = turn === 'w' ? 'White to move' : 'Black to move';
+      if (game.in_checkmate()) status = 'Checkmate!';
+      else if (game.in_check()) status += ' (in Check)';
+      text.textContent = status;
+    }
+
+    function showFeedback(type, message) {
+      const box = document.getElementById('feedbackBox');
+      box.className = `feedback-box ${type}`;
+      box.textContent = message;
+    }
+
+    function updateProgressUI() {
+      const total = exercises.length;
+      const solvedCount = exercises.filter(e => progress.solvedIds.includes(e.id)).length;
+      document.getElementById('progressPill').textContent = `${solvedCount} / ${total} Solved`;
+      const pct = total > 0 ? Math.round((solvedCount / total) * 100) : 0;
+      document.getElementById('progressBarFill').style.width = `${pct}%`;
+    }
+
+    function populateDropdown() {
+      const filter = document.getElementById('filterSelect').value;
+      const select = document.getElementById('exerciseSelect');
+      select.innerHTML = '';
+      filteredIndices = [];
+
+      exercises.forEach((ex, idx) => {
+        const isSolved = progress.solvedIds.includes(ex.id);
+        if (filter === 'unsolved' && isSolved) return;
+        if (filter === 'solved' && !isSolved) return;
+
+        filteredIndices.push(idx);
+        const opt = document.createElement('option');
+        opt.value = String(idx);
+        const check = isSolved ? '✓ ' : '';
+        opt.textContent = `${check}Frame ${ex.frame}: ${ex.title}`;
+        select.appendChild(opt);
+      });
+
+      // Keep current selection visible even if filtered
+      if (filteredIndices.includes(currentIndex)) {
+        select.value = String(currentIndex);
+      } else if (filteredIndices.length > 0) {
+        select.value = String(filteredIndices[0]);
+      }
+    }
+
+    /********************************************************************
+     * 7. UI EVENT LISTENERS
+     ********************************************************************/
+    window.addEventListener('DOMContentLoaded', () => {
+      initBoard();
+      loadExercisesFromServer();
+
+      // Dropdown & Filter changes
+      document.getElementById('filterSelect').addEventListener('change', () => {
+        populateDropdown();
+        if (filteredIndices.length > 0 && !filteredIndices.includes(currentIndex)) {
+          renderExercise(filteredIndices[0]);
+        }
+      });
+
+      document.getElementById('exerciseSelect').addEventListener('change', (e) => {
+        renderExercise(Number(e.target.value));
+      });
+
+      // Prev / Next buttons (respects active filter)
+      document.getElementById('prevBtn').addEventListener('click', () => {
+        const pos = filteredIndices.indexOf(currentIndex);
+        if (pos > 0) renderExercise(filteredIndices[pos - 1]);
+        else if (currentIndex > 0) renderExercise(currentIndex - 1);
+      });
+
+      document.getElementById('nextBtn').addEventListener('click', () => {
+        const pos = filteredIndices.indexOf(currentIndex);
+        if (pos !== -1 && pos + 1 < filteredIndices.length) {
+          renderExercise(filteredIndices[pos + 1]);
+        } else if (currentIndex + 1 < exercises.length) {
+          renderExercise(currentIndex + 1);
+        }
+      });
+
+      // Submit text answer
+      document.getElementById('submitAnswerBtn').addEventListener('click', () => {
+        const val = document.getElementById('answerInput').value.trim();
+        if (val) checkTextOrOptionAnswer(val);
+      });
+
+      document.getElementById('answerInput').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const val = e.target.value.trim();
+          if (val) checkTextOrOptionAnswer(val);
+        }
+      });
+
+      // Board controls
+      document.getElementById('flipBoardBtn').addEventListener('click', () => {
+        board.flip();
+      });
+
+      document.getElementById('resetBoardBtn').addEventListener('click', () => {
+        renderExercise(currentIndex);
+      });
+
+      // Hint Button
+      document.getElementById('hintBtn').addEventListener('click', () => {
+        const ex = exercises[currentIndex];
+        const target = ex.solutions[currentStepIndex] || ex.solutions[0];
+        if (!target) {
+          showFeedback('info', 'Look for checks, captures, or back-rank weaknesses.');
+          return;
+        }
+        // Check if target corresponds to a legal move to highlight its starting square
+        if (ex.fen) {
+          const legalMoves = game.moves({ verbose: true });
+          const match = legalMoves.find(m => isMoveMatchingTarget(m, target));
+          if (match) {
+            selectPieceSquare(match.from);
+            showFeedback('info', `Hint: Look at the piece on ${match.from.toUpperCase()}.`);
+            return;
+          }
+        }
+        showFeedback('info', `Hint: The answer starts with "${target.charAt(0)}..."`);
+      });
+
+      // Show Solution Button
+      document.getElementById('solutionBtn').addEventListener('click', () => {
+        const ex = exercises[currentIndex];
+        const solText = ex.solutions.length > 0 ? ex.solutions.join(' → ') : 'See explanation below.';
+        showFeedback('info', `Solution: ${solText}`);
+
+        if (ex.fen && ex.solutions.length > 0) {
+          const m = playMoveByString(ex.solutions[currentStepIndex] || ex.solutions[0]);
+          if (m) {
+            board.position(game.fen());
+            highlightLastMove(m.from, m.to);
+            updateTurnIndicator();
+          }
+        }
+
+        if (ex.explanation) {
+          const expBox = document.getElementById('explanationBox');
+          expBox.textContent = ex.explanation;
+          expBox.classList.add('visible');
+        }
+      });
+
+      // Mark Read Button (for pure text frames)
+      document.getElementById('markReadBtn').addEventListener('click', () => {
+        const ex = exercises[currentIndex];
+        handleCorrectMove(ex, 'Frame completed!');
+      });
+
+      // Manual JSON Upload (for quick local testing)
+      document.getElementById('uploadJsonBtn').addEventListener('click', () => {
+        document.getElementById('jsonFileInput').click();
+      });
+
+      document.getElementById('jsonFileInput').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          try {
+            const parsed = JSON.parse(evt.target.result);
+            initDataset(parsed);
+            showFeedback('success', `Loaded ${exercises.length} exercises from ${file.name}`);
+          } catch (err) {
+            alert('Invalid JSON file: ' + err.message);
+          }
+        };
+        reader.readAsText(file);
+      });
+
+      // Reset Progress
+      document.getElementById('resetProgressBtn').addEventListener('click', () => {
+        if (confirm('Reset all solved exercises progress?')) {
+          progress = { currentIndex: 0, solvedIds: [] };
+          saveProgress();
+          populateDropdown();
+          renderExercise(currentIndex);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
