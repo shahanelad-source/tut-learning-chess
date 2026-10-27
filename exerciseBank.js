@@ -1,4180 +1,2090 @@
-const exerciseBank = [
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 1,
-        "title": "Exercise (Frame 1)",
-        "text": "HOW TO USE THIS BOOK In preparing this book, I did not want to write just an ordinary Chess book— so...",
-        "fen": "NPPPPPPP/8/PPPPNPPP/PPNPPPPP/PPPPPPPP/NPPPPPPP/PNPPPNPP/PNPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 1 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 3,
-        "title": "Exercise (Frame 3)",
-        "text": "TO THE EXPERIENCED PLAYER If you have played Chess several times and are con- fident that you understand checkmate, you ...",
-        "fen": "PNNPPNPN/PPPPPPPP/8/PPNNPNPN/PPNP4/8/8/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 3 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 4,
-        "title": "Exercise (Frame 4)",
-        "text": "THE OBJECT OF CHESS The object of Chess is to attack the enemy King in such a way that it cannot escape capture. Once th...",
-        "fen": "NPPPPPPP/PPPPP3/PPPP4/PQQN4/PQQNPNN1/PPPRPPPP/RPPR4/PPRP4 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 4 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 4,
-        "title": "Exercise (Frame 4)",
-        "text": "(continued) Remember, if a King is in check and has no way of escaping, then that King is \"checkmated.\"...",
-        "fen": "PQQPNNN1/PPPP1PP1/PNNP4/PRPP4/PNNNNPPP/PPPPNPPP/NPPPPNNP/PPPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 4 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 6,
-        "title": "Exercise (Frame 6)",
-        "text": "Observe this position; then decide whether the Black King can capture the checking White piece. The White Queen is givin...",
-        "fen": "8/NPPPPPP1/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPNPNP1/PNPNPP2 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 6 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 6,
-        "title": "Exercise (Frame 6)",
-        "text": "cannot capture (NOTE: The Queen is protected by the Bishop; there- fore the King cannot capture. In fact, the King has n...",
-        "fen": "PP5P/PPPPPPPP/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NPNN1PN1/PPPPPPPN w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 6 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 7,
-        "title": "Exercise (Frame 7)",
-        "text": "Again, observe the position; then decide whether the Black King can capture the checking White piece. The White Queen is...",
-        "fen": "PP5P/PPPPPPPP/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NPNN1PN1/PPPPPPPN w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 7 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 7,
-        "title": "Exercise (Frame 7)",
-        "text": "can capture (NOTE: The Bishop is not protecting the Queen.) 8 Black King;...",
-        "fen": "P7/1NRRPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/1PPPPP2/P6P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 7 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 8,
-        "title": "Exercise (Frame 8)",
-        "text": "Black King; can capture checking White Rook cannot capture checking White Rook 26...",
-        "fen": "P7/1NRRPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/1PPPPP2/P6P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 8 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 8,
-        "title": "Exercise (Frame 8)",
-        "text": "can capture checking White Rook 9 w m...",
-        "fen": "P4PPP/1NPPPPN1/1NPPPPNN/1NPPPPNN/1NPPPPNN/PNPPPP2/1PPPPP2/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 8 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 9,
-        "title": "Exercise (Frame 9)",
-        "text": "w m Black King: can capture checking White Rook...",
-        "fen": "P4PPP/1NPPPPN1/1NPPPPNN/1NPPPPNN/1NPPPPNN/PNPPPP2/1PPPPP2/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 9 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 10,
-        "title": "Exercise (Frame 10)",
-        "text": "Black King: can capture checking White Rook cannot capture checking White Rook ...",
-        "fen": "P5PP/1NPPPPN1/NNPPPPN1/NNPPPPN1/1NPPPPN1/PNPPPP2/NPPPPP2/N7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 10 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 10,
-        "title": "Exercise (Frame 10)",
-        "text": "can capture checking White Rook 29 ...",
-        "fen": "8/1NRPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPP2/PPPPPP2/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 10 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 11,
-        "title": "Exercise (Frame 11)",
-        "text": "cannot capture checking White Rook (Black is \"matecT-or checkmated. Remember, the King can only move one square, so the ...",
-        "fen": "1PP5/NPNPPPPP/PPNNPPPN/PPRR1QRR/PPNP1NPP/PPNP1RNN/PPPR1RPP/PPQR1NPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 11 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 12,
-        "title": "Exercise (Frame 12)",
-        "text": "NO ANSWER REQUIRED 13 Now you decide what Black can do in this position, Black King:...",
-        "fen": "P1PPPPPP/PPPPPPP1/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPP4/PPP4P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 12 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 13,
-        "title": "Exercise (Frame 13)",
-        "text": "Now you decide what Black can do in this position, Black King: can capture its attacker can flee...",
-        "fen": "P1PPPPPP/PPPPPPP1/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPP4/PPP4P w - - 0 1",
-        "options": [
-            "can capture attacker",
-            "can flee",
-            "can do neither"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 13 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 14,
-        "title": "Exercise (Frame 14)",
-        "text": "Again, observe the position and decide what the Black King can do. Black King: can capture attacker...",
-        "fen": "P1P5/NPPPPNNP/NNPRRPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PPNP3N w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 14 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 14,
-        "title": "Exercise (Frame 14)",
-        "text": "can flee (One square to your left. Work it out.) 15...",
-        "fen": "P6P/1NPPPRNN/1NPPPPN1/1NPPPPN1/1NPPPNN1/PNPPPP2/NNPP4/P7 w - - 0 1",
-        "options": [
-            "can capture attacker",
-            "can flee",
-            "can do neither"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 14 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 15,
-        "title": "Exercise (Frame 15)",
-        "text": "can do neither (White's Pawn stops Black's King from fleeing.) 16 1^^^^;...",
-        "fen": "P4PPP/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPP1N/NPPP3N/8 w - - 0 1",
-        "options": [
-            "can capture attacker",
-            "can flee",
-            "can do neither"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 15 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 16,
-        "title": "Exercise (Frame 16)",
-        "text": "can capture attacker 17 Here the lowly Pawn is giving check:...",
-        "fen": "N6P/PPPPPP2/1NPPPPN1/NNPPPPN1/NNPPPPN1/1NPPPPN1/NPPP4/NPP4P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 16 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 18,
-        "title": "Exercise (Frame 18)",
-        "text": "Black King: can capture attacker can flee can do neither...",
-        "fen": "P7/1NPPPRN1/1NPPPPNN/1NPPPPN1/1NPPPPN1/PNPPPP2/NNPP4/PPP5 w - - 0 1",
-        "options": [
-            "can capture attacker",
-            "can flee",
-            "can do neither"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 18 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 19,
-        "title": "Exercise (Frame 19)",
-        "text": "Fischer Keres NOTE: This mate actually happened! The position...",
-        "fen": "PPPP3P/NPPP4/NPPN4/NPPP4/PNPPPPNP/PNPNPNPN/N1PPPP2/PPPPPPP1 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 19 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 21,
-        "title": "Exercise (Frame 21)",
-        "text": "Now try this one: Identify the White piece that guards each square: guards square A guards square B...",
-        "fen": "P6P/PPPP4/NPPN4/NPPN4/NPPP4/NPPPNPN1/2PPPPP1/PPPPNNP1 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 21 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 23,
-        "title": "Exercise (Frame 23)",
-        "text": "Black is in check again. Draw an arrow pointing to the one square to which Black can flee:...",
-        "fen": "P6P/PPPPPPP1/NPPPPP2/NNPPPPN1/NNPPPPN1/1NPPPPN1/1NPPPRN1/N7 w - - 0 1",
-        "options": [
-            "can capture attacker",
-            "can flee",
-            "can do neither"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 23 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 24,
-        "title": "Exercise (Frame 24)",
-        "text": "25 Here's a common position in which Black appears to be checkmated- Actually he can escape, but in a slight- ly differe...",
-        "fen": "PP5P/PPPPPPPN/PPPPPPPN/2PPPPNN/1NPPPPNN/1NPPPPN1/1NPPPPN1/1NPPPPN1 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 24 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 25,
-        "title": "Exercise (Frame 25)",
-        "text": "Here's a common position in which Black appears to be checkmated- Actually he can escape, but in a slight- ly different ...",
-        "fen": "PP5P/PPPPPPPN/PPPPPPPN/2PPPPNN/1NPPPPNN/1NPPPPN1/1NPPPPN1/1NPPPPN1 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 25 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 26,
-        "title": "Exercise (Frame 26)",
-        "text": "IB Can White save himself by playing King-takes-Rook in this position? yes...",
-        "fen": "P7/1NRRPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPPP1/PPP5/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 26 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 26,
-        "title": "Exercise (Frame 26)",
-        "text": "no (checkmate) (In this case the Queen, which is giving check, also protects the Rook. White is checkmated.) 27...",
-        "fen": "P6P/PPPPPPPP/PPPPPPPN/PPPPPPPN/NPPNNPPN/NPPNNPPN/PPPPPPP1/PPPP2PP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 26 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 27,
-        "title": "Exercise (Frame 27)",
-        "text": "Remember that one King can help trap the other. In fact, in the later stages of the game when most of the pieces have be...",
-        "fen": "P6P/PPPPPPPP/PPPPPPPN/PPPPPPPN/NPPNNPPN/NPPNNPPN/PPPPPPP1/PPPP2PP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 27 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 27,
-        "title": "Exercise (Frame 27)",
-        "text": "position A only (Note that in position A the White King hems in Black's King while the Rook gives check. This is a commo...",
-        "fen": "P6P/PPPPPPP1/1NPPPPN1/NNPPPPN1/NNPPPPN1/1NPPRPN1/PPP5/PPPPPPPP w - - 0 1",
-        "options": [
-            "can capture attacker",
-            "can flee",
-            "can do neither"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 27 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 28,
-        "title": "Exercise (Frame 28)",
-        "text": "Now that you have the idea, observe this position: 1 is Black checkmated? yes...",
-        "fen": "P6P/PPPPPPP1/1NPPPPN1/NNPPPPN1/NNPPPPN1/1NPPRPN1/PPP5/PPPPPPPP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 28 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 1,
-        "title": "Exercise (Frame 1)",
-        "text": "is Black checkmated? yes no 47...",
-        "fen": "P6P/PPPPPPP1/1NPPPPN1/NNPPPPN1/NNPPPPN1/1NPPRPN1/PPP5/PPPPPPPP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 1 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 28,
-        "title": "Exercise (Frame 28)",
-        "text": "yes (The Queen gives check and covers all the fleeing squares, while White's King protects the Queen from capture.)...",
-        "fen": "P1PPPPPP/NPPPPPPP/NPPPPPP1/NPPQNPPQ/NNPNNPPN/1PPPNPPP/PPPPPPPP/P3PPPP w - - 0 1",
-        "options": [
-            "can capture attacker",
-            "can flee",
-            "can do neither"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 28 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 29,
-        "title": "Exercise (Frame 29)",
-        "text": "NO ANSWER REQUIRED 30 Observe the following position; then determine Black's defense,...",
-        "fen": "P1PP3P/PPPPPPNN/1NPPPrN1/1NPPPPN1/NNPPPPN1/1NPPRPN1/PPPP4/PPPPP3 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 29 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 30,
-        "title": "Exercise (Frame 30)",
-        "text": "no defense: checkmate 31 Check Black's defensive move: King-takes-Rook...",
-        "fen": "P1P1P2P/2PPPRN1/1NPPPPNN/NNPPPPN1/1NPPPPN1/NNPPPP2/NPPP4/1NPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 30 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 31,
-        "title": "Exercise (Frame 31)",
-        "text": "Check Black's defensive move: King-takes-Rook King flees other piece-takes-Rook...",
-        "fen": "P1P1P2P/2PPPRN1/1NPPPPNN/NNPPPPN1/1NPPPPN1/NNPPPP2/NPPP4/1NPPPPPP w - - 0 1",
-        "options": [
-            "can capture attacker",
-            "can flee",
-            "can do neither"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 31 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 32,
-        "title": "Exercise (Frame 32)",
-        "text": "What does Black play? King-takes-Rook King flees other piece-takes-Rook...",
-        "fen": "P3PPPP/1NPPPPNN/1NPPPPNN/1NPPPPN1/1NPPPPN1/NPPPPP2/PPNP4/PPPPP3 w - - 0 1",
-        "options": [
-            "can capture attacker",
-            "can flee",
-            "can do neither"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 32 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 33,
-        "title": "Exercise (Frame 33)",
-        "text": "What is Black's defense? King-takes-Queen King flees other piece-takes-Queen...",
-        "fen": "PPP3PP/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/NNPPPP1N/NNPP3N/PPPP3N w - - 0 1",
-        "options": [
-            "can capture attacker",
-            "can flee",
-            "can do neither"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 33 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 33,
-        "title": "Exercise (Frame 33)",
-        "text": "King flees 34 What is Black's saving move in this example?...",
-        "fen": "P6P/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPPN1/NNPP4/NPPP4 w - - 0 1",
-        "options": [
-            "can capture attacker",
-            "can flee",
-            "can do neither"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 33 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 34,
-        "title": "Exercise (Frame 34)",
-        "text": "What is Black's saving move in this example? King-takes-Bishop King flees...",
-        "fen": "P6P/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPPN1/NNPP4/NPPP4 w - - 0 1",
-        "options": [
-            "can capture attacker",
-            "can flee",
-            "can do neither"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 34 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 34,
-        "title": "Exercise (Frame 34)",
-        "text": "King flees 35 Jlf Hi...",
-        "fen": "P7/1NPPPPN1/NNPPPPN1/NNPPPPN1/NNPPPPN1/NPPPPP2/NPNP4/PPPPP3 w - - 0 1",
-        "options": [
-            "can capture attacker",
-            "can flee",
-            "can do neither"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 34 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 111,
-        "title": "Exercise (Frame 111)",
-        "text": "What can Black do to escape check? King-takes-Knight King flees other piece-takes-Knight...",
-        "fen": "P7/1NPPPPN1/NNPPPPN1/NNPPPPN1/NNPPPPN1/NPPPPP2/NPNP4/PPPPP3 w - - 0 1",
-        "options": [
-            "can capture attacker",
-            "can flee",
-            "can do neither"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 111 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 36,
-        "title": "Exercise (Frame 36)",
-        "text": "Another way for Biack to escape check is to \"interpose\" one of his pieces between the checking piece and his King. Obser...",
-        "fen": "N6P/PPPPPPPP/PPPP1PPP/NPPNNPPN/NPPNNPPN/NPPPNPPP/NPPP1PPP/5PPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 36 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 36,
-        "title": "Exercise (Frame 36)",
-        "text": "NO ANSWER REQUIRED 37 In this position, the White Rook is checking: w...",
-        "fen": "P6P/PPPPPPN1/1NPPPPN1/NNPPPPN1/NNPPPPN1/NNPPPP2/NPPNNPP1/PPPPP3 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 36 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 37,
-        "title": "Exercise (Frame 37)",
-        "text": "In this position, the White Rook is checking: w a Which Black piece can defend against the check?...",
-        "fen": "P6P/PPPPPPN1/1NPPPPN1/NNPPPPN1/NNPPPPN1/NNPPPP2/NPPNNPP1/PPPPP3 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 37 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 37,
-        "title": "Exercise (Frame 37)",
-        "text": "the Knight interposes 38 Which Black piece can defend against this check?...",
-        "fen": "P2P1PPP/1NRPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NPPPPPN1/NPPP4/PPPP2PP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 37 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 38,
-        "title": "Exercise (Frame 38)",
-        "text": "Which Black piece can defend against this check? What does that Black piece do? captures interposes...",
-        "fen": "P2P1PPP/1NRPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NPPPPPN1/NPPP4/PPPP2PP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 38 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 39,
-        "title": "Exercise (Frame 39)",
-        "text": "In this and the next few frames you will be shown various positions: in some Black is mated; in others he can defend by ...",
-        "fen": "PPPPPPPP/PPPPPPPP/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPNN1/PPPPPP2/PNPPNPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 39 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 39,
-        "title": "Exercise (Frame 39)",
-        "text": "no (Black is not mated; the Rook interposes, as shown.)...",
-        "fen": "PPPPPPPP/1NPPRPNN/1NPPPPN1/NNPPPPN1/NNPPPPN1/NNPPPP2/NNPPPP2/N7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 39 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 40,
-        "title": "Exercise (Frame 40)",
-        "text": "Is Black mated? yes no If not. draw an arrow to show his defense....",
-        "fen": "PPPPPPPP/1NPPRPNN/1NPPPPN1/NNPPPPN1/NNPPPPN1/NNPPPP2/NNPPPP2/N7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 40 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 41,
-        "title": "Exercise (Frame 41)",
-        "text": "yes (You have to watch those Knights!) 42 Here's another tricky one:...",
-        "fen": "P6P/PPPPPP2/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/PPP5/PPPPPPPP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 41 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 42,
-        "title": "Exercise (Frame 42)",
-        "text": "Here's another tricky one: The position is: checkmate...",
-        "fen": "P6P/PPPPPP2/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/PPP5/PPPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 42 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 42,
-        "title": "Exercise (Frame 42)",
-        "text": "not checkmate (Queen takes Queen, as shown.) 43 You will now see more complex positions that require...",
-        "fen": "P1PPPP1P/PPPPPPPP/1NPPPQN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NPPPPP2/PPPP4 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 42 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 43,
-        "title": "Exercise (Frame 43)",
-        "text": "You will now see more complex positions that require careful consideration of every piece on the board. Which Biack piec...",
-        "fen": "P1PPPP1P/PPPPPPPP/1NPPPQN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NPPPPP2/PPPP4 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 43 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 44,
-        "title": "Exercise (Frame 44)",
-        "text": "After White's Pawn takes NOTE: This position is Knight, Queen mates as from my game with Gligorich in Bled, Yugo-...",
-        "fen": "P2PPP1P/PPPNNPPN/1NRRRPN1/1NPPPPN1/1NNPPPNN/1NPPPPNN/1NPPPNN1/PNPPPPNP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 44 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 46,
-        "title": "Exercise (Frame 46)",
-        "text": "Observe the board carefully: Can White's Rook mate by capturing the Pawn, as shown? yes...",
-        "fen": "P7/PPPPPP2/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/PPPPNPP1/PP4PP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 46 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 46,
-        "title": "Exercise (Frame 46)",
-        "text": "yes (White's Rook is protected by the Bishop.) 47 Is Black mated in this position?...",
-        "fen": "P7/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PPPPPPP1/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 46 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 47,
-        "title": "Exercise (Frame 47)",
-        "text": "Is Black mated in this position? yes no If not, draw the usual arrow to show the defense....",
-        "fen": "P7/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PPPPPPP1/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 47 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 47,
-        "title": "Exercise (Frame 47)",
-        "text": "yes (Black is mated. White sacrificed his Queen to achieve this mate. Note Black's Bishop next to White's King.) 48...",
-        "fen": "8/PPPPPPP1/1NRRRRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPP2/8 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 47 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 49,
-        "title": "Exercise (Frame 49)",
-        "text": "NO ANSWER REQUIRED 50 Black is mated, A fantastic position! Black's Queen, Bishop and Knight are all \"pinned\" and thus u...",
-        "fen": "NPPPPPNP/PPPPPPPN/1NPPPPN1/1NPPPPNN/1NPPPPNN/1NRPPPN1/PPPPPPP1/PPPPPPPN w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 49 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 52,
-        "title": "Exercise (Frame 52)",
-        "text": "a. yes (Black s Queen is pinned and cannot interpose.) b....",
-        "fen": "8/1NPPPPN1/1NPNPPN1/1NPNPPN1/1NPNPPN1/PNPPPP2/8/8 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 52 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 54,
-        "title": "Exercise (Frame 54)",
-        "text": "Queen (Promotion to a Rook would not work because the Black King could_escape to a flight square. Usually it is best to ...",
-        "fen": "PPPPPP1P/P1PPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/1PPPPPPP/PPPPPPP1 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 54 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 55,
-        "title": "Exercise (Frame 55)",
-        "text": "Believe it or not, White can mate in this position: The correct White move is: Pawn advances straight ahead and becomes ...",
-        "fen": "PPPPPP1P/P1PPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/1PPPPPPP/PPPPPPP1 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 55 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 57,
-        "title": "Exercise (Frame 57)",
-        "text": "Here is a review of some of the material you've learned. Observe this position: Can White's Queen mate? yes...",
-        "fen": "P7/PPPP1NPP/2NPRN2/2NPPN2/2NPPN2/PPPP4/NPPP4/PP1PPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 57 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 57,
-        "title": "Exercise (Frame 57)",
-        "text": "no (Neither of the Queen checks will be mate.) yes (Black Pawn is pinned by White Rook.)...",
-        "fen": "N6P/PNPPPPNN/1NPNPPN1/1NPQPPN1/1NPPPPN1/1NPPPRN1/PPPPNPPP/NP6 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 57 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 62,
-        "title": "Exercise (Frame 62)",
-        "text": "In choosing the check in this position, you must be careful not to allow the Black King any flight squares. Which White ...",
-        "fen": "PqPPPQPq/Q1Q1QQQN/NQPQPQ1Q/Q1Q1q1QN/NQ1Q1Q1Q/QPQ1Q1QN/QQRQ1Q1Q/qPQPqPqP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 62 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 62,
-        "title": "Exercise (Frame 62)",
-        "text": "move by White Rook (The Queen check would allow Black two fleeing squares, as shown above.)...",
-        "fen": "P6P/PPPPPPPN/PPPPPPPP/NNPPPPN1/NNPPPPN1/NNPPPPN1/NNPPPPN1/PNPPPPN1 w - - 0 1",
-        "options": [
-            "can capture attacker",
-            "can flee",
-            "can do neither"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 62 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 66,
-        "title": "Exercise (Frame 66)",
-        "text": "In this next series of frames you will be shown various positions. In some, White can mate Black in one move; in others,...",
-        "fen": "PPPPPPPP/PNNPPPNP/1NPRPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NPPPPP2/NPPPPPP1 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 66 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 67,
-        "title": "Exercise (Frame 67)",
-        "text": "In this position: White can mate in one move White cannot mate If there is a mate, draw an arrow to show White's...",
-        "fen": "PPPP4/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPP2/NPPPPPP1/PP5P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 67 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 68,
-        "title": "Exercise (Frame 68)",
-        "text": "In this position: White can mate in one move White cannot mate If White can mate, draw an arrow to show his mating...",
-        "fen": "P6P/1NPRPPN1/1NPPPPN1/NNPPPPNN/1NPPPPN1/NNPPPP2/NPPPPPPP/P4P2 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 68 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 68,
-        "title": "Exercise (Frame 68)",
-        "text": "White cannot mate 69 Here's a position from a game I played:...",
-        "fen": "P7/NPPPPP2/1NPPPPN1/NNPPPPN1/1NPPPPN1/1NPPPPN1/NPPP4/NP1PPPN1 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 68 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 69,
-        "title": "Exercise (Frame 69)",
-        "text": "Here's a position from a game I played: Can White mate in one move? yes...",
-        "fen": "P7/NPPPPP2/1NPPPPN1/NNPPPPN1/1NPPPPN1/1NPPPPN1/NPPP4/NP1PPPN1 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 69 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 69,
-        "title": "Exercise (Frame 69)",
-        "text": "no (The Knight check is met by the Queen's capture of the Knight! This position is from my game with Otteson...",
-        "fen": "PP3P2/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NPPPPP2/NPNPPPP1/P5P1 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 69 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 70,
-        "title": "Exercise (Frame 70)",
-        "text": "In this position: White can mate in one move White cannot mate If there is a mate, draw an arrow to show the mating...",
-        "fen": "PP3P2/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NPPPPP2/NPNPPPP1/P5P1 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 70 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 70,
-        "title": "Exercise (Frame 70)",
-        "text": "White can mate in one move (White mates on square B. He cannot mate on square A because the...",
-        "fen": "P6P/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPP2/NPPPPPP1/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 70 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 71,
-        "title": "Exercise (Frame 71)",
-        "text": "In this position: White can mate in one move White cannot mate If there is a mate, draw an arrow to show the mating...",
-        "fen": "P6P/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPP2/NPPPPPP1/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 71 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 71,
-        "title": "Exercise (Frame 71)",
-        "text": "White cannot mate (In fact, any White piece that dares to check will be promptly captured.) 72...",
-        "fen": "P7/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPP2/NPPPPPP1/N7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 71 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 72,
-        "title": "Exercise (Frame 72)",
-        "text": "In this position: White can mate in one move White cannot mate If White can mate, draw an arrow to show his mating...",
-        "fen": "P7/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPP2/NPPPPPP1/N7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 72 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 73,
-        "title": "Exercise (Frame 73)",
-        "text": "Can White mate in one move? yes no If \"yes,\" draw an arrow to show White's mating move....",
-        "fen": "P7/1NPRRRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/NPPPPPPP/P6P w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 73 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 73,
-        "title": "Exercise (Frame 73)",
-        "text": "yes 74 In this position: White can mate in one move...",
-        "fen": "P7/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPRPPN1/NNPPPP2/PPPPPPPP/NP6 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 73 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 74,
-        "title": "Exercise (Frame 74)",
-        "text": "In this position: White can mate in one move White cannot mate If White can mate in one move, draw an arrow to show...",
-        "fen": "P7/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPRPPN1/NNPPPP2/PPPPPPPP/NP6 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 74 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 74,
-        "title": "Exercise (Frame 74)",
-        "text": "White cannot mate 75 This is a position from one of my games: Can Black mate in one move?...",
-        "fen": "PP6/NPPPPP2/NNPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPP4/PPPPPPP1 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 74 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 75,
-        "title": "Exercise (Frame 75)",
-        "text": "This is a position from one of my games: Can Black mate in one move? yes no...",
-        "fen": "PP6/NPPPPP2/NNPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPP4/PPPPPPP1 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 75 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 76,
-        "title": "Exercise (Frame 76)",
-        "text": "no (Observe both Black Bishops.) 77 In the position above:...",
-        "fen": "P5PP/NNPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPP2/NPNPPPP1/PPP4P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 76 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 77,
-        "title": "Exercise (Frame 77)",
-        "text": "In the position above: White can mate in one move White cannot mate If there is a mate, draw an arrow to show the move....",
-        "fen": "P5PP/NNPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPP2/NPNPPPP1/PPP4P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 77 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 77,
-        "title": "Exercise (Frame 77)",
-        "text": "White can mate in one move 78 Can White mate in one move? yes...",
-        "fen": "PP2P2P/1NPPPPNN/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPP2/NPPPPP2/N7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 77 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 78,
-        "title": "Exercise (Frame 78)",
-        "text": "Can White mate in one move? yes no If \"yes,\" show the mating move with an arrow....",
-        "fen": "PP2P2P/1NPPPPNN/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPP2/NPPPPP2/N7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 78 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 78,
-        "title": "Exercise (Frame 78)",
-        "text": "yes 1 I I 1 B B BiBi m&m m m...",
-        "fen": "P1P1PP1P/1NPRPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PNPPPPP1/PPPPP1PP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 78 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 79,
-        "title": "Exercise (Frame 79)",
-        "text": "Can White mate in one move? yes no If \"yes,\" draw an arrow to show the mating move....",
-        "fen": "P1P1PP1P/1NPRPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PNPPPPP1/PPPPP1PP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 79 in the book."
-    },
-    {
-        "chapter": "Chapter 1: Elements of Checkmate[cite: 38]",
-        "frame": 1,
-        "title": "Exercise (Frame 1)",
-        "text": "NOW TURN THE PAGE AND GO ON TO CHAPTER 2 ...",
-        "fen": "PPPPP2P/PPPPPPPN/N7/8/8/N7/N7/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 1 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 80,
-        "title": "Exercise (Frame 80)",
-        "text": "USEFUL VERSUS USELESS INTERPOSITION C. Black is in check. He can interpose his...",
-        "fen": "QQQP1RNP/PQQN1RPP/PPPPPPPP/PPPN1PNN/PPPP1PNN/PNP2PPP/NPP2PPP/PPRQ1PRQ w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 80 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 80,
-        "title": "Exercise (Frame 80)",
-        "text": "NO ANSWER REQUIRED 81 Observe the position and then decide whether Black has a useful interposition against the check....",
-        "fen": "QQPQPQqQ/QRQ1QRQR/NQQQ1Q1Q/Q1Q1Q1QN/NQ1P1Q1Q/q1Q1Q1QN/NQ1QQQPQ/qPQPQ1QP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 80 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 81,
-        "title": "Exercise (Frame 81)",
-        "text": "yes (Black has a useful interposition, with either the Rook or the Bishop.) 82...",
-        "fen": "PPPPPPPP/NNPRPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPP2/NP6/P6P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 81 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 82,
-        "title": "Exercise (Frame 82)",
-        "text": "Does Black have a useful interposition? yes no 106...",
-        "fen": "PPPPPPPP/NNPRPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPP2/NP6/P6P w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 82 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 82,
-        "title": "Exercise (Frame 82)",
-        "text": "yes (Black has a useful interposition, with the Knight.) 83 Does Black have a useful interposition?...",
-        "fen": "P2P3P/1NPPPRN1/1NPPPPN1/1NPPPPNN/1NPRPPN1/PPPPPP1N/NP5N/P4PPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 82 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 83,
-        "title": "Exercise (Frame 83)",
-        "text": "Does Black have a useful interposition? yes no 107...",
-        "fen": "P2P3P/1NPPPRN1/1NPPPPN1/1NPPPPNN/1NPRPPN1/PPPPPP1N/NP5N/P4PPP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 83 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 83,
-        "title": "Exercise (Frame 83)",
-        "text": "no (Black's interpositions are useless; therefore, White mates.) 84...",
-        "fen": "PP5P/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/NP6/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 83 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 86,
-        "title": "Exercise (Frame 86)",
-        "text": "87 What is Black's defense against checkmate in this position?...",
-        "fen": "8/1NPPPRN1/1NPPPNN1/1NPPPNN1/1NPPPPN1/PPPPPPP1/P7/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 86 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 87,
-        "title": "Exercise (Frame 87)",
-        "text": "What is Black's defense against checkmate in this position? 111...",
-        "fen": "8/1NPPPRN1/1NPPPNN1/1NPPPNN1/1NPPPPN1/PPPPPPP1/P7/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 87 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 88,
-        "title": "Exercise (Frame 88)",
-        "text": "(continued) mm C. White now plays...",
-        "fen": "PNPN1RPP/PPPP1NPP/PPP1PPPP/PPN2PPP/8/NRPQRQ2/NQPNPQ2/NPQRPN2 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 88 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 89,
-        "title": "Exercise (Frame 89)",
-        "text": "(continued) E. Also two against one. Note that the Black...",
-        "fen": "PQQN1RPP/RPPR1RPP/PPPP1PPP/PPPN1PNN/PPN2PPP/PPN2NPN/5NPP/1PRRRPN1 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 89 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 89,
-        "title": "Exercise (Frame 89)",
-        "text": "NO ANSWER REQUIRED 90 The next series of frames will show various positions. You will be asked to determine whether Whit...",
-        "fen": "P7/PPPNNPPN/NNPPPP2/NNPPPPN1/1NPPPPN1/NNPPPPN1/PNPPPRPN/NP5N w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 89 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 90,
-        "title": "Exercise (Frame 90)",
-        "text": "The next series of frames will show various positions. You will be asked to determine whether White has enough power to ...",
-        "fen": "P7/PPPNNPPN/NNPPPP2/NNPPPPN1/1NPPPPN1/NNPPPPN1/PNPPPRPN/NP5N w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 90 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 90,
-        "title": "Exercise (Frame 90)",
-        "text": "yes (White has the power to mate—four against three. The last check will be given by Rook supported by Bishop .) 91...",
-        "fen": "P4P1P/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPPP1/PP6/PP2PP2 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 90 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 91,
-        "title": "Exercise (Frame 91)",
-        "text": "Does White have enough power to mate on Black's back rank? yes no...",
-        "fen": "P4P1P/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPPP1/PP6/PP2PP2 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 91 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 91,
-        "title": "Exercise (Frame 91)",
-        "text": "no (There is no mate here-two against two: Black Bishop and Rook against two Rooks.) 92...",
-        "fen": "PPPPP3/2PRPPN1/NNPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPPP1/NP6/N7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 91 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 92,
-        "title": "Exercise (Frame 92)",
-        "text": "Does White have enough power to mate on Black's back rank? yes no...",
-        "fen": "PPPPP3/2PRPPN1/NNPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPPP1/NP6/N7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 92 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 92,
-        "title": "Exercise (Frame 92)",
-        "text": "yes (White has the power: White Queen and two Rooks against only two defenders.) 93...",
-        "fen": "PPPPP2P/2PPPPN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/PNPPPPP1/NP6/P6N w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 92 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 93,
-        "title": "Exercise (Frame 93)",
-        "text": "Does White have enough power to mate on Black's back rank? yes no...",
-        "fen": "PPPPP2P/2PPPPN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/PNPPPPP1/NP6/P6N w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 93 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 93,
-        "title": "Exercise (Frame 93)",
-        "text": "no (One against one. White cannot mate. The White Bish- op and Knight attack the back-rank square, but do not check when...",
-        "fen": "PQPqPqqq/Q1qPQRQR/NQ1Q1Q1Q/Q1Q1Q1QN/NQ1Q1Q1Q/Q1Q1Q1Q1/NQ1Q1QRq/QPQQQPQP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 93 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 94,
-        "title": "Exercise (Frame 94)",
-        "text": "Does White have enough power to mate on Black's back rank? yes no...",
-        "fen": "PQPqPqqq/Q1qPQRQR/NQ1Q1Q1Q/Q1Q1Q1QN/NQ1Q1Q1Q/Q1Q1Q1Q1/NQ1Q1QRq/QPQQQPQP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 94 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 94,
-        "title": "Exercise (Frame 94)",
-        "text": "yes (It's two against one. The White Rook and the White Pawn attack the square. The Pawn will promote to a Queen or Rook...",
-        "fen": "NPPPPPPP/PNPPPPPN/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/PPPPPPP1/PPPNPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 94 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 95,
-        "title": "Exercise (Frame 95)",
-        "text": "In the following positions, White threatens the Black back rank, but cannot mate. You must decide why Black escapes the ...",
-        "fen": "NPPPPPPP/PNPPPPPN/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/PPPPPPP1/PPPNPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 95 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 95,
-        "title": "Exercise (Frame 95)",
-        "text": "j The Black King will have a flight square. ( The White Queen will no longer guard it.) 96...",
-        "fen": "P7/1NPPPP2/1NPPPPN1/1NPPPPN1/1NPPPP2/PNPPPPP1/PNPPPNPN/PNPPPP1N w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 95 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 96,
-        "title": "Exercise (Frame 96)",
-        "text": "Why does White's threat against Black's back rank not lead to mate? White does not have enough power to mate. The Black ...",
-        "fen": "P7/1NPPPP2/1NPPPPN1/1NPPPPN1/1NPPPP2/PNPPPPP1/PNPPPNPN/PNPPPP1N w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 96 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 96,
-        "title": "Exercise (Frame 96)",
-        "text": "Black has a useful interposition. (The Bishop interposes. Black could also play Rook- takes-Rook, Pawn-takes-Rook becomi...",
-        "fen": "P6P/1NPRPRNN/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPPN1/NNPPPPP1/PPPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 96 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 97,
-        "title": "Exercise (Frame 97)",
-        "text": "Why does White's threat against Black's back rank not lead to mate? White does not have enough power to mate. The Black ...",
-        "fen": "P6P/1NPRPRNN/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPPN1/NNPPPPP1/PPPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 97 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 97,
-        "title": "Exercise (Frame 97)",
-        "text": "White does not have enough power to mate. (Black Queen and Bishop guard the square on the back rank.) 98...",
-        "fen": "P6P/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPPP1/NPPPPNP1/PPPPN3 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 97 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 98,
-        "title": "Exercise (Frame 98)",
-        "text": "Why does White's threat against Black's back rank not lead to mate? White does not have enough power to mate. The Black ...",
-        "fen": "P6P/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPPP1/NPPPPNP1/PPPPN3 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 98 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 99,
-        "title": "Exercise (Frame 99)",
-        "text": "In this position, focus your attention on the White and Black Queens: Now explain in your own words why White cannot mat...",
-        "fen": "8/PPPPPPP1/1NRPPPN1/1NPPPPN1/1NPPPNN1/1NPPPNN1/PPPPPPP1/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 99 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 99,
-        "title": "Exercise (Frame 99)",
-        "text": "The White Queen is pinned. (If the White Rook checks, Black's Rook simply cap- tures, and the White Queen cannot recaptu...",
-        "fen": "P5PP/PPPPPPP1/PNPRPPN1/1NPPPPN1/NNPPPPN1/1NPPPPN1/PNPPPP2/PPPPP3 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 99 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 1,
-        "title": "Exercise (Frame 1)",
-        "text": "Would you capture Black's Queen? yes no Explain your answer....",
-        "fen": "P5PP/PPPPPPP1/PNPRPPN1/1NPPPPN1/NNPPPPN1/1NPPPPN1/PNPPPP2/PPPPP3 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 1 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 100,
-        "title": "Exercise (Frame 100)",
-        "text": "no Black would recapture with his Rook, giving check and forcing mate. White then has only useless interposi- tions....",
-        "fen": "P1PPPP2/1NPPPQN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPPP1/PP6/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 100 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 104,
-        "title": "Exercise (Frame 104)",
-        "text": "with the Queen (The Queen checkmates. If White's Rook checks, the Black Knight can interpose on the square protected...",
-        "fen": "P3PPPP/NNPPPPP1/2NPPN2/N1NPPN2/N1PPPP2/PPPPPPNP/NPNPP3/PPPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 104 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 105,
-        "title": "Exercise (Frame 105)",
-        "text": "yes (White mates. Interposition is useless.) 106...",
-        "fen": "PPPPPP1P/2NPPN1N/2NPPN1N/2NPPP1N/PPPPPPPN/PPP4N/NPPPP2N/P6N w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 105 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 106,
-        "title": "Exercise (Frame 106)",
-        "text": "Does White have a mating combination beginning with a back-rank check? yes no...",
-        "fen": "PPPPPP1P/2NPPN1N/2NPPN1N/2NPPP1N/PPPPPPPN/PPP4N/NPPPP2N/P6N w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 106 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 106,
-        "title": "Exercise (Frame 106)",
-        "text": "yes (White mates. Rook and Queen give him enough pow- er.) 107...",
-        "fen": "P1PPPPPP/2NPPN1N/2NPPN1N/N1NPPP2/PNPPPPPP/NP6/NPNPP3/N6P w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 106 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 107,
-        "title": "Exercise (Frame 107)",
-        "text": "Does White have. a mating combination beginning with a back-rank check? yes no...",
-        "fen": "P1PPPPPP/2NPPN1N/2NPPN1N/N1NPPP2/PNPPPPPP/NP6/NPNPP3/N6P w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 107 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 107,
-        "title": "Exercise (Frame 107)",
-        "text": "no flight square for Black King NOTE: Here's why it...",
-        "fen": "P1PPPP1P/2NPPN2/2NPPN2/2PPPP2/NPPPNPPP/NPP5/1NNNN3/P5PP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 107 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 108,
-        "title": "Exercise (Frame 108)",
-        "text": "no not enough power (An example of two against two: Black's Bishop and Knight guard the checking square against the two...",
-        "fen": "N2PP3/2NPPN2/2NPPN2/2PPPP2/PPPPPPPP/PP6/PPNPP3/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 108 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 109,
-        "title": "Exercise (Frame 109)",
-        "text": "no useful interposition (Bishop) 110 Does White have a mating combination beginning with...",
-        "fen": "P1PPP3/2NPPP2/2NPPN2/2NPPP2/NPPNNPPP/NPP5/NPPPP3/N7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 109 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 110,
-        "title": "Exercise (Frame 110)",
-        "text": "Does White have a mating combination beginning with a back-rank check? yes no...",
-        "fen": "P1PPP3/2NPPP2/2NPPN2/2NPPP2/NPPNNPPP/NPP5/NPPPP3/N7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 110 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 110,
-        "title": "Exercise (Frame 110)",
-        "text": "yes (White mates. The second Rook delivers mate, sup- ported by the Knight.)...",
-        "fen": "PPPPPPPP/PPPPPPPP/PPPPPPPP/PPNPPP2/2NPPN2/2NPPP2/NPPPP3/PPPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 110 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 112,
-        "title": "Exercise (Frame 112)",
-        "text": "In this position: White can mate White cannot mate If there is a mate, show...",
-        "fen": "P1PPPP1P/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NPP5/NPPPPPPP/PPPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 112 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 112,
-        "title": "Exercise (Frame 112)",
-        "text": "In this position: White can mate White cannot mate If there is a mate, show...",
-        "fen": "PPPPPPPP/1NPPPPN1/NNPPPPN1/NNPPPPN1/NNPPPPN1/NPP5/NPPP4/N7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 112 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 113,
-        "title": "Exercise (Frame 113)",
-        "text": "White cannot mate (If the White Queen checks on Black's back rank, the Bishop will interpose. Or, if the Queen checks fo...",
-        "fen": "8/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPP5/PPPP4/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 113 in the book."
-    },
-    {
-        "chapter": "Chapter 2: The Back-Rank Mates[cite: 126]",
-        "frame": 116,
-        "title": "Exercise (Frame 116)",
-        "text": "White can't mate (White's Rook is pinned so it could not recapture if...",
-        "fen": "P1PPPPPP/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NPP5/PPPP4/PPPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 116 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 125,
-        "title": "Exercise (Frame 125)",
-        "text": "NO ANSWER REQUIRED 126 In this position White can begin a back-rank mating combination by first removing one of the Blac...",
-        "fen": "N3PPPP/PPPPPPPP/PPPPPPPN/NNPPPPN1/NNPPPPN1/NNPPPPN1/NNPPPPN1/N1PPPP1N w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 125 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 126,
-        "title": "Exercise (Frame 126)",
-        "text": "In this position White can begin a back-rank mating combination by first removing one of the Black defend- ers. Draw an ...",
-        "fen": "N3PPPP/PPPPPPPP/PPPPPPPN/NNPPPPN1/NNPPPPN1/NNPPPPN1/NNPPPPN1/N1PPPP1N w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 126 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 126,
-        "title": "Exercise (Frame 126)",
-        "text": "(When Black recaptures with Rook, White's Queen and Rook have enough power to mate.) 127 Again, draw an arrow to show th...",
-        "fen": "PPPPPPPP/NNPPPPPP/NNPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/8/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 126 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 128,
-        "title": "Exercise (Frame 128)",
-        "text": "Here is a position where White can remove one of Black's back-rank defenders, but it does him no good. If Black recaptur...",
-        "fen": "P6P/PPNNPPPP/PNPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPPPP/NPPPP3 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 128 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 129,
-        "title": "Exercise (Frame 129)",
-        "text": "In this position, does a White move of Queen-takes- Rook-check (as shown) lead to mate? yes no...",
-        "fen": "P1PPPPPP/1NPPPPNN/1NPPPPN1/1NPPPPNN/1NPPRRNN/PPPNPPPN/1P6/PPPPPPPP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 129 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 129,
-        "title": "Exercise (Frame 129)",
-        "text": "no (Black's Queen recaptures and maintains guard on the back rank.) 130...",
-        "fen": "PPPPPP2/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPPP1/NPP5/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 129 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 131,
-        "title": "Exercise (Frame 131)",
-        "text": "(The correct move, as shown, reduces the number of Black's back-rank defenders from two to one. Then White's Rook can...",
-        "fen": "PPPPPPPP/1NPPPPN1/1NPPPNN1/1NPPPNN1/1NPPPPN1/1NPRRRN1/PPPNPNN1/PP2PPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 131 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 132,
-        "title": "Exercise (Frame 132)",
-        "text": "Does a White move of Queen-captures-Rook lead to mate? yes no...",
-        "fen": "PPPPPPPP/1NPPPPN1/1NPPPNN1/1NPPPNN1/1NPPPPN1/1NPRRRN1/PPPNPNN1/PP2PPPP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 132 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 132,
-        "title": "Exercise (Frame 132)",
-        "text": "no (On Queen-takes-Rook-check, Black's Queen can re- capture and guard the back rank.) 133...",
-        "fen": "P1PPPPPP/NNPPPPNN/NNPRPPN1/NNPPPPN1/NNPPPPNN/PPPPPPPP/1P6/P2PP3 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 132 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 133,
-        "title": "Exercise (Frame 133)",
-        "text": "Does White Rook-takes-Black Rook-check lead to mate in this position? yes no...",
-        "fen": "P1PPPPPP/NNPPPPNN/NNPRPPN1/NNPPPPN1/NNPPPPNN/PPPPPPPP/1P6/P2PP3 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 133 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 133,
-        "title": "Exercise (Frame 133)",
-        "text": "yes (White will play Queen-check on Black's back rank after Black recaptures.) 134...",
-        "fen": "P6P/NNPPPRN1/1NPPPPN1/NNPPPPN1/NNPPPPN1/NNRPPPN1/NPPPPPP1/P6N w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 133 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 134,
-        "title": "Exercise (Frame 134)",
-        "text": "Here's a hard one: If White plays Rook-takes-Rook-check, can he mate? yes no...",
-        "fen": "P6P/NNPPPRN1/1NPPPPN1/NNPPPPN1/NNPPPPN1/NNRPPPN1/NPPPPPP1/P6N w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 134 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 134,
-        "title": "Exercise (Frame 134)",
-        "text": "yes! (The mate is finally delivered by the White Queen. Work it out.) 135...",
-        "fen": "P6P/PPPPPPPN/PPPPPPPP/1NPPPPN1/1NPPPPN1/NNPPPPN1/NNPRRRN1/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 134 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 135,
-        "title": "Exercise (Frame 135)",
-        "text": "Sometimes, you have the choice of making a straight back-rank check or of capturing a defender. Observe the position bel...",
-        "fen": "P6P/PPPPPPPN/PPPPPPPP/1NPPPPN1/1NPPPPN1/NNPPPPN1/NNPRRRN1/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 135 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 137,
-        "title": "Exercise (Frame 137)",
-        "text": "NO ANSWER REQUIRED 138 In this and the next few positions, a White sacrifice of Queen-takes-Rook does not iead to mate. ...",
-        "fen": "PPPPPPPP/8/PPPNPPPP/PPPPNPPP/PPPPPRRP/NPPPPPPP/PRPPPPPP/RPQPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 137 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 138,
-        "title": "Exercise (Frame 138)",
-        "text": "In this and the next few positions, a White sacrifice of Queen-takes-Rook does not iead to mate. You must decide why thi...",
-        "fen": "PPPPPPPP/8/PPPNPPPP/PPPPNPPP/PPPPPRRP/NPPPPPPP/PRPPPPPP/RPQPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 138 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 138,
-        "title": "Exercise (Frame 138)",
-        "text": "White does not have enough power. (After King-takes-Queen, Black will have Queen and King against two Rooks or two again...",
-        "fen": "P1PPPP1P/1NPPQPN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/NPPPPPPP/NPPPPPNP/NPPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 138 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 139,
-        "title": "Exercise (Frame 139)",
-        "text": "Why does the White move of Queen-takes-Rook-check not lead to mate? White does not have enough power. At the end of Whit...",
-        "fen": "P1PPPP1P/1NPPQPN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/NPPPPPPP/NPPPPPNP/NPPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 139 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 140,
-        "title": "Exercise (Frame 140)",
-        "text": "This one might seem tricky! Why does the White move of Queen-takes-Rook-check not lead to mate? White does not have enou...",
-        "fen": "PPPP3P/1NPPPRN1/1NPNPPN1/1NPNPPN1/1NPRPPN1/PNPPPPPP/PPPPPPPN/PPPPPPNP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 140 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 141,
-        "title": "Exercise (Frame 141)",
-        "text": "Does White have a mating combination beginning with Rook-takes-Rook-check? yes no...",
-        "fen": "PPPPPPPP/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPNPPNP/NP6/N7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 141 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 141,
-        "title": "Exercise (Frame 141)",
-        "text": "yes (After King-takes-Rook, White mates with his remain- ing Rook on the back rank.) 142...",
-        "fen": "P7/PPPPPPPP/1NPPPPN1/1NPPPPN1/NNPPPPN1/NNPPPQN1/NPPPPNPP/NPNPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 141 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 142,
-        "title": "Exercise (Frame 142)",
-        "text": "Before we discuss other mating variations, let's look at some problems for the defender. White is threatening to play Ro...",
-        "fen": "P7/PPPPPPPP/1NPPPPN1/1NPPPPN1/NNPPPPN1/NNPPPQN1/NPPPPNPP/NPNPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 142 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 144,
-        "title": "Exercise (Frame 144)",
-        "text": "(continued) C. Then how does Black defend in positions...",
-        "fen": "1NPPQQN1/1NPPQQP1/1PPPPPP1/1NPPPP2/1PPPNP2/1NPNPN2/1PPP4/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 144 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 144,
-        "title": "Exercise (Frame 144)",
-        "text": "NO ANSWER REQUIRED 145 Draw an arrow to show how Black saves himself from checkmate:...",
-        "fen": "P6P/PPPPPPPN/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/8/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 144 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 145,
-        "title": "Exercise (Frame 145)",
-        "text": "Draw an arrow to show how Black saves himself from checkmate: ...",
-        "fen": "P6P/PPPPPPPN/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/8/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 145 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 146,
-        "title": "Exercise (Frame 146)",
-        "text": "(Capture by the other Rook would leave one defender of the back rank to two attackers.)...",
-        "fen": "P6P/NPPPPPP1/1NPPPPN1/1NPPPPN1/NNPPPPN1/1NPPPPN1/8/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 146 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 150,
-        "title": "Exercise (Frame 150)",
-        "text": "151 Now you will be asked to decide whether or not White has one of the back-rank mating combinations you have learned....",
-        "fen": "PP5P/PPNPPNPN/2PPPRN1/1NPPPPN1/NNPPPPN1/NNPPPPN1/NNPPPP2/PPPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 150 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 151,
-        "title": "Exercise (Frame 151)",
-        "text": "Now you will be asked to decide whether or not White has one of the back-rank mating combinations you have learned. Can ...",
-        "fen": "PP5P/PPNPPNPN/2PPPRN1/1NPPPPN1/NNPPPPN1/NNPPPPN1/NNPPPP2/PPPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 151 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 151,
-        "title": "Exercise (Frame 151)",
-        "text": "yes A (The Queen sacrifice will be followed by Rook mate...",
-        "fen": "PPPPPPPP/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPP2/PPPP4/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 151 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 1,
-        "title": "Exercise (Frame 1)",
-        "text": "152 White can't mate (After the Queen check, Black's Queen interposes.) 153...",
-        "fen": "P6P/1NRPPRN1/1NPPPPN1/1NPPPP2/1NPPPPN1/NNPPPP2/PP1N4/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 1 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 152,
-        "title": "Exercise (Frame 152)",
-        "text": "White can't mate (After the Queen check, Black's Queen interposes.) 153 Can White mate?...",
-        "fen": "P6P/1NRPPRN1/1NPPPPN1/1NPPPP2/1NPPPPN1/NNPPPP2/PP1N4/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 152 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 153,
-        "title": "Exercise (Frame 153)",
-        "text": "Can White mate? yes no If he can, show his key first move....",
-        "fen": "P6P/1NRPPRN1/1NPPPPN1/1NPPPP2/1NPPPPN1/NNPPPP2/PP1N4/8 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 153 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 154,
-        "title": "Exercise (Frame 154)",
-        "text": "White can mate (White reduces Black's back rank defenders, thereby giving himself...",
-        "fen": "P2PPPPP/1NRPPPN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/NNPPPP2/NPPP4/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 154 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 155,
-        "title": "Exercise (Frame 155)",
-        "text": "White can't mate (After White's Queen-takes-Rook-check, Black can defend by playing Queen-takes-Queen. If White tries...",
-        "fen": "PPPPPPPP/1NPPPRN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/NNPPPP2/NPPPP3/N7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 155 in the book."
-    },
-    {
-        "chapter": "Chapter 3: Back-Rank Defenses and Variations[cite: 178]",
-        "frame": 158,
-        "title": "Exercise (Frame 158)",
-        "text": "NOTE; This is taken from my game with Reshevsky (Black), played in New York, 1962. My opponent...",
-        "fen": "PPNPPP1P/8/7N/8/8/8/8/PP6 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 158 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 159,
-        "title": "Exercise (Frame 159)",
-        "text": "NO ANSWER REQUIRED 160 Which move should White make to begin a mating combination here?...",
-        "fen": "P6P/1NPPPRN1/1NNNPPN1/1NNNPPN1/1NNNPPN1/NNPPPPN1/PPP5/PP6 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 159 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 161,
-        "title": "Exercise (Frame 161)",
-        "text": "Bishop (Black must not allow his Knight to be drawn away.) 162 A similar theme-...",
-        "fen": "N1PPPPPP/PPPPPPPP/PPPPPP2/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/P1PPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 161 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 163,
-        "title": "Exercise (Frame 163)",
-        "text": "no (It won't work in positions like this because the Queen will still protect...",
-        "fen": "P3PP1P/1NPPPPN1/1NPPPPN1/NNPPPPN1/NNPPPPN1/NNPPPPPP/NP6/PNPPPPP1 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 163 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 164,
-        "title": "Exercise (Frame 164)",
-        "text": "Can White mate by first drawing away a Black defend- er? yes no...",
-        "fen": "P3PP1P/1NPPPPN1/1NPPPPN1/NNPPPPN1/NNPPPPN1/NNPPPPPP/NP6/PNPPPPP1 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 164 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 164,
-        "title": "Exercise (Frame 164)",
-        "text": "no (Even if Black's Knight is drawn away, Black's Bishop holds the position.)...",
-        "fen": "P1PPPP1P/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPPP1/NP6/PPPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 164 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 165,
-        "title": "Exercise (Frame 165)",
-        "text": "Can White mate by first drawing away a Black de- fender? yes no...",
-        "fen": "P1PPPP1P/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPPP1/NP6/PPPPPPPP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 165 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 165,
-        "title": "Exercise (Frame 165)",
-        "text": "Can White mate here? yes no If he can, draw an arrow to show White's key first...",
-        "fen": "P1PPPPPP/1NPPRPN1/NNPPPPN1/NNPPPPN1/NNPPPPN1/NPPPPP2/NPPPPPP1/P6P w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 165 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 166,
-        "title": "Exercise (Frame 166)",
-        "text": "yes (The Knight recapture will uncover the checking square for White's re-...",
-        "fen": "PQPqPqqq/qPQ1QRQN/NQ1q1Q1Q/q1Q1Q1PN/NQ1Q1Q1Q/Q1Q1QQQP/qq1P1QPQ/qPQPQPQP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 166 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 1,
-        "title": "Exercise (Frame 1)",
-        "text": "167 Can White mate by first drawing away a Black de- fender? yes...",
-        "fen": "PQPqPqqq/qPQ1QRQN/NQ1q1Q1Q/q1Q1Q1PN/NQ1Q1Q1Q/Q1Q1QQQP/qq1P1QPQ/qPQPQPQP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 1 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 167,
-        "title": "Exercise (Frame 167)",
-        "text": "Can White mate by first drawing away a Black de- fender? yes no...",
-        "fen": "PQPqPqqq/qPQ1QRQN/NQ1q1Q1Q/q1Q1Q1PN/NQ1Q1Q1Q/Q1Q1QQQP/qq1P1QPQ/qPQPQPQP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 167 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 167,
-        "title": "Exercise (Frame 167)",
-        "text": "no (If the White Queen attempts to displace the Black Knight, it will do no good. Black's King has a flight...",
-        "fen": "PPPPPP1P/PPPPPPPP/NPPNNPNN/NPPNNPPN/NPPPNPPP/1PPP1PPP/1PPP1P2/PPP3PP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 167 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 168,
-        "title": "Exercise (Frame 168)",
-        "text": "/continued) C. And now White has a simple back-rank...",
-        "fen": "1RNPPQN1/1RPPPQN1/1PNPPP2/1PPNNN2/PPPPPPPP/N7/8/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 168 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 168,
-        "title": "Exercise (Frame 168)",
-        "text": "NO ANSWER REQUIRED 169 Can White mate if he first checks (as shown) in this...",
-        "fen": "P7/NNPPPPN1/1NPNPPN1/1NPNPPN1/1NPNPPN1/NPPPPPN1/NP6/P1PP3P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 168 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 169,
-        "title": "Exercise (Frame 169)",
-        "text": "Can White mate if he first checks (as shown) in this position? yes...",
-        "fen": "P7/NNPPPPN1/1NPNPPN1/1NPNPPN1/1NPNPPN1/NPPPPPN1/NP6/P1PP3P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 169 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 169,
-        "title": "Exercise (Frame 169)",
-        "text": "no (Driving away the King does not work. Black's King is forced away but will have an escape square.)...",
-        "fen": "N7/1NPPPRN1/1NPPPNN1/1NPPPPN1/1NPPPPN1/PPPPPPP1/PP6/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 169 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 170,
-        "title": "Exercise (Frame 170)",
-        "text": "If the White Queen checks (as shown), will White be able to mate? yes no...",
-        "fen": "N7/1NPPPRN1/1NPPPNN1/1NPPPPN1/1NPPPPN1/PPPPPPP1/PP6/8 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 170 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 170,
-        "title": "Exercise (Frame 170)",
-        "text": "no (Not if Black's Bishop captures. If the Black King...",
-        "fen": "P3PPPP/PPPPPPPN/NPPQNPPP/NPPNNPPN/NPPPNPPP/PPPPPPNP/5PPP/P5PP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 170 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 171,
-        "title": "Exercise (Frame 171)",
-        "text": "NO ANSWER REQUIRED 172 Draw an arrow to show the correct move for White; ...",
-        "fen": "P7/PPPPPPP1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/N7/PPPP4 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 171 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 174,
-        "title": "Exercise (Frame 174)",
-        "text": "Let's look at some simple defenses against displacing attempts. a. How does Black defend against the check by...",
-        "fen": "P6P/PPPPPPPP/1NPPPPNN/1NPPPPN1/1NPPNPN1/NNPPPPN1/NPPPNNN1/PPPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 174 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 174,
-        "title": "Exercise (Frame 174)",
-        "text": "a. Black Pawn pushes and interposes. b. Black Queen takes White Queen....",
-        "fen": "PP2P2P/PPPPPPPN/1NPPRRN1/1NPPNPN1/1NPPPPN1/1NPPNPN1/NPPPPP2/PPPN4 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 174 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 176,
-        "title": "Exercise (Frame 176)",
-        "text": "to square B (Then White will mate on the back rank From square A White would not have enough power to mate on the back r...",
-        "fen": "P7/PPPPPPP1/2PPPRN1/1NPPPPNN/1NPPPPN1/1NPPPPN1/1NRPRRNN/PPPPPP1P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 176 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 177,
-        "title": "Exercise (Frame 177)",
-        "text": "Here White could try to displace either the King or another defender. Draw an arrow to show his correct move: 215...",
-        "fen": "P7/PPPPPPP1/2PPPRN1/1NPPPPNN/1NPPPPN1/1NPPPPN1/1NRPRRNN/PPPPPP1P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 177 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 181,
-        "title": "Exercise (Frame 181)",
-        "text": "NO ANSWER REQUIRED 182 White's Knight has checked. Black can save himself by playing:...",
-        "fen": "PPPPPPPP/NNPPPRN1/1NPPPNN1/NNPPPNN1/NNPPPPN1/NNPPPPP1/NNN5/PNPP4 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 181 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 183,
-        "title": "Exercise (Frame 183)",
-        "text": "Does a check by White's Knight at square A lead to mate? yes no...",
-        "fen": "PPPPPPPP/1NPPPPN1/1NPPPQN1/1NPPPPN1/1NPPPPN1/PPPPPPP1/PNPPPPP1/PP6 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 183 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 183,
-        "title": "Exercise (Frame 183)",
-        "text": "yes yes (In either case, Biack's Pawn must capture. White's Queen can then drive the Black King into the corner.)...",
-        "fen": "P1PPPP2/PPPPPPP1/1NPRPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPPP1/PPPP4 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 183 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 184,
-        "title": "Exercise (Frame 184)",
-        "text": "no! (Black plays Pawn-takes- Kmght; then after White's Rook checks, Black's Rook...",
-        "fen": "P7/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PP6/P2P1PP1 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 184 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 185,
-        "title": "Exercise (Frame 185)",
-        "text": "yes (The White Queen will be able to drive the Black King into the corner if Black captures the Knight. The White Rook w...",
-        "fen": "PPP5/PPPPPPPP/PPPNPPNN/PPPPPPNN/1NNPPPN1/1NNPPPN1/1NPPPPN1/PNPPPRNP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 185 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 186,
-        "title": "Exercise (Frame 186)",
-        "text": "(The Bishop check will not work because Black's Knight can interpose at square X, thereby stop-...",
-        "fen": "PP6/PPPPPPP1/NNPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/N1PPPP2/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 186 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 187,
-        "title": "Exercise (Frame 187)",
-        "text": "(White forces the Black King into the corner, thereby giving himself enough power to mate.)...",
-        "fen": "PPPP4/PPPPP3/1NPPPRN1/1NPPPNN1/NNPPPNN1/1NPPPPN1/2PPPP2/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 187 in the book."
-    },
-    {
-        "chapter": "Chapter 4: Displacing Defenders[cite: 216]",
-        "frame": 194,
-        "title": "Exercise (Frame 194)",
-        "text": "(The back-rank defenders aje reduced from two to one after the King is forced to move.)...",
-        "fen": "PPPPPP2/8/8/8/8/8/8/P1PPPP2 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 194 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 196,
-        "title": "Exercise (Frame 196)",
-        "text": "NO ANSWER REQUIRED 197 In the next four positions, you will have to determine whether a sacrifice similar to the one tha...",
-        "fen": "P7/NPPPPPPP/1NPPPPN1/1NPPPNN1/1NPPPPN1/1NPPPPN1/PPPPPPPP/PPPP3P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 196 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 197,
-        "title": "Exercise (Frame 197)",
-        "text": "no* (Black's King or Rook can safely take the Queen. An important element of the theme—the White Bishop— is missing.)...",
-        "fen": "PP5P/NNPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPPN1/NP6/PPPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 197 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 51,
-        "title": "Exercise (Frame 51)",
-        "text": "198 Does Queen-takes-Pawn-check lead to mate here? yes no...",
-        "fen": "PP5P/NNPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPPN1/NP6/PPPPPPPP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 51 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 198,
-        "title": "Exercise (Frame 198)",
-        "text": "Does Queen-takes-Pawn-check lead to mate here? yes no 240...",
-        "fen": "PP5P/NNPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPPN1/NP6/PPPPPPPP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 198 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 198,
-        "title": "Exercise (Frame 198)",
-        "text": "yes (Here the Bishop is present. When Black plays Rook- takes-Queen, the White Rook will mate.) 199...",
-        "fen": "P6P/1NRRPPN1/1NQPPPN1/1NPPPPN1/1NPPPPN1/PNPPPPPP/PPP5/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 198 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 199,
-        "title": "Exercise (Frame 199)",
-        "text": "Does the White move of Queen-takes-Pawn-check (as shown) lead to mate? yes no...",
-        "fen": "P6P/1NRRPPN1/1NQPPPN1/1NPPPPN1/1NPPPPN1/PNPPPPPP/PPP5/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 199 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 199,
-        "title": "Exercise (Frame 199)",
-        "text": "yes (A mate for White! If Black plays Queen-takes-Queen, then the White Rook mates.)...",
-        "fen": "8/8/PPPPPPPP/PPPPPPPP/8/PPPPPPPP/PRPRPqqR/QPRPRRQN w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 199 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 200,
-        "title": "Exercise (Frame 200)",
-        "text": "Does the White move of Queen-takes-Pawn-check (as shown) lead to mate? yes no...",
-        "fen": "8/8/PPPPPPPP/PPPPPPPP/8/PPPPPPPP/PRPRPqqR/QPRPRRQN w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 200 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 200,
-        "title": "Exercise (Frame 200)",
-        "text": "no (White does not mate since Black's King has a flight square. Black should play Rook-takes-Queen and then flee with hi...",
-        "fen": "P6P/1NRPPPN1/NNPPPPN1/1NPPNPN1/1NPPPPN1/NPPPPPPN/NPP5/P6P w - - 0 1",
-        "options": [
-            "can capture attacker",
-            "can flee",
-            "can do neither"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 200 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 201,
-        "title": "Exercise (Frame 201)",
-        "text": "Does the White move of Queen-takes-Pawn-check (as shown) lead to mate? yes no...",
-        "fen": "P6P/1NRPPPN1/NNPPPPN1/1NPPNPN1/1NPPPPN1/NPPPPPPN/NPP5/P6P w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 201 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 201,
-        "title": "Exercise (Frame 201)",
-        "text": "yes (The sacrifice works—White mates.) 202 Here are some positions where the theme you have...",
-        "fen": "P7/NPPPPPPN/1NPPPRN1/NNPPPNN1/NNPPPNN1/NNPPPPN1/NPPPPPP1/PPPPPP2 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 201 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 202,
-        "title": "Exercise (Frame 202)",
-        "text": "Here are some positions where the theme you have learned does not apply. In each case, you wilt be asked to explain why ...",
-        "fen": "P7/NPPPPPPN/1NPPPRN1/NNPPPNN1/NNPPPNN1/NNPPPPN1/NPPPPPP1/PPPPPP2 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 202 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 202,
-        "title": "Exercise (Frame 202)",
-        "text": "Black's Bishop will be able to interpose (After Black plays Queen-takes-Queen, White Rook checks and Black saves himself...",
-        "fen": "PPPPPPPP/1NPPPRNN/1NPPPPNN/1NPPPPN1/1NPPPPN1/NPPPPPNN/NPP5/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 202 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 203,
-        "title": "Exercise (Frame 203)",
-        "text": "A White move of Queen-takes-Pawn-check does not lead to mate because 245 ...",
-        "fen": "PPPPPPPP/1NPPPRNN/1NPPPPNN/1NPPPPN1/1NPPPPN1/NPPPPPNN/NPP5/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 203 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 3,
-        "title": "Exercise (Frame 3)",
-        "text": "204 A White move of Queen-takes-Pawn-check does not lead to mate because 246...",
-        "fen": "P7/1NPPPPN1/NNPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPPP1/NPP5/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 3 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 204,
-        "title": "Exercise (Frame 204)",
-        "text": "A White move of Queen-takes-Pawn-check does not lead to mate because 246 ...",
-        "fen": "P7/1NPPPPN1/NNPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPPP1/NPP5/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 204 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 204,
-        "title": "Exercise (Frame 204)",
-        "text": "White's Rook will not be able to check (It is pinned.) 9...",
-        "fen": "PP2PP1P/PNPPPPN1/PPPPPNPN/1NPPPPN1/1NPPRPN1/1NPPPPN1/1NPPPPN1/1PPPPP2 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 204 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 205,
-        "title": "Exercise (Frame 205)",
-        "text": "NOTE; Queen-takes-Pawn- check leads to mate. This position is from my 1959...",
-        "fen": "PPPP3P/NPPPNPPN/NPPPNPPP/NPNNNPNN/NPPPNPPP/PPPP1NPN/5PPP/P4PPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 205 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 206,
-        "title": "Exercise (Frame 206)",
-        "text": "NO ANSWER REQUIRED 3 207 You must be certain all of the elements in the combina-...",
-        "fen": "P2PP3/PPPPPPPN/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPPP1/PPPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 206 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 208,
-        "title": "Exercise (Frame 208)",
-        "text": "NO ANSWER REQUIRED 9 209 Check the following position to see...",
-        "fen": "P6P/PPPPPPPP/1NRPPPN1/1NPRPPN1/1NPPPPN1/1NPPPPN1/PPPPPPP1/PP1P2PP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 208 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 209,
-        "title": "Exercise (Frame 209)",
-        "text": "yes 210 Does the sacrifice work here? yes...",
-        "fen": "P6P/1NPPPRN1/1NPPPNN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PP6/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 209 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 210,
-        "title": "Exercise (Frame 210)",
-        "text": "Does the sacrifice work here? yes no ...",
-        "fen": "P6P/1NPPPRN1/1NPPPNN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PP6/8 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 210 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 210,
-        "title": "Exercise (Frame 210)",
-        "text": "yes (White mates. After Black plays Rook-takes-Queen, White checks with his Rook on the back rank; Black interposes with...",
-        "fen": "PP6/NPPPPPPN/1NRRPRN1/1NPPQPN1/1NPPPPN1/1NPPPPN1/PNPPPPPN/PPPNN3 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 210 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 211,
-        "title": "Exercise (Frame 211)",
-        "text": "You must have figured one of these positions would not be a mate. So on this one, I'll ask you something else....",
-        "fen": "PP6/NPPPPPPN/1NRRPRN1/1NPPQPN1/1NPPPPN1/1NPPPPN1/PNPPPPPN/PPPNN3 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 211 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 212,
-        "title": "Exercise (Frame 212)",
-        "text": "(continued) C. Now look at the position....",
-        "fen": "1RPPPQN1/1RPPRRN1/1PPPP3/1NPPN3/1PPPPP2/1PPP4/PNPPPPPP/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 212 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 212,
-        "title": "Exercise (Frame 212)",
-        "text": "NO ANSWER REQUIRED 213 One other variation; 1. White's Queen takes Pawn, giving check (Black's...",
-        "fen": "P7/PPPPNNPP/NPPPPP2/NNPPPPN1/1NPPPPN1/NNPPPPN1/NNPPPPN1/PPPNPPP1 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 212 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 213,
-        "title": "Exercise (Frame 213)",
-        "text": "the Bishop 214 You have seen how, in certain positions, the key move Queen-takes-Pawn-check draws a defender from the...",
-        "fen": "PPPPPP1P/PPPNPPPP/PPPPNPNP/NPPPPPP1/NNPPPPN1/NNPPNPN1/NNPPPPN1/PNPPPPN1 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 213 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 214,
-        "title": "Exercise (Frame 214)",
-        "text": "You have seen how, in certain positions, the key move Queen-takes-Pawn-check draws a defender from the back rank and lea...",
-        "fen": "PPPPPP1P/PPPNPPPP/PPPPNPNP/NPPPPPP1/NNPPPPN1/NNPPNPN1/NNPPPPN1/PNPPPPN1 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 214 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 216,
-        "title": "Exercise (Frame 216)",
-        "text": "(This one is tricky—after Queen-takes-Pawn-check, Rook takes Queen, Rook interposes and White...",
-        "fen": "P2P3P/NPPPPPP1/1NPPPPN1/NNPPPPN1/1NPPPPN1/1NPPPPN1/8/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 216 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 217,
-        "title": "Exercise (Frame 217)",
-        "text": "(Here, after Queen-takes- Pawn-check, Rook takes Queen, Rook checks, Rook interposes [other inter-...",
-        "fen": "PPPPPP1P/PPNPPPPP/1NPPPRN1/1NPPNPN1/1NPPNPN1/1NPPNPN1/2PPPP2/PPP5 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 217 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 219,
-        "title": "Exercise (Frame 219)",
-        "text": "NO ANSWER REQUIRED 220 Decide whether the type of sacrifice shown in the previous frame works in each of the five positi...",
-        "fen": "P5PP/PPPPPPPN/1NPRPPNN/1NPPPNNN/1NPPPNNN/1NPPPNNN/PNPPPPPN/PP6 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 219 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 220,
-        "title": "Exercise (Frame 220)",
-        "text": "yes (White mates: Queen-takes-Pawn-check; King-takes- Queen; Rook over to the right; checkmate.) 221...",
-        "fen": "PPPPPP1P/1NPPPPN1/1NPPPPN1/1NPPNPN1/1NPPPPN1/PPPPPPPP/NPPP4/PPPP2PP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 220 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 221,
-        "title": "Exercise (Frame 221)",
-        "text": "Does White have a mating combination beginning with Queen-takes-Pawn (as shown)? yes no...",
-        "fen": "PPPPPP1P/1NPPPPN1/1NPPPPN1/1NPPNPN1/1NPPPPN1/PPPPPPPP/NPPP4/PPPP2PP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 221 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 221,
-        "title": "Exercise (Frame 221)",
-        "text": "yes (White matek Here the White Knight keeps the Black King from fleeing.) 222...",
-        "fen": "P6P/1NPPPPN1/1NPPPNN1/1NPPPPN1/NNPPPPN1/PNPPPPPN/PPPPP2N/P6N w - - 0 1",
-        "options": [
-            "can capture attacker",
-            "can flee",
-            "can do neither"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 221 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 222,
-        "title": "Exercise (Frame 222)",
-        "text": "Does White have a mating combination beginning with Queen-takes-Pawn-check (as shown)? yes no...",
-        "fen": "P6P/1NPPPPN1/1NPPPNN1/1NPPPPN1/NNPPPPN1/PNPPPPPN/PPPPP2N/P6N w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 222 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 222,
-        "title": "Exercise (Frame 222)",
-        "text": "no 223 Does White have a mating combination beginning with Queen-takes-Pawn (as shown)?...",
-        "fen": "P7/1NRPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPPPN/PPPP4/P6P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 222 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 223,
-        "title": "Exercise (Frame 223)",
-        "text": "Does White have a mating combination beginning with Queen-takes-Pawn (as shown)? yes no...",
-        "fen": "P7/1NRPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPPPN/PPPP4/P6P w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 223 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 223,
-        "title": "Exercise (Frame 223)",
-        "text": "no! (White does not mate. After White plays Queen-takes- Pawn-check, Black's King takes Queen and the Rook moves over to...",
-        "fen": "P7/1NPPPPN1/1NPPPNN1/1NPPPPN1/1NPPPNN1/PNPPPPP1/PPPP4/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 223 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 224,
-        "title": "Exercise (Frame 224)",
-        "text": "Does White have a mating combination beginning with Queen-takes-Pawn (as shown)? yes no...",
-        "fen": "P7/1NPPPPN1/1NPPPNN1/1NPPPPN1/1NPPPNN1/PNPPPPP1/PPPP4/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 224 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 224,
-        "title": "Exercise (Frame 224)",
-        "text": "no (Not if Black replies with Queen-takes-Queen! On King-takes-Queen, White would mate.)...",
-        "fen": "8/PPPPPPP1/PNPPPPP1/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/1PPPPP2 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 224 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 225,
-        "title": "Exercise (Frame 225)",
-        "text": "(Queen-takes-Pawn-check; Rook-takes-Queen; Rook down checks; Rook next tp King interposes; Bishop...",
-        "fen": "P6P/PPPPPPP1/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/N1PPPP2/P6P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 225 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 228,
-        "title": "Exercise (Frame 228)",
-        "text": "(Then the other Rook moyes one square to the left to mate.) 229...",
-        "fen": "PPPPP2P/NPPPNPPP/NPPRNPNN/NrPPNRPP/PNPPPPNP/1N2PPPP/8/P5PP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 228 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 229,
-        "title": "Exercise (Frame 229)",
-        "text": "NO ANSWER REQUIRED I 230 The next three positions look somewhat similar, but...",
-        "fen": "P7/PPPPPPPP/1NRPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PPPPP3 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 229 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 232,
-        "title": "Exercise (Frame 232)",
-        "text": "Queen-takes-Rook-check (After King-takes-Queen, Rook down mates. Note that here the Knight check fails because Black can...",
-        "fen": "P5PP/PPPPPPPP/PNPPPRN1/1NPPPPN1/NNPPPPN1/1NPPPPN1/PNPPPPN1/PPPPPPP1 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 232 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 234,
-        "title": "Exercise (Frame 234)",
-        "text": "Can White mate? yes 281 ...",
-        "fen": "P6P/PPPPPPPP/NPPPPP1N/2NPPN2/2NPPN2/NPPPPP2/NPPP1P2/P2PPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 234 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 234,
-        "title": "Exercise (Frame 234)",
-        "text": "yes 235 Can White mate? yes...",
-        "fen": "P7/1NPPPPN1/1NPPPPN1/NNPPPPN1/NNPPPPN1/NPPPPP2/PNPPPP2/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 234 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 235,
-        "title": "Exercise (Frame 235)",
-        "text": "Can White mate? yes no If so, draw an arrow to show his first move....",
-        "fen": "P7/1NPPPPN1/1NPPPPN1/NNPPPPN1/NNPPPPN1/NPPPPP2/PNPPPP2/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 235 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 235,
-        "title": "Exercise (Frame 235)",
-        "text": "yes (The Knight check drives the* King into the corner. Then Rook-takes-Pawn-...",
-        "fen": "N7/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PPPPNP2/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 235 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 236,
-        "title": "Exercise (Frame 236)",
-        "text": "Can White mate? yes no If so, draw an arrow to show his first move....",
-        "fen": "N7/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PPPPNP2/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 236 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 236,
-        "title": "Exercise (Frame 236)",
-        "text": "yes (After Black plays King- takes-Rook, White delivers mate with the remaining...",
-        "fen": "PPP5/1NRPRPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NPPPPP2/NPPPPP2/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 236 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 237,
-        "title": "Exercise (Frame 237)",
-        "text": "Can White mate? yes no If so, draw an arrow to show his first move....",
-        "fen": "PPP5/1NRPRPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NPPPPP2/NPPPPP2/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 237 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 237,
-        "title": "Exercise (Frame 237)",
-        "text": "no (The Queen sacrifice does not work. At the end, the Black Bishop is waiting to capture White's Rook.) &...",
-        "fen": "P7/PPPNPPPN/2PPPPN1/1NPPpPN1/1NPPPPN1/1NPPPPN1/1NPPRR2/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 237 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 239,
-        "title": "Exercise (Frame 239)",
-        "text": "Can White mate? yes no if so, draw an arrow to show his first move....",
-        "fen": "P7/2PRPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPP2/PPPP1P2/8 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 239 in the book."
-    },
-    {
-        "chapter": "Chapter 5: Attacks on the Enemy Pawn Cover[cite: 259]",
-        "frame": 239,
-        "title": "Exercise (Frame 239)",
-        "text": "yes (Black plays Pawn-takes- Knight, White checks by moving his Rook three...",
-        "fen": "PPNPPN2/8/8/8/8/8/8/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 239 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 240,
-        "title": "Exercise (Frame 240)",
-        "text": "(continued) M. Another Queen sacri- fice variation. (Black...",
-        "fen": "PPPR1NQQ/NPPPPPPP/PPN2PNN/PNN2PP1/PPP5/PNP5/PPRR1PRR/QQPN1RNP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 240 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 242,
-        "title": "Exercise (Frame 242)",
-        "text": "NO ANSWER REQUIRED 243 CRITERION POSITIONS Now you're ready to try your skill at sorting out all of...",
-        "fen": "P6P/NPPPPPP1/PPPPPPPP/NPNPPPPN/PPPPPNP1/N6N/N7/PPPP3P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 242 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 243,
-        "title": "Exercise (Frame 243)",
-        "text": "CRITERION POSITIONS Now you're ready to try your skill at sorting out all of the concepts you've learned in a series of ...",
-        "fen": "P6P/NPPPPPP1/PPPPPPPP/NPNPPPPN/PPPPPNP1/N6N/N7/PPPP3P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 243 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 243,
-        "title": "Exercise (Frame 243)",
-        "text": "NO ANSWER REQUIRED 244 Can White mate? yes...",
-        "fen": "P6P/1NPPPPN1/1NPPPPN1/NNPPPPN1/1NPPPPN1/NNPPPP2/NPP1PPP1/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 243 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 244,
-        "title": "Exercise (Frame 244)",
-        "text": "Can White mate? yes no If he can mate, draw an arrow to show his key first...",
-        "fen": "P6P/1NPPPPN1/1NPPPPN1/NNPPPPN1/1NPPPPN1/NNPPPP2/NPP1PPP1/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 244 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 244,
-        "title": "Exercise (Frame 244)",
-        "text": "245 Can White mate? yes no...",
-        "fen": "P7/1NPPPRN1/1NPPPPN1/1NPPRPN1/1NPPPPN1/PPPPPP2/NNPPP3/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 244 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 245,
-        "title": "Exercise (Frame 245)",
-        "text": "Can White mate? yes no If \"yes,\" draw an arrow to show his first move....",
-        "fen": "P7/1NPPPRN1/1NPPPPN1/1NPPRPN1/1NPPPPN1/PPPPPP2/NNPPP3/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 245 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 245,
-        "title": "Exercise (Frame 245)",
-        "text": "yes 246 Can White mate? yes...",
-        "fen": "P1P4P/1NPRPRN1/1NPPPPN1/1NPPPPN1/NNPPRPN1/NNPPPP2/PPPPPPPN/PP4PP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 245 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 246,
-        "title": "Exercise (Frame 246)",
-        "text": "Can White mate? yes no Don't forget to draw an arrow showing White's key first...",
-        "fen": "P1P4P/1NPRPRN1/1NPPPPN1/1NPPPPN1/NNPPRPN1/NNPPPP2/PPPPPPPN/PP4PP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 246 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 246,
-        "title": "Exercise (Frame 246)",
-        "text": "no (After Rook-takes-Rook-check, Bishop-takes-Rook, the remaining White Rook checks and Black interposes with his Rook.)...",
-        "fen": "P6P/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/NNPPPP2/NPNPPPP1/P6P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 246 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 247,
-        "title": "Exercise (Frame 247)",
-        "text": "1 mm. Can White mate? yes...",
-        "fen": "P6P/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/NNPPPP2/NPNPPPP1/P6P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 247 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 1,
-        "title": "Exercise (Frame 1)",
-        "text": "mm. Can White mate? yes no...",
-        "fen": "P6P/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/NNPPPP2/NPNPPPP1/P6P w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 1 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 248,
-        "title": "Exercise (Frame 248)",
-        "text": "Does White mate? yes no If \"yes,\" draw an arrow to show his move....",
-        "fen": "P6P/1NRPPPN1/1NRPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/NNPPPP2/P6P w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 248 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 248,
-        "title": "Exercise (Frame 248)",
-        "text": "yes 249 Can White mate? yes...",
-        "fen": "PPPPP3/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PPPPPPP1/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 248 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 249,
-        "title": "Exercise (Frame 249)",
-        "text": "Can White mate? yes no If he can mate, show his first move with an arrow....",
-        "fen": "PPPPP3/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PPPPPPP1/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 249 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 4,
-        "title": "Exercise (Frame 4)",
-        "text": "249 no (Black should take White's Queen and then interpose with his Bishop.)...",
-        "fen": "PPP4P/NNPRPPN1/NNPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/NNPPNN2/P1P5 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 4 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 249,
-        "title": "Exercise (Frame 249)",
-        "text": "no (Black should take White's Queen and then interpose with his Bishop.) Does White mate?...",
-        "fen": "PPP4P/NNPRPPN1/NNPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/NNPPNN2/P1P5 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 249 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 251,
-        "title": "Exercise (Frame 251)",
-        "text": "Can White mate? yes no If he can, draw an arrow to show his move....",
-        "fen": "P6P/1NPRRPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPP2/NPPPPP2/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 251 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 251,
-        "title": "Exercise (Frame 251)",
-        "text": "yes An 1*1 (After Black plays King- takes-Queen, White moves...",
-        "fen": "P5PP/1NPPPRNN/1NPPPPNN/NNPPPPN1/1NPRPPN1/NPPPPP2/PPPPPP2/7P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 251 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 252,
-        "title": "Exercise (Frame 252)",
-        "text": "Can White mate? yes no If he can, draw an arrow to show his first move....",
-        "fen": "P5PP/1NPPPRNN/1NPPPPNN/NNPPPPN1/1NPRPPN1/NPPPPP2/PPPPPP2/7P w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 252 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 252,
-        "title": "Exercise (Frame 252)",
-        "text": "yes (White first drives the King into the corner, then sacrifices his Queen in...",
-        "fen": "P6P/1NPRPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/NPPPPN2/P6P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 252 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 253,
-        "title": "Exercise (Frame 253)",
-        "text": "Does White mate? yes no If \"yes,\" draw an arrow to show his first move....",
-        "fen": "P6P/1NPRPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/NPPPPN2/P6P w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 253 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 253,
-        "title": "Exercise (Frame 253)",
-        "text": "no (Here when White drives the King one square to the left, the King will have access to a fleeing square, preventing th...",
-        "fen": "P7/1NRRPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPP2/PPNPPPP1/P4PPP w - - 0 1",
-        "options": [
-            "can capture attacker",
-            "can flee",
-            "can do neither"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 253 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 254,
-        "title": "Exercise (Frame 254)",
-        "text": "Can White mate? yes no If White can mate, draw an arrow to show his first...",
-        "fen": "P7/1NRRPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPP2/PPNPPPP1/P4PPP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 254 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 254,
-        "title": "Exercise (Frame 254)",
-        "text": "yes mtm a Cm m t...",
-        "fen": "PPPPPPPP/1NRPPPN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/NNPPPPP1/NPPPNPPP/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 254 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 255,
-        "title": "Exercise (Frame 255)",
-        "text": "Can White mate? yes no If White can mate, show his first move with an arrow....",
-        "fen": "PPPPPPPP/1NRPPPN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/NNPPPPP1/NPPPNPPP/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 255 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 255,
-        "title": "Exercise (Frame 255)",
-        "text": "yes 256 Does White mate? yes...",
-        "fen": "P7/1NRRPRN1/1NPPPNN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PP1PPP2/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 255 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 256,
-        "title": "Exercise (Frame 256)",
-        "text": "Does White mate? yes no If \"yes,\" show his first move with an arrow....",
-        "fen": "P7/1NRRPRN1/1NPPPNN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PP1PPP2/8 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 256 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 256,
-        "title": "Exercise (Frame 256)",
-        "text": "(Queen-takes-Pawn- checkmate!) 257 Can White mate?...",
-        "fen": "PPPPPPPP/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/NPPPNPP1/PPPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 256 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 257,
-        "title": "Exercise (Frame 257)",
-        "text": "Can White mate? yes no If he can, draw an arrow indicating the first move....",
-        "fen": "PPPPPPPP/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/NPPPNPP1/PPPPPPPP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 257 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 257,
-        "title": "Exercise (Frame 257)",
-        "text": "no (Black has enough pieces protecting the crucial square on his back rank.) 258...",
-        "fen": "PPPP2PP/NNPRPPN1/NNPPPPN1/NNPPPPN1/1NPPPPN1/NNPPPP2/NPPPNP2/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 257 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 258,
-        "title": "Exercise (Frame 258)",
-        "text": "Can White mate? yes no If \"yes,\" draw an arrow showing his first move....",
-        "fen": "PPPP2PP/NNPRPPN1/NNPPPPN1/NNPPPPN1/1NPPPPN1/NNPPPP2/NPPPNP2/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 258 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 258,
-        "title": "Exercise (Frame 258)",
-        "text": "259 Can White mate? yes no...",
-        "fen": "P6P/1NPPPRN1/1NPPPPN1/1NPRPPN1/1NPPPPN1/PNPPPP2/PPPPNP2/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 258 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 259,
-        "title": "Exercise (Frame 259)",
-        "text": "Can White mate? yes no If he can, show the first move by an arrow....",
-        "fen": "P6P/1NPPPRN1/1NPPPPN1/1NPRPPN1/1NPPPPN1/PNPPPP2/PPPPNP2/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 259 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 259,
-        "title": "Exercise (Frame 259)",
-        "text": "no (Black's back rank is adequately protected.) 260...",
-        "fen": "P6P/1NPPPRNN/1NPPPPNN/1NPPPPNN/1NPPPPNN/PPPPPP1N/PPPPPP2/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 259 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 260,
-        "title": "Exercise (Frame 260)",
-        "text": "Does White mate? yes no If \"yes,\" show his first move with an arrow....",
-        "fen": "P6P/1NPPPRNN/1NPPPPNN/1NPPPPNN/1NPPPPNN/PPPPPP1N/PPPPPP2/8 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 260 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 261,
-        "title": "Exercise (Frame 261)",
-        "text": "Can White mate? yes no If he can, draw an arrow to show his first move....",
-        "fen": "P7/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPP2/NNPPPN2/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 261 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 261,
-        "title": "Exercise (Frame 261)",
-        "text": "yes 262 Does White mate? yes...",
-        "fen": "P3PPPP/1NPPRPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPP2/NPNPPP2/PPPPPPPP w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 261 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 262,
-        "title": "Exercise (Frame 262)",
-        "text": "Does White mate? yes no If \"yes,\" show his first move with an arrow....",
-        "fen": "P3PPPP/1NPPRPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPP2/NPNPPP2/PPPPPPPP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 262 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 262,
-        "title": "Exercise (Frame 262)",
-        "text": "yes (After the Knight checks, the Pawn takes the Knight, Rook [on the...",
-        "fen": "P4P1P/1NRRPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPP2/PPNPPP2/P6P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 262 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 1,
-        "title": "Exercise (Frame 1)",
-        "text": "1i fm Does White mate? yes...",
-        "fen": "P4P1P/1NRRPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPP2/PPNPPP2/P6P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 1 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 263,
-        "title": "Exercise (Frame 263)",
-        "text": "yes 264 Can White mate? yes...",
-        "fen": "P4PPP/1NPRPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPP2/NNPPPPP1/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 263 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 264,
-        "title": "Exercise (Frame 264)",
-        "text": "Can White mate? yes no if he can, draw an arrow to show the correct move....",
-        "fen": "P4PPP/1NPRPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PNPPPP2/NNPPPPP1/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 264 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 264,
-        "title": "Exercise (Frame 264)",
-        "text": "yes (Next, White plays Queen- checks, leading to mate. Note that the escape...",
-        "fen": "P4PPP/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PNPPPP2/PP1PPPPP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 264 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 265,
-        "title": "Exercise (Frame 265)",
-        "text": "Does White mate? yes no If \"yes,\" draw an arrow to show his move....",
-        "fen": "P4PPP/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PNPPPP2/PP1PPPPP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 265 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 265,
-        "title": "Exercise (Frame 265)",
-        "text": "yes 266 Does White mate? yes...",
-        "fen": "P6P/NNRRPRN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/PNPPPP2/NPPPPP2/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 265 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 266,
-        "title": "Exercise (Frame 266)",
-        "text": "Does White mate? yes no If \"yes\" draw an arrow showing his move....",
-        "fen": "P6P/NNRRPRN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/PNPPPP2/NPPPPP2/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 266 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 267,
-        "title": "Exercise (Frame 267)",
-        "text": "mnm am m Can White mate? yes...",
-        "fen": "P4PPP/1NRRPPN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/NNPPPP2/NPPPPP2/N7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 267 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 267,
-        "title": "Exercise (Frame 267)",
-        "text": "no (On Queen-checks, Black interposes with his Queen — but if he plays Rook-takes-Queen, White mates.) 268...",
-        "fen": "P2PPP1P/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NPPPPP2/PPPPNNP1/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 267 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 268,
-        "title": "Exercise (Frame 268)",
-        "text": "Can White mate? yes no If he can, draw an arrow showing his first move....",
-        "fen": "P2PPP1P/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/NPPPPP2/PPPPNNP1/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 268 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 268,
-        "title": "Exercise (Frame 268)",
-        "text": "yes 269 Does White mate? yes...",
-        "fen": "N2PP3/2PPPRN1/1NPPPPNN/1NPPPPNN/1NPPPPNN/PPPPPP1N/PPPPPP1N/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 268 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 269,
-        "title": "Exercise (Frame 269)",
-        "text": "Does White mate? yes no If \"yes,\" show his correct move with an arrow....",
-        "fen": "N2PP3/2PPPRN1/1NPPPPNN/1NPPPPNN/1NPPPPNN/PPPPPP1N/PPPPPP1N/8 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 269 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 269,
-        "title": "Exercise (Frame 269)",
-        "text": "yes (This one is tricky— it looks like it doesn't work:...",
-        "fen": "P6P/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPNN1/PNPPPP2/NPPPPP2/P7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 269 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 270,
-        "title": "Exercise (Frame 270)",
-        "text": "ill IF W W Does White mate? yes no...",
-        "fen": "P6P/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPNN1/PNPPPP2/NPPPPP2/P7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 270 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 271,
-        "title": "Exercise (Frame 271)",
-        "text": "Here's a finish from one of my games: Can Black mate? yes no...",
-        "fen": "P6P/NNRPPPN1/1NPPPPN1/1NPPPPN1/NNPPPPN1/1NPPPPN1/NP6/PPPPPPPP w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 271 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 271,
-        "title": "Exercise (Frame 271)",
-        "text": "yes 272 Does White mate? yes...",
-        "fen": "P6P/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PPPNPP2/8 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 271 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 272,
-        "title": "Exercise (Frame 272)",
-        "text": "Does White mate? yes no If \"yes/...",
-        "fen": "P6P/1NPPPPN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PPPNPP2/8 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 272 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 272,
-        "title": "Exercise (Frame 272)",
-        "text": "yes (The Knight is drawn away to capture the...",
-        "fen": "P6P/NNPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/NPPPNN2/PPPPPP1P w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 272 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 273,
-        "title": "Exercise (Frame 273)",
-        "text": "Does White mate? yes no If \"yes,\" draw an arrow showing his first move....",
-        "fen": "P6P/NNPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/NPPPNN2/PPPPPP1P w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 273 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 273,
-        "title": "Exercise (Frame 273)",
-        "text": "yes (Then the White Rook at the lower left checks, with mate on the next...",
-        "fen": "P1PPP2P/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PPPPPNP1/P2PPP2 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 273 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 274,
-        "title": "Exercise (Frame 274)",
-        "text": "Can White mate? yes no If he can, draw an arrow to show his first move....",
-        "fen": "P1PPP2P/1NPPPRN1/1NPPPPN1/1NPPPPN1/1NPPPPN1/PPPPPP2/PPPPPNP1/P2PPP2 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 274 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 274,
-        "title": "Exercise (Frame 274)",
-        "text": "no (The Black Bishop can interpose safely.) 275 From Fischer-Ben ko, 1962:...",
-        "fen": "P6P/PPPPPP2/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPRN1/NPP5/N7 w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 274 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 275,
-        "title": "Exercise (Frame 275)",
-        "text": "From Fischer-Ben ko, 1962: Can White mate? yes no...",
-        "fen": "P6P/PPPPPP2/1NPPPPN1/1NPPPPN1/1NPPPPN1/NNPPPRN1/NPP5/N7 w - - 0 1",
-        "options": [
-            "yes",
-            "no"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 275 in the book."
-    },
-    {
-        "chapter": "Chapter 6: Final Review[cite: 315]",
-        "frame": 275,
-        "title": "Exercise (Frame 275)",
-        "text": "yes (I took the Pawn, giving check. If Black had then...",
-        "fen": "PPP4P/NPPPNPPN/PPPPPPPP/PNPPPPPP/2PPPP2/N1NPNN2/2NPPN2/2PPPPPN w - - 0 1",
-        "options": [
-            "can capture checking piece",
-            "cannot capture checking piece"
-        ],
-        "correct": 0,
-        "explanation": "Refer to the answer key for Frame 275 in the book."
-    }
-];
+[
+  {
+    "id": 1,
+    "frame": 6,
+    "pdf_page": 34,
+    "fen": "7k/6pQ/8/5B2/8/8/8/4K3 b - - 0 1",
+    "prompt": "The White Queen is giving check. The Black King: can capture cannot capture FOR THE CORRECT ANSWER TURN TO THE NEXT PAGE",
+    "board_img": "book_output/boards/page_34_frame_6.png",
+    "ans_img": "book_output/answers/page_34_frame_6_ans.png"
+  },
+  {
+    "id": 2,
+    "frame": 6,
+    "pdf_page": 35,
+    "fen": "k6Q/Q7/8/8/2B4n/6Q1/7Q/4K1Q1 b - - 0 1",
+    "prompt": "The White Queen is giving check. The Black King: can capture cannot capture FOR THE CORRECT ANSWER TURN TO THE NEXT PAGE",
+    "board_img": "book_output/boards/page_35_frame_6.png",
+    "ans_img": "book_output/answers/page_35_frame_6_ans.png"
+  },
+  {
+    "id": 3,
+    "frame": 7,
+    "pdf_page": 36,
+    "fen": "6Rk/7p/8/5N2/8/8/8/6K1 b - - 0 1",
+    "prompt": "can capture (NOTE: The Bishop is not protecting the Queen.) Black King; can capture checking White Rook cannot capture checking White Rook",
+    "board_img": "book_output/boards/page_36_frame_7.png",
+    "ans_img": "book_output/answers/page_36_frame_7_ans.png"
+  },
+  {
+    "id": 4,
+    "frame": 8,
+    "pdf_page": 37,
+    "fen": "6Rk/4N2p/7Q/8/7Q/8/7Q/4K1Q1 b - - 0 1",
+    "prompt": "can capture checking White Rook Black King: can capture checking White Rook cannot capture checking White Rook",
+    "board_img": "book_output/boards/page_37_frame_8.png",
+    "ans_img": "book_output/answers/page_37_frame_8_ans.png"
+  },
+  {
+    "id": 5,
+    "frame": 10,
+    "pdf_page": 38,
+    "fen": "R6Q/kpQ5/1p5Q/8/7Q/8/1K6/8 b - - 0 1",
+    "prompt": "cannot capture checking White Rook (The Rook is protected by the Knight.) Black King: can capture checking White Rook cannot capture checking White Rook",
+    "board_img": "book_output/boards/page_38_frame_10.png",
+    "ans_img": "book_output/answers/page_38_frame_10_ans.png"
+  },
+  {
+    "id": 6,
+    "frame": 10,
+    "pdf_page": 39,
+    "fen": "k1R4Q/pp6/7Q/8/7Q/4K3/5Q1Q/2Q1Q1Q1 b - - 0 1",
+    "prompt": "can capture checking White Rook",
+    "board_img": "book_output/boards/page_39_frame_10.png",
+    "ans_img": "book_output/answers/page_39_frame_10_ans.png"
+  },
+  {
+    "id": 7,
+    "frame": 13,
+    "pdf_page": 42,
+    "fen": "7k/7p/8/3B4/3B4/6K1/8/8 b - - 0 1",
+    "prompt": "NO ANSWER REQUIRED Now you decide what Black can do in this position, Black King: can capture its attacker can flee can do neither",
+    "board_img": "book_output/boards/page_42_frame_13.png",
+    "ans_img": "book_output/answers/page_42_frame_13_ans.png"
+  },
+  {
+    "id": 8,
+    "frame": 13,
+    "pdf_page": 43,
+    "fen": "4k2q/2pp1Q2/8/1b2N3/p7/8/3P1PP1/4K3 b - - 0 1",
+    "prompt": "Again, observe the position and decide what the Black King can do. Black King: can capture attacker can flee can do neither",
+    "board_img": "book_output/boards/page_43_frame_13.png",
+    "ans_img": "book_output/answers/page_43_frame_13_ans.png"
+  },
+  {
+    "id": 9,
+    "frame": 14,
+    "pdf_page": 44,
+    "fen": "1Q1QR1k1/Q1Q1Q1p1/3Q1nPp/2Q1Q3/8/2n5/6Kn/2Q5 b - - 0 1",
+    "prompt": "it out.) ' Fjf r f Black King: can capture attacker can flee can do neither",
+    "board_img": "book_output/boards/page_44_frame_14.png",
+    "ans_img": "book_output/answers/page_44_frame_14_ans.png"
+  },
+  {
+    "id": 10,
+    "frame": 15,
+    "pdf_page": 45,
+    "fen": "7k/2Q1N1pR/3Q1Q1Q/2Q1Q3/7Q/2Q1Q3/3K3Q/2Q1Q1Q1 b - - 0 1",
+    "prompt": "1^^^^; ^^^^^ Black King: can capture attacker can flee can do neither",
+    "board_img": "book_output/boards/page_45_frame_15.png",
+    "ans_img": "book_output/answers/page_45_frame_15_ans.png"
+  },
+  {
+    "id": 11,
+    "frame": 16,
+    "pdf_page": 46,
+    "fen": "rk6/1pP5/1P2Q3/8/8/8/8/7K b - - 0 1",
+    "prompt": "Here the lowly Pawn is giving check: Black King: can capture attacker can flee can do neither",
+    "board_img": "book_output/boards/page_46_frame_16.png",
+    "ans_img": "book_output/answers/page_46_frame_16_ans.png"
+  },
+  {
+    "id": 12,
+    "frame": 17,
+    "pdf_page": 47,
+    "fen": "5Rk1/6pp/3Q4/8/8/8/6K1/8 b - - 0 1",
+    "prompt": "can do neither (Black is mated.) Black King: can capture attacker can flee can do neither",
+    "board_img": "book_output/boards/page_47_frame_17.png",
+    "ans_img": "book_output/answers/page_47_frame_17_ans.png"
+  },
+  {
+    "id": 13,
+    "frame": 18,
+    "pdf_page": 48,
+    "fen": "8/8/2P5/3K1k2/2R3p1/2q5/8/8 b - - 0 1",
+    "prompt": "can do neither (Checking Rook is protected by Queen. Black is mated.) Draw an arrow to show how I (Black) mated Paul Keres in this position. Fischer",
+    "board_img": "book_output/boards/page_48_frame_18.png",
+    "ans_img": "book_output/answers/page_48_frame_18_ans.png"
+  },
+  {
+    "id": 14,
+    "frame": 21,
+    "pdf_page": 51,
+    "fen": "3r1k2/1q1P2b1/7Q/p3p2p/1p6/1B3P2/PPP5/1K1R4 w - - 0 1",
+    "prompt": "Pawn (guards square E) No White piece is giving check. (Black has no possible move; therefore, the game is a stalemate, or draw.) Observe this position; then draw an arrow to show White's mating move:",
+    "board_img": "book_output/boards/page_51_frame_21.png",
+    "ans_img": "book_output/answers/page_51_frame_21_ans.png"
+  },
+  {
+    "id": 15,
+    "frame": 22,
+    "pdf_page": 52,
+    "fen": "Qn1k4/4Q3/2P5/1KB5/8/8/8/8 b - - 0 1",
+    "prompt": "zonal Tournament, in Portoroz, Yugoslavia.) Black is in check again. Draw an arrow pointing to the one square to which Black can flee:",
+    "board_img": "book_output/boards/page_52_frame_22.png",
+    "ans_img": "book_output/answers/page_52_frame_22_ans.png"
+  },
+  {
+    "id": 16,
+    "frame": 23,
+    "pdf_page": 53,
+    "fen": "6k1/8/4KN1P/8/8/B5Q1/3Q3Q/2Q1Q1Q1 b - - 0 1",
+    "prompt": "Again, draw an arrow to show Black's flight square:",
+    "board_img": "book_output/boards/page_53_frame_23.png",
+    "ans_img": "book_output/answers/page_53_frame_23_ans.png"
+  },
+  {
+    "id": 17,
+    "frame": 24,
+    "pdf_page": 54,
+    "fen": "8/8/7Q/2K4k/6R1/8/8/7Q b - - 0 1",
+    "prompt": "Here's a common position in which Black appears to be checkmated- Actually he can escape, but in a slight- ly different way from what you've been accustomed to. Draw an arrow on the diagram to show how Black's King gets out of check:",
+    "board_img": "book_output/boards/page_54_frame_24.png",
+    "ans_img": "book_output/answers/page_54_frame_24_ans.png"
+  },
+  {
+    "id": 18,
+    "frame": 25,
+    "pdf_page": 55,
+    "fen": "K1q5/1r6/8/8/4k3/8/8/8 w - - 0 1",
+    "prompt": "by capturing the Rook-so much the better.) Can White save himself by playing King-takes-Rook in this position? yes no (checkmate)",
+    "board_img": "book_output/boards/page_55_frame_25.png",
+    "ans_img": "book_output/answers/page_55_frame_25_ans.png"
+  },
+  {
+    "id": 19,
+    "frame": 27,
+    "pdf_page": 57,
+    "fen": "4kQ2/4Q1Q1/3K4/8/7Q/8/8/6Q1 b - - 0 1",
+    "prompt": "type of mate. In position B, Black has a fleeing square that gets him safely out of check. Look again for it if you didn't notice it.) Now that you have the idea, observe this position: is Black checkmated? yes",
+    "board_img": "book_output/boards/page_57_frame_27.png",
+    "ans_img": "book_output/answers/page_57_frame_27_ans.png"
+  },
+  {
+    "id": 20,
+    "frame": 29,
+    "pdf_page": 60,
+    "fen": "5rkQ/5ppQ/8/8/4B3/6P1/1Q3P1Q/Q1Q3K1 b - - 0 1",
+    "prompt": "if any. What is Black's defense? King-takes-Queen King flees other piece-takes-Queen no defense: checkmate",
+    "board_img": "book_output/boards/page_60_frame_29.png",
+    "ans_img": "book_output/answers/page_60_frame_29_ans.png"
+  },
+  {
+    "id": 21,
+    "frame": 30,
+    "pdf_page": 61,
+    "fen": "6Rk/6p1/5N2/8/7n/2P1Q1Q1/5Q1Q/Q1K1Q1Q1 b - - 0 1",
+    "prompt": "no defense: checkmate Check Black's defensive move: King-takes-Rook King flees other piece-takes-Rook no defense; checkmate",
+    "board_img": "book_output/boards/page_61_frame_30.png",
+    "ans_img": "book_output/answers/page_61_frame_30_ans.png"
+  },
+  {
+    "id": 22,
+    "frame": 31,
+    "pdf_page": 62,
+    "fen": "8/8/1pq2Q2/k5Q1/R1P5/8/1P2KQ2/8 b - - 0 1",
+    "prompt": "On this case the Knight is the capturing piece.) What does Black play? King-takes-Rook King flees other piece-takes-Rook no defense; checkmate",
+    "board_img": "book_output/boards/page_62_frame_31.png",
+    "ans_img": "book_output/answers/page_62_frame_31_ans.png"
+  },
+  {
+    "id": 23,
+    "frame": 32,
+    "pdf_page": 63,
+    "fen": "4rk1r/5pQ1/8/8/8/1K6/8/6R1 b - - 0 1",
+    "prompt": "King-takes-Rook What is Black's defense? King-takes-Queen King flees other piece-takes-Queen no defense: checkmate",
+    "board_img": "book_output/boards/page_63_frame_32.png",
+    "ans_img": "book_output/answers/page_63_frame_32_ans.png"
+  },
+  {
+    "id": 24,
+    "frame": 33,
+    "pdf_page": 64,
+    "fen": "7k/5pBp/7P/8/8/5P2/5K1Q/4Q1n1 b - - 0 1",
+    "prompt": "What is Black's saving move in this example? King-takes-Bishop King flees other piece-takes-Bishop no defense: checkmate",
+    "board_img": "book_output/boards/page_64_frame_33.png",
+    "ans_img": "book_output/answers/page_64_frame_33_ans.png"
+  },
+  {
+    "id": 25,
+    "frame": 34,
+    "pdf_page": 65,
+    "fen": "7k/4Q1Qp/5PN1/3B3P/8/5K2/8/4Q3 b - - 0 1",
+    "prompt": "Jlf What can Black do to escape check? King-takes-Knight King flees other piece-takes-Knight no defense: checkmate",
+    "board_img": "book_output/boards/page_65_frame_34.png",
+    "ans_img": "book_output/answers/page_65_frame_34_ans.png"
+  },
+  {
+    "id": 26,
+    "frame": 36,
+    "pdf_page": 68,
+    "fen": "2R4k/q5pp/8/4b3/7Q/5KP1/8/8 b - - 0 1",
+    "prompt": "NO ANSWER REQUIRED In this position, the White Rook is checking: Which Black piece can defend against the check? What does that Black piece do? captures interposes",
+    "board_img": "book_output/boards/page_68_frame_36.png",
+    "ans_img": "book_output/answers/page_68_frame_36_ans.png"
+  },
+  {
+    "id": 27,
+    "frame": 37,
+    "pdf_page": 69,
+    "fen": "k2Q3Q/1pqN4/Q1b4Q/8/8/1PP5/2KP3Q/8 b - - 0 1",
+    "prompt": "the Knight interposes Which Black piece can defend against this check? What does that Black piece do? captures interposes",
+    "board_img": "book_output/boards/page_69_frame_37.png",
+    "ans_img": "book_output/answers/page_69_frame_37_ans.png"
+  },
+  {
+    "id": 28,
+    "frame": 38,
+    "pdf_page": 70,
+    "fen": "3q3k/4Np1p/5B1Q/8/6rQ/8/7P/4R1nK b - - 0 1",
+    "prompt": "Black's defense, if any exists. Is Black mated by White's Bishop? yes If not, draw an arrow on the diagram to show Black's defense.",
+    "board_img": "book_output/boards/page_70_frame_38.png",
+    "ans_img": "book_output/answers/page_70_frame_38_ans.png"
+  },
+  {
+    "id": 29,
+    "frame": 39,
+    "pdf_page": 71,
+    "fen": "4k2Q/7p/3P4/3K1Bp1/5q1Q/8/1Q5r/4Q1Q1 b - - 0 1",
+    "prompt": "(Black is not mated; the Rook interposes, as shown.) Is Black mated? yes If not. draw an arrow to show his defense.",
+    "board_img": "book_output/boards/page_71_frame_39.png",
+    "ans_img": "book_output/answers/page_71_frame_39_ans.png"
+  },
+  {
+    "id": 30,
+    "frame": 41,
+    "pdf_page": 72,
+    "fen": "6k1/5Pp1/4q1Nq/4P1NP/6K1/4Q3/8/2Q1Q3 w - - 0 1",
+    "prompt": "Observe the board carefully. This is a tricky one. Is Black mated? yes If not, draw an arrow to show his defense.",
+    "board_img": "book_output/boards/page_72_frame_41.png",
+    "ans_img": "book_output/answers/page_72_frame_41_ans.png"
+  },
+  {
+    "id": 31,
+    "frame": 41,
+    "pdf_page": 73,
+    "fen": "4Q2k/6p1/7p/5B1q/3KP2Q/Q1Q5/3Q4/n1Q3n1 b - - 0 1",
+    "prompt": "The position is: checkmate not checkmate If you answer \"not checkmate,\" draw an arrow to show Black's defense.",
+    "board_img": "book_output/boards/page_73_frame_41.png",
+    "ans_img": "book_output/answers/page_73_frame_41_ans.png"
+  },
+  {
+    "id": 32,
+    "frame": 42,
+    "pdf_page": 74,
+    "fen": "6b1/1q4pk/1p1b2p1/r7/2pPq3/2P3P1/1P6/1KQ4R w - - 0 1",
+    "prompt": "You will now see more complex positions that require careful consideration of every piece on the board. Which Biack piece can defend against mate? How does this piece defend? by capturing attacker by interposing",
+    "board_img": "book_output/boards/page_74_frame_42.png",
+    "ans_img": "book_output/answers/page_74_frame_42_ans.png"
+  },
+  {
+    "id": 33,
+    "frame": 43,
+    "pdf_page": 75,
+    "fen": "r1b2rkQ/1p1q4/p2N2pp/2pP4/2PbN3/3QQP2/PP2B1KP/R4R2 b - - 0 1",
+    "prompt": "Assume White's Pawn captures the Biack Knight. Draw an arrow to show how I would then mate in one move: Fischer Gligorich",
+    "board_img": "book_output/boards/page_75_frame_43.png",
+    "ans_img": "book_output/answers/page_75_frame_43_ans.png"
+  },
+  {
+    "id": 34,
+    "frame": 44,
+    "pdf_page": 76,
+    "fen": "5k2/r4pQ1/2q2Q1p/8/1p5Q/p4P1P/PbP4K/4R1R1 b - - 0 1",
+    "prompt": "eventually drawn. Draw an arrow to show Black's defense against check- mate: shown: Fischer Gligorich",
+    "board_img": "book_output/boards/page_76_frame_44.png",
+    "ans_img": "book_output/answers/page_76_frame_44_ans.png"
+  },
+  {
+    "id": 35,
+    "frame": 45,
+    "pdf_page": 77,
+    "fen": "kr6/pp6/p6r/8/8/6b1/6PP/R5BK w - - 0 1",
+    "prompt": "(Remember, watch the whole board!) Observe the board carefully: Can White's Rook mate by capturing the Pawn, as shown? yes",
+    "board_img": "book_output/boards/page_77_frame_45.png",
+    "ans_img": "book_output/answers/page_77_frame_45_ans.png"
+  },
+  {
+    "id": 36,
+    "frame": 46,
+    "pdf_page": 78,
+    "fen": "r2q1bqr/ppp1kBpp/2pp3Q/3NN3/8/7P/PPPP1PP1/R1BbK2R b - - 0 1",
+    "prompt": "yes (White's Rook is protected by the Bishop.) Is Black mated in this position? yes If not, draw the usual arrow to show the defense.",
+    "board_img": "book_output/boards/page_78_frame_46.png",
+    "ans_img": "book_output/answers/page_78_frame_46_ans.png"
+  },
+  {
+    "id": 37,
+    "frame": 47,
+    "pdf_page": 79,
+    "fen": "6k1/pp4bp/2q3pQ/5p2/2P2K2/5BN1/PP3Q1P/RQ6 b - - 0 1",
+    "prompt": "yes (Black is mated. White sacrificed his Queen to achieve this mate. Note Black's Bishop next to White's King.) Here is a position from one of my games. Draw an arrow showing how Black can mate:",
+    "board_img": "book_output/boards/page_79_frame_47.png",
+    "ans_img": "book_output/answers/page_79_frame_47_ans.png"
+  },
+  {
+    "id": 38,
+    "frame": 49,
+    "pdf_page": 82,
+    "fen": "2k1R2Q/1pbq3r/B4N2/p3P1p1/1p3P2/3P2PQ/1P5Q/1KR1n1Q1 b - - 0 1",
+    "prompt": "What White piece prevents Black's Queen from cap- turing the checking Rook? What White piece prevents the Black Bishop from interposing? What White piece prevents Black's Knight from inter- posing?",
+    "board_img": "book_output/boards/page_82_frame_49.png",
+    "ans_img": "book_output/answers/page_82_frame_49_ans.png"
+  },
+  {
+    "id": 39,
+    "frame": 50,
+    "pdf_page": 83,
+    "fen": "6rk/p5qp/5QpQ/1pr1Q1Q1/2p2N1Q/b1B3Q1/2K4P/4Q1n1 w - - 0 1",
+    "prompt": "White has several checks, but only one mate. Which move mates? Bishop-takes-Queen Queen-takes-Queen Queen-takes-Pawn Knight checks",
+    "board_img": "book_output/boards/page_83_frame_50.png",
+    "ans_img": "book_output/answers/page_83_frame_50_ans.png"
+  },
+  {
+    "id": 40,
+    "frame": 51,
+    "pdf_page": 84,
+    "fen": "7k/rbp3q1/6P1/5p2/4pQ2/1BB1n1K1/1P2pP2/r3QRQN w - - 0 1",
+    "prompt": "carefully because they are the seeds of many combina- tions.) Is Queen-checks (as shown) mate? yes Is Rook-checks mate? yes",
+    "board_img": "book_output/boards/page_84_frame_51.png",
+    "ans_img": "book_output/answers/page_84_frame_51_ans.png"
+  },
+  {
+    "id": 41,
+    "frame": 52,
+    "pdf_page": 85,
+    "fen": "1k6/pqqp3r/8/3p4/5B2/3pQ1P1/2P4Q/1RKQQ1Qr w - - 0 1",
+    "prompt": "yes (Black s Queen is pinned and cannot interpose.) (Black's Bishop can capture!) Why can't White's Queen mate as shown?",
+    "board_img": "book_output/boards/page_85_frame_52.png",
+    "ans_img": "book_output/answers/page_85_frame_52_ans.png"
+  },
+  {
+    "id": 42,
+    "frame": 54,
+    "pdf_page": 87,
+    "fen": "6b1/5PQk/7p/4B1Q1/3K3P/8/p6Q/8 b - - 0 1",
+    "prompt": "Pawn advances straight ahead and becomes a Knight Pawn advances straight ahead and becomes a Queen Pawn takes Bishop and becomes a Queen Pawn takes Bishop and becomes a Bishop",
+    "board_img": "book_output/boards/page_87_frame_54.png",
+    "ans_img": "book_output/answers/page_87_frame_54_ans.png"
+  },
+  {
+    "id": 43,
+    "frame": 55,
+    "pdf_page": 88,
+    "fen": "2r1q2k/2p2Ppp/4P3/2p3P1/1P4KQ/8/4R3/8 w - - 0 1",
+    "prompt": "To mate, the Pawn should: advance straight ahead take the Knight What must it become if it is to mate?",
+    "board_img": "book_output/boards/page_88_frame_55.png",
+    "ans_img": "book_output/answers/page_88_frame_55_ans.png"
+  },
+  {
+    "id": 44,
+    "frame": 57,
+    "pdf_page": 90,
+    "fen": "6Qk/1Q1pN1p1/2Q5/3Q2p1/4Q3/1bp2QK1/q4PQ1/7b b - - 0 1",
+    "prompt": "(Neither of the Queen checks will be mate.) yes (Black Pawn is pinned by White Rook.) Here is a complex position. Observe all pieces carefully. The Queen has several checks. The only one that mates is at square:",
+    "board_img": "book_output/boards/page_90_frame_57.png",
+    "ans_img": "book_output/answers/page_90_frame_57_ans.png"
+  },
+  {
+    "id": 45,
+    "frame": 59,
+    "pdf_page": 91,
+    "fen": "kr1Q1Q1Q/pp6/8/QN2P3/6p1/1P2q3/KP5Q/8 w - - 0 1",
+    "prompt": "Observe the board carefully. White's Queen and Knight have checks. Draw an arrow showing the mating White move",
+    "board_img": "book_output/boards/page_91_frame_59.png",
+    "ans_img": "book_output/answers/page_91_frame_59_ans.png"
+  },
+  {
+    "id": 46,
+    "frame": 59,
+    "pdf_page": 92,
+    "fen": "7k/1q3ppp/5P2/3P4/3Q1Q1B/4Q3/1rrP2QP/4R1K1 w - - 0 1",
+    "prompt": "is a smoth- ered mate— Black's own pieces prevent him from fleeing from check.) Here White's Pawn, Queen and Rook have checks. Draw an arrow to show the one mating move:",
+    "board_img": "book_output/boards/page_92_frame_59.png",
+    "ans_img": "book_output/answers/page_92_frame_59_ans.png"
+  },
+  {
+    "id": 47,
+    "frame": 60,
+    "pdf_page": 93,
+    "fen": "5Qrk/2b3Qp/3qpQP1/p5QP/8/1B3R2/P5K1/8 b - - 0 1",
+    "prompt": "White's Pawn and Queen can check, but only one of them mates. Which one? Pawn Queen ,.i",
+    "board_img": "book_output/boards/page_93_frame_60.png",
+    "ans_img": "book_output/answers/page_93_frame_60_ans.png"
+  },
+  {
+    "id": 48,
+    "frame": 61,
+    "pdf_page": 94,
+    "fen": "1k6/p4Q2/1pp1pp2/4q2p/8/PP4Pp/K1P2P1R/4r3 w - - 0 1",
+    "prompt": "checked.) In choosing the check in this position, you must be careful not to allow the Black King any flight squares. Which White move (as shown) mates? move by White Queen move by White Rook",
+    "board_img": "book_output/boards/page_94_frame_61.png",
+    "ans_img": "book_output/answers/page_94_frame_61_ans.png"
+  },
+  {
+    "id": 49,
+    "frame": 62,
+    "pdf_page": 95,
+    "fen": "r7/6bk/8/6P1/4R3/3B2K1/p7/Q7 w - - 0 1",
+    "prompt": "Here's a fancy one, When the White Rook moves, the White Bishop will be checking. (This is called a \"discovered check.\") The Rook has an opportunity to move to a square that cuts off the Black King's flight squares. Draw an arrow to show the mate:",
+    "board_img": "book_output/boards/page_95_frame_62.png",
+    "ans_img": "book_output/answers/page_95_frame_62_ans.png"
+  },
+  {
+    "id": 50,
+    "frame": 63,
+    "pdf_page": 96,
+    "fen": "r6k/2p2ppp/6q1/6N1/1p1b1P2/1P4P1/1QP5/1K2R2Q w - - 0 1",
+    "prompt": "In this and the following frame, ^ou will have to select the mates from among a number of tempting checks. I've made the positions a little tricky, so be careful! In the first position there are four checks, but only one mate. Be accurate! Black threatens mate, too. Draw the usual arrow to show White's mating move:",
+    "board_img": "book_output/boards/page_96_frame_63.png",
+    "ans_img": "book_output/answers/page_96_frame_63_ans.png"
+  },
+  {
+    "id": 51,
+    "frame": 64,
+    "pdf_page": 97,
+    "fen": "7k/6r1/2p4q/5p2/4b3/1Q6/BB4rP/K6R w - - 0 1",
+    "prompt": "Here is the second position. Again, show the mate by an arrow.",
+    "board_img": "book_output/boards/page_97_frame_64.png",
+    "ans_img": "book_output/answers/page_97_frame_64_ans.png"
+  },
+  {
+    "id": 52,
+    "frame": 65,
+    "pdf_page": 98,
+    "fen": "1kbQ4/p7/Bp3p2/5pq1/8/2P2P2/1KP5/4r1Q1 w - - 0 1",
+    "prompt": "how. In this position: White can mate in one move White cannot mate If there is a mate, draw an arrow to show White's mating move.",
+    "board_img": "book_output/boards/page_98_frame_65.png",
+    "ans_img": "book_output/answers/page_98_frame_65_ans.png"
+  },
+  {
+    "id": 53,
+    "frame": 66,
+    "pdf_page": 99,
+    "fen": "1q3r1k/5p1p/2p2p2/8/3B3P/P7/2P2P2/K5R1 w - - 0 1",
+    "prompt": "in one move In this position: White can mate in one move White cannot mate If there is a mate, draw an arrow to show White's mating move.",
+    "board_img": "book_output/boards/page_99_frame_66.png",
+    "ans_img": "book_output/answers/page_99_frame_66_ans.png"
+  },
+  {
+    "id": 54,
+    "frame": 67,
+    "pdf_page": 100,
+    "fen": "1kq4q/1pp5/p7/1NQ5/PP6/KP1p4/8/8 w - - 0 1",
+    "prompt": "in one move In this position: White can mate in one move White cannot mate If White can mate, draw an arrow to show his mating move.",
+    "board_img": "book_output/boards/page_100_frame_67.png",
+    "ans_img": "book_output/answers/page_100_frame_67_ans.png"
+  },
+  {
+    "id": 55,
+    "frame": 68,
+    "pdf_page": 101,
+    "fen": "5r2/5k1p/6p1/3pQ3/6N1/6P1/4PPKP/2q5 w - - 0 1",
+    "prompt": "White cannot mate Here's a position from a game I played: Can White mate in one move? yes If \"yes,\" draw an arrow to show White's mating move.",
+    "board_img": "book_output/boards/page_101_frame_68.png",
+    "ans_img": "book_output/answers/page_101_frame_68_ans.png"
+  },
+  {
+    "id": 56,
+    "frame": 69,
+    "pdf_page": 102,
+    "fen": "5qk1/5p1p/4bQp1/8/3B3Q/6P1/5PKP/8 w - - 0 1",
+    "prompt": "[White] in 1957.) In this position: White can mate in one move White cannot mate If there is a mate, draw an arrow to show the mating move.",
+    "board_img": "book_output/boards/page_102_frame_69.png",
+    "ans_img": "book_output/answers/page_102_frame_69_ans.png"
+  },
+  {
+    "id": 57,
+    "frame": 70,
+    "pdf_page": 103,
+    "fen": "6k1/5q2/p5p1/1q2Qq2/8/p1B5/K1PR4/6r1 w - - 0 1",
+    "prompt": "square.) In this position: White can mate in one move White cannot mate If there is a mate, draw an arrow to show the mating move.",
+    "board_img": "book_output/boards/page_103_frame_70.png",
+    "ans_img": "book_output/answers/page_103_frame_70_ans.png"
+  },
+  {
+    "id": 58,
+    "frame": 71,
+    "pdf_page": 104,
+    "fen": "4r1rk/5p2/3p4/R7/6R1/4Q2P/7b/2BK4 w - - 0 1",
+    "prompt": "promptly captured.) In this position: White can mate in one move White cannot mate If White can mate, draw an arrow to show his mating move.",
+    "board_img": "book_output/boards/page_104_frame_71.png",
+    "ans_img": "book_output/answers/page_104_frame_71_ans.png"
+  },
+  {
+    "id": 59,
+    "frame": 72,
+    "pdf_page": 105,
+    "fen": "r1bqkbqr/ppppp2p/5p2/6p1/3PP3/8/PPP2PPP/RNBQKBNR w - - 0 1",
+    "prompt": "keeps the Black King imprisoned, while the other delivers the mate!) Can White mate in one move? yes If \"yes,\" draw an arrow to show White's mating move.",
+    "board_img": "book_output/boards/page_105_frame_72.png",
+    "ans_img": "book_output/answers/page_105_frame_72_ans.png"
+  },
+  {
+    "id": 60,
+    "frame": 73,
+    "pdf_page": 106,
+    "fen": "6rk/p5p1/1q2Q3/3p4/6P1/8/2b2PK1/4R1Q1 w - - 0 1",
+    "prompt": "yes In this position: White can mate in one move White cannot mate If White can mate in one move, draw an arrow to show his mating move.",
+    "board_img": "book_output/boards/page_106_frame_73.png",
+    "ans_img": "book_output/answers/page_106_frame_73_ans.png"
+  },
+  {
+    "id": 61,
+    "frame": 74,
+    "pdf_page": 107,
+    "fen": "4r1kQ/1p3p1p/2pR1RpB/p1Q1Q3/P1P2Q2/QPQ3Pb/5K1P/4r1Q1 b - - 0 1",
+    "prompt": "White cannot mate This is a position from one of my games: Can Black mate in one move? yes If \"yes,\" indicate his mating move with an arrow.",
+    "board_img": "book_output/boards/page_107_frame_74.png",
+    "ans_img": "book_output/answers/page_107_frame_74_ans.png"
+  },
+  {
+    "id": 62,
+    "frame": 98,
+    "pdf_page": 108,
+    "fen": "6k1/p4ppp/1p1R2r1/4Pb2/1b6/6P1/5P2/2R3K1 w - - 0 1",
+    "prompt": "Can White mate in one move? yes If \"yes,\" draw an arrow to indicate the mating move.",
+    "board_img": "book_output/boards/page_108_frame_98.png",
+    "ans_img": "book_output/answers/page_108_frame_98_ans.png"
+  },
+  {
+    "id": 63,
+    "frame": 76,
+    "pdf_page": 109,
+    "fen": "2R3qk/p5p1/8/1p1b2NP/8/4p2K/P1Q2p1P/4r3 w - - 0 1",
+    "prompt": "(Observe both Black Bishops.) In the position above: White can mate in one move White cannot mate If there is a mate, draw an arrow to show the move.",
+    "board_img": "book_output/boards/page_109_frame_76.png",
+    "ans_img": "book_output/answers/page_109_frame_76_ans.png"
+  },
+  {
+    "id": 64,
+    "frame": 77,
+    "pdf_page": 110,
+    "fen": "7k/4RP1p/1pN2r2/1Pb5/8/1KB4r/8/8 w - - 0 1",
+    "prompt": "White can mate in one move Can White mate in one move? yes If \"yes,\" show the mating move with an arrow.",
+    "board_img": "book_output/boards/page_110_frame_77.png",
+    "ans_img": "book_output/answers/page_110_frame_77_ans.png"
+  },
+  {
+    "id": 65,
+    "frame": 78,
+    "pdf_page": 111,
+    "fen": "2Q2qkr/1P1p1ppp/2n4b/3N1P2/8/1r5P/7K/2n3R1 w - - 0 1",
+    "prompt": "which is itself pinned, pins one of the Black Rooks.) Can White mate in one move? yes If \"yes,\" draw an arrow to show the mating move.",
+    "board_img": "book_output/boards/page_111_frame_78.png",
+    "ans_img": "book_output/answers/page_111_frame_78_ans.png"
+  },
+  {
+    "id": 66,
+    "frame": 80,
+    "pdf_page": 115,
+    "fen": "R5k1/1p3ppp/2b5/8/8/8/1P2rPPP/6K1 b - - 0 1",
+    "prompt": "NO ANSWER REQUIRED Observe the position and then decide whether Black has a useful interposition against the check.",
+    "board_img": "book_output/boards/page_115_frame_80.png",
+    "ans_img": "book_output/answers/page_115_frame_80_ans.png"
+  },
+  {
+    "id": 67,
+    "frame": 81,
+    "pdf_page": 116,
+    "fen": "2R4k/6p1/r2p2Pn/8/4PK2/2PP4/8/8 b - - 0 1",
+    "prompt": "yes (Black has a useful interposition, with either the Rook or the Bishop.) Does Black have a useful interposition? yes",
+    "board_img": "book_output/boards/page_116_frame_81.png",
+    "ans_img": "book_output/answers/page_116_frame_81_ans.png"
+  },
+  {
+    "id": 68,
+    "frame": 82,
+    "pdf_page": 117,
+    "fen": "2R3k1/5ppp/5b2/4r3/8/6P1/2B2PKP/8 b - - 0 1",
+    "prompt": "yes (Black has a useful interposition, with the Knight.) Does Black have a useful interposition? yes",
+    "board_img": "book_output/boards/page_117_frame_82.png",
+    "ans_img": "book_output/answers/page_117_frame_82_ans.png"
+  },
+  {
+    "id": 69,
+    "frame": 83,
+    "pdf_page": 118,
+    "fen": "1k2Q3/ppp5/8/8/6q1/2P5/KPP1R3/5r2 b - - 0 1",
+    "prompt": "(Black's interpositions are useless; therefore, White mates.) Does Black have a useful interposition? yes",
+    "board_img": "book_output/boards/page_118_frame_83.png",
+    "ans_img": "book_output/answers/page_118_frame_83_ans.png"
+  },
+  {
+    "id": 70,
+    "frame": 85,
+    "pdf_page": 119,
+    "fen": "3R2k1/5qpp/8/p3r3/1bB5/1P5P/P4PP1/6K1 b - - 0 1",
+    "prompt": "Draw an arrow to show the useful interposition for Black in this position:",
+    "board_img": "book_output/boards/page_119_frame_85.png",
+    "ans_img": "book_output/answers/page_119_frame_85_ans.png"
+  },
+  {
+    "id": 71,
+    "frame": 86,
+    "pdf_page": 120,
+    "fen": "Q5k1/5ppn/8/1q4b1/2r1B1P1/5PK1/2P4P/R7 b - - 0 1",
+    "prompt": "pinned and the Black Rook, if it interposes, will not be protected by the pinned Queen.) Draw an arrow to show the useful interposition here:",
+    "board_img": "book_output/boards/page_120_frame_86.png",
+    "ans_img": "book_output/answers/page_120_frame_86_ans.png"
+  },
+  {
+    "id": 72,
+    "frame": 86,
+    "pdf_page": 121,
+    "fen": "Q5k1/2p2pp1/1n5p/6q1/8/2P1P3/2B2PP1/6K1 b - - 0 1",
+    "prompt": "What is Black's defense against checkmate in this position?",
+    "board_img": "book_output/boards/page_121_frame_86.png",
+    "ans_img": "book_output/answers/page_121_frame_86_ans.png"
+  },
+  {
+    "id": 73,
+    "frame": 89,
+    "pdf_page": 127,
+    "fen": "1q1r2k1/1r4pp/p1p5/npB5/2P5/3P1Q1P/1P3RP1/5R1K w - - 0 1",
+    "prompt": "You will be asked to determine whether White has enough power to mate on Black's back rank. You must observe all of the pieces on the board. Does White have enough power to mate on Black's back rank? yes",
+    "board_img": "book_output/boards/page_127_frame_89.png",
+    "ans_img": "book_output/answers/page_127_frame_89_ans.png"
+  },
+  {
+    "id": 74,
+    "frame": 90,
+    "pdf_page": 128,
+    "fen": "1k3r2/ppp1Rp1p/2b3p1/6P1/5PB1/P7/1PP4r/2K1R3 w - - 0 1",
+    "prompt": "yes (White has the power to mate—four against three. The last check will be given by Rook supported by Bishop .) Does White have enough power to mate on Black's back rank? yes",
+    "board_img": "book_output/boards/page_128_frame_90.png",
+    "ans_img": "book_output/answers/page_128_frame_90_ans.png"
+  },
+  {
+    "id": 75,
+    "frame": 91,
+    "pdf_page": 129,
+    "fen": "2qr1r1k/6pp/p7/Pp1p4/1QpPp2P/4P1P1/1PP2R2/5R1K w - - 0 1",
+    "prompt": "(There is no mate here-two against two: Black Bishop and Rook against two Rooks.) Does White have enough power to mate on Black's back rank? yes",
+    "board_img": "book_output/boards/page_129_frame_91.png",
+    "ans_img": "book_output/answers/page_129_frame_91_ans.png"
+  },
+  {
+    "id": 76,
+    "frame": 92,
+    "pdf_page": 130,
+    "fen": "1r5k/N5pp/4Bp2/pp1pp3/1n1Pb3/4P1P1/1P3P1P/2R1K3 w - - 0 1",
+    "prompt": "yes (White has the power: White Queen and two Rooks against only two defenders.) Does White have enough power to mate on Black's back rank? yes",
+    "board_img": "book_output/boards/page_130_frame_92.png",
+    "ans_img": "book_output/answers/page_130_frame_92_ans.png"
+  },
+  {
+    "id": 77,
+    "frame": 93,
+    "pdf_page": 131,
+    "fen": "3r2k1/2rP1ppp/8/8/8/8/6PP/3RR1K1 w - - 0 1",
+    "prompt": "mating combination is concerned, they don't really count.) Does White have enough power to mate on Black's back rank? yes",
+    "board_img": "book_output/boards/page_131_frame_93.png",
+    "ans_img": "book_output/answers/page_131_frame_93_ans.png"
+  },
+  {
+    "id": 78,
+    "frame": 94,
+    "pdf_page": 132,
+    "fen": "3q3k/p5p1/1p5p/2p2Q2/2P5/8/PP1r2PP/5R1K w - - 0 1",
+    "prompt": "square or a useful interposition? Why does White's threat against Black's back rank not lead to mate? White does not have enough power to mate. The Black King will have a flight square. Black has a useful interposition.",
+    "board_img": "book_output/boards/page_132_frame_94.png",
+    "ans_img": "book_output/answers/page_132_frame_94_ans.png"
+  },
+  {
+    "id": 79,
+    "frame": 95,
+    "pdf_page": 133,
+    "fen": "3r2k1/1q1P1ppp/2n5/2b5/p7/1p5B/P1P3PP/1K1RR3 b - - 0 1",
+    "prompt": "it.) Why does White's threat against Black's back rank not lead to mate? White does not have enough power to mate. The Black King will have a flight square. Black has a useful interposition.",
+    "board_img": "book_output/boards/page_133_frame_95.png",
+    "ans_img": "book_output/answers/page_133_frame_95_ans.png"
+  },
+  {
+    "id": 80,
+    "frame": 96,
+    "pdf_page": 134,
+    "fen": "6k1/2q3pp/5n2/3p2N1/1R1P1b2/8/5PP1/1Q3K2 w - - 0 1",
+    "prompt": "sense because White would gain a new Queen.) Why does White's threat against Black's back rank not lead to mate? White does not have enough power to mate. The Black King will have a flight square. Black has a useful interposition.",
+    "board_img": "book_output/boards/page_134_frame_96.png",
+    "ans_img": "book_output/answers/page_134_frame_96_ans.png"
+  },
+  {
+    "id": 81,
+    "frame": 97,
+    "pdf_page": 135,
+    "fen": "3r2k1/pp4pp/1bq5/8/1PP1R3/7P/5PP1/4R1K1 w - - 0 1",
+    "prompt": "rank.) Why does White's threat against Black's back rank not lead to mate? White does not have enough power to mate. The Black King will have a flight square. Black has a useful interposition.",
+    "board_img": "book_output/boards/page_135_frame_97.png",
+    "ans_img": "book_output/answers/page_135_frame_97_ans.png"
+  },
+  {
+    "id": 82,
+    "frame": 98,
+    "pdf_page": 136,
+    "fen": "k2r4/pp6/8/8/2R5/8/PP2p3/K1Qq4 w - - 0 1",
+    "prompt": "The Black King will have a flight square. In this position, focus your attention on the White and Black Queens: Now explain in your own words why White cannot mate.",
+    "board_img": "book_output/boards/page_136_frame_98.png",
+    "ans_img": "book_output/answers/page_136_frame_98_ans.png"
+  },
+  {
+    "id": 83,
+    "frame": 99,
+    "pdf_page": 137,
+    "fen": "rkq5/2n4p/1pp1p3/2N1P1p1/2P5/1Q2BpP1/5P1P/q4RK1 b - - 0 1",
+    "prompt": "I should capture Bisguier's (Black) Queen with my Rook. jjI Would you capture Black's Queen? yes Explain your answer.",
+    "board_img": "book_output/boards/page_137_frame_99.png",
+    "ans_img": "book_output/answers/page_137_frame_99_ans.png"
+  },
+  {
+    "id": 84,
+    "frame": 100,
+    "pdf_page": 138,
+    "fen": "k7/pp6/1b3Q2/8/2p5/P1N3p1/1PP2n2/2KB3r b - - 0 1",
+    "prompt": "I made a different move— Rook four squares to the left—and won the game.) To which square should the White Queen move to begin its mating combination?",
+    "board_img": "book_output/boards/page_138_frame_100.png",
+    "ans_img": "book_output/answers/page_138_frame_100_ans.png"
+  },
+  {
+    "id": 85,
+    "frame": 101,
+    "pdf_page": 139,
+    "fen": "b5k1/2P1nppp/8/2b2q2/2p5/6B1/1p3PPP/R2R2K1 w - - 0 1",
+    "prompt": "(Of course— the other two checks allow Black to cap- ture White's Queen.) To which square should White move in this position?",
+    "board_img": "book_output/boards/page_139_frame_101.png",
+    "ans_img": "book_output/answers/page_139_frame_101_ans.png"
+  },
+  {
+    "id": 86,
+    "frame": 102,
+    "pdf_page": 140,
+    "fen": "r6k/1p4RP/4NN2/4q3/p7/P7/1P4PP/1B3b1K b - - 0 1",
+    "prompt": "(The other moves would allow Black to escape mate.) Draw an arrow showing the first move of White's mat- ing combination:",
+    "board_img": "book_output/boards/page_140_frame_102.png",
+    "ans_img": "book_output/answers/page_140_frame_102_ans.png"
+  },
+  {
+    "id": 87,
+    "frame": 103,
+    "pdf_page": 141,
+    "fen": "6k1/1p3ppp/2n5/1bp5/3p3q/8/1P3PPP/R3Q1K1 w - - 0 1",
+    "prompt": "While's Rook. White will recapture with the Pawn making a Queen or Rook.) Should White check with the Rook or the Queen? with the Rook with the Queen",
+    "board_img": "book_output/boards/page_141_frame_103.png",
+    "ans_img": "book_output/answers/page_141_frame_103_ans.png"
+  },
+  {
+    "id": 88,
+    "frame": 112,
+    "pdf_page": 149,
+    "fen": "6k1/1pp2pp1/5q1p/1b6/8/2P5/1PB2PPP/R2R2K1 w - - 0 1",
+    "prompt": "In this position: White can mate White cannot mate If there is a mate, show it (that is, the key first move).",
+    "board_img": "book_output/boards/page_149_frame_112.png",
+    "ans_img": "book_output/answers/page_149_frame_112_ans.png"
+  },
+  {
+    "id": 89,
+    "frame": 112,
+    "pdf_page": 150,
+    "fen": "6k1/1p3pp1/pq6/8/8/bP1B3Q/5PPP/6K1 w - - 0 1",
+    "prompt": "In this position: White can mate White cannot mate If there is a mate, show it.",
+    "board_img": "book_output/boards/page_150_frame_112.png",
+    "ans_img": "book_output/answers/page_150_frame_112_ans.png"
+  },
+  {
+    "id": 90,
+    "frame": 113,
+    "pdf_page": 151,
+    "fen": "6k1/2r2ppp/8/8/Q7/7P/R4PPK/2q5 w - - 0 1",
+    "prompt": "squares straight ahead, Black can flee.) In this position: White can mate White can't mate If there is a mate, show it.",
+    "board_img": "book_output/boards/page_151_frame_113.png",
+    "ans_img": "book_output/answers/page_151_frame_113_ans.png"
+  },
+  {
+    "id": 91,
+    "frame": 114,
+    "pdf_page": 152,
+    "fen": "r5k1/5ppp/8/6r1/p5q1/8/P3RP2/1B2RK1Q w - - 0 1",
+    "prompt": "In this position: White can mate White can't mate If there is a mate, show it.",
+    "board_img": "book_output/boards/page_152_frame_114.png",
+    "ans_img": "book_output/answers/page_152_frame_114_ans.png"
+  },
+  {
+    "id": 92,
+    "frame": 115,
+    "pdf_page": 153,
+    "fen": "2q3k1/pp3pp1/7p/3p4/Q2P4/3B4/PP3PPP/2r1R1K1 w - - 0 1",
+    "prompt": "mm. iti ^ In this position: White can mate White can't mate If there is a mate t show it.",
+    "board_img": "book_output/boards/page_153_frame_115.png",
+    "ans_img": "book_output/answers/page_153_frame_115_ans.png"
+  },
+  {
+    "id": 93,
+    "frame": 116,
+    "pdf_page": 154,
+    "fen": "2r4k/2r2pp1/4p3/pp2P3/8/PPpR4/2B2PPP/3R2K1 w - - 0 1",
+    "prompt": "In this position: White can mate White can't mate If there is a mate, show it.",
+    "board_img": "book_output/boards/page_154_frame_116.png",
+    "ans_img": "book_output/answers/page_154_frame_116_ans.png"
+  },
+  {
+    "id": 94,
+    "frame": 117,
+    "pdf_page": 155,
+    "fen": "6k1/1p3p1p/2q2Qpb/8/3B4/2P3PP/5P1K/8 w - - 0 1",
+    "prompt": "to mate; in moving the Rook, White uncovers his Bishop, thereby free- ing it to guard the Black King's only fleeing square.)",
+    "board_img": "book_output/boards/page_155_frame_117.png",
+    "ans_img": "book_output/answers/page_155_frame_117_ans.png"
+  },
+  {
+    "id": 95,
+    "frame": 118,
+    "pdf_page": 156,
+    "fen": "1r5k/6p1/1r2B3/1ppP4/3b1R2/8/6PP/5R1K b - - 0 1",
+    "prompt": "White can mate tn this position: White can mate White can't mate If there is a mate, show it.",
+    "board_img": "book_output/boards/page_156_frame_118.png",
+    "ans_img": "book_output/answers/page_156_frame_118_ans.png"
+  },
+  {
+    "id": 96,
+    "frame": 119,
+    "pdf_page": 157,
+    "fen": "2k3r1/2p3q1/1pP5/3Q4/7p/1P4p1/7P/1K1R4 w - - 0 1",
+    "prompt": "White can mate In this position: White can mate White can't mate If there is a mate, show it.",
+    "board_img": "book_output/boards/page_157_frame_119.png",
+    "ans_img": "book_output/answers/page_157_frame_119_ans.png"
+  },
+  {
+    "id": 97,
+    "frame": 120,
+    "pdf_page": 158,
+    "fen": "r6k/p1pq1p1r/1p2p2Q/8/3P3P/5P2/PPP2P2/2K3R1 b - - 0 1",
+    "prompt": "From one of my recent games In this position: White can mate White can't mate It there is a mate, show it!",
+    "board_img": "book_output/boards/page_158_frame_120.png",
+    "ans_img": "book_output/answers/page_158_frame_120_ans.png"
+  },
+  {
+    "id": 98,
+    "frame": 121,
+    "pdf_page": 159,
+    "fen": "q6k/3r1p1p/1Rp2p2/2PpB3/3P4/r4P2/P5RP/1K6 w - - 0 1",
+    "prompt": "In this position: White can mate White can't mate If there is a mate, show it.",
+    "board_img": "book_output/boards/page_159_frame_121.png",
+    "ans_img": "book_output/answers/page_159_frame_121_ans.png"
+  },
+  {
+    "id": 99,
+    "frame": 122,
+    "pdf_page": 160,
+    "fen": "2r2rk1/6pp/2pB3q/2P2QN1/8/6PP/4n3/5R1K w - - 0 1",
+    "prompt": "White can mate In this position: White can mate White can't mate If there is a mate, show it.",
+    "board_img": "book_output/boards/page_160_frame_122.png",
+    "ans_img": "book_output/answers/page_160_frame_122_ans.png"
+  },
+  {
+    "id": 100,
+    "frame": 123,
+    "pdf_page": 161,
+    "fen": "k6q/pp5r/2p3pQ/4Qb2/NP3P1p/6P1/6KP/R7 w - - 0 1",
+    "prompt": "his Rook, giving check- mate.) In this position: White can mate White can't mate If there is a mate, show it.",
+    "board_img": "book_output/boards/page_161_frame_123.png",
+    "ans_img": "book_output/answers/page_161_frame_123_ans.png"
+  },
+  {
+    "id": 101,
+    "frame": 125,
+    "pdf_page": 167,
+    "fen": "1k3rr1/ppp5/4p2n/4P2p/2P3q1/8/PP1Q2PB/3R1RK1 w - - 0 1",
+    "prompt": "NO ANSWER REQUIRED In this position White can begin a back-rank mating combination by first removing one of the Black defend- ers. Draw an arrow to show the first move in White's mat- ing sequence:",
+    "board_img": "book_output/boards/page_167_frame_125.png",
+    "ans_img": "book_output/answers/page_167_frame_125_ans.png"
+  },
+  {
+    "id": 102,
+    "frame": 126,
+    "pdf_page": 168,
+    "fen": "rr5k/6p1/5pPp/3p3P/2p5/2P3Q1/qP2RP2/4R1K1 w - - 0 1",
+    "prompt": "(When Black recaptures with Rook, White's Queen and Rook have enough power to mate.) Again, draw an arrow to show the first move of White's mating combination:",
+    "board_img": "book_output/boards/page_168_frame_126.png",
+    "ans_img": "book_output/answers/page_168_frame_126_ans.png"
+  },
+  {
+    "id": 103,
+    "frame": 127,
+    "pdf_page": 169,
+    "fen": "1k3rr1/ppp3q1/4p2n/4P2p/2P5/8/PP1Q2PB/3R1RK1 w - - 0 1",
+    "prompt": "If Black recaptures with the right piece, it will still be two against two. If White plays Rook-takes-Rook-check (as shown), how can Black save himself? by playing Rook-takes-Rook by playing Queen-takes-Rook",
+    "board_img": "book_output/boards/page_169_frame_127.png",
+    "ans_img": "book_output/answers/page_169_frame_127_ans.png"
+  },
+  {
+    "id": 104,
+    "frame": 128,
+    "pdf_page": 170,
+    "fen": "3r3k/6pp/1p6/2p3QP/2Pq4/8/2P3P1/5R1K b - - 0 1",
+    "prompt": "(So will still be two against two.) In this position, does a White move of Queen-takes- Rook-check (as shown) lead to mate? yes",
+    "board_img": "book_output/boards/page_170_frame_128.png",
+    "ans_img": "book_output/answers/page_170_frame_128_ans.png"
+  },
+  {
+    "id": 105,
+    "frame": 129,
+    "pdf_page": 171,
+    "fen": "3q2k1/p1b2p1p/6p1/1p6/2p4Q/1P3PP1/PB1r1P2/4R1K1 w - - 0 1",
+    "prompt": "(Black's Queen recaptures and maintains guard on the back rank.) If White plays Queen-takes-Queen (as shown), how should Black recapture? with the Bishop with the Rook",
+    "board_img": "book_output/boards/page_171_frame_129.png",
+    "ans_img": "book_output/answers/page_171_frame_129_ans.png"
+  },
+  {
+    "id": 106,
+    "frame": 130,
+    "pdf_page": 172,
+    "fen": "r2r2k1/3P1ppp/8/Q7/5B2/5q2/5P1P/4R1K1 w - - 0 1",
+    "prompt": "with the Rook (The Rook guards the back rank. Recapture with the Bishop would enable White's Rook to mate.) White has a mating combination, but he must make the key first move. He has several possibilities. Draw an arrow to show his correct choice;",
+    "board_img": "book_output/boards/page_172_frame_130.png",
+    "ans_img": "book_output/answers/page_172_frame_130_ans.png"
+  },
+  {
+    "id": 107,
+    "frame": 131,
+    "pdf_page": 173,
+    "fen": "3r2k1/pp3ppp/1b1Q4/3p4/5n1q/2PP4/PP3PPP/Q3RRK1 w - - 0 1",
+    "prompt": "Black's Queen can capture and replace the Rook as a guard of the back rank.) Does a White move of Queen-captures-Rook lead to mate? yes",
+    "board_img": "book_output/boards/page_173_frame_131.png",
+    "ans_img": "book_output/answers/page_173_frame_131_ans.png"
+  },
+  {
+    "id": 108,
+    "frame": 132,
+    "pdf_page": 174,
+    "fen": "2r1r2k/6pp/2b5/pq6/1p6/1B6/PP3QPP/4RRK1 w - - 0 1",
+    "prompt": "(On Queen-takes-Rook-check, Black's Queen can re- capture and guard the back rank.) Does White Rook-takes-Black Rook-check lead to mate in this position? yes",
+    "board_img": "book_output/boards/page_174_frame_132.png",
+    "ans_img": "book_output/answers/page_174_frame_132_ans.png"
+  },
+  {
+    "id": 109,
+    "frame": 133,
+    "pdf_page": 175,
+    "fen": "1r1r2k1/6pp/2q4q/2p1p2Q/pp2N2P/5P2/PPPR2P1/1K1R4 b - - 0 1",
+    "prompt": "yes (White will play Queen-check on Black's back rank after Black recaptures.) Here's a hard one: If White plays Rook-takes-Rook-check, can he mate? yes",
+    "board_img": "book_output/boards/page_175_frame_133.png",
+    "ans_img": "book_output/answers/page_175_frame_133_ans.png"
+  },
+  {
+    "id": 110,
+    "frame": 134,
+    "pdf_page": 176,
+    "fen": "qr4k1/3P1ppp/8/4Q3/8/1r6/5PPP/4R1K1 w - - 0 1",
+    "prompt": "(The mate is finally delivered by the White Queen. Work it out.) Sometimes, you have the choice of making a straight back-rank check or of capturing a defender. Observe the position below; then, draw an arrow to show the key first move in White's mating combination:",
+    "board_img": "book_output/boards/page_176_frame_134.png",
+    "ans_img": "book_output/answers/page_176_frame_134_ans.png"
+  },
+  {
+    "id": 111,
+    "frame": 136,
+    "pdf_page": 177,
+    "fen": "qr4k1/3P1ppp/3Q4/8/r7/8/5PPP/4R1K1 w - - 0 1",
+    "prompt": "tains Black's after Black recaptures with his Rook.) Again, draw an arrow to show White's key first move: i\\HI mm.IB t I s",
+    "board_img": "book_output/boards/page_177_frame_136.png",
+    "ans_img": "book_output/answers/page_177_frame_136_ans.png"
+  },
+  {
+    "id": 112,
+    "frame": 137,
+    "pdf_page": 179,
+    "fen": "5rk1/3q1ppp/p1N3r1/1pQp4/3P4/P3n1N1/1P2RPPP/4R1K1 w - - 0 1",
+    "prompt": "not iead to mate? White does not have enough power. At the end of White's combination, Black has a useful interposition. At the end of White's combination, Black has a flight square.",
+    "board_img": "book_output/boards/page_179_frame_137.png",
+    "ans_img": "book_output/answers/page_179_frame_137_ans.png"
+  },
+  {
+    "id": 113,
+    "frame": 138,
+    "pdf_page": 180,
+    "fen": "5rk1/1p3ppp/q1pQ4/8/8/8/1PP2PPP/3R2K1 b - - 0 1",
+    "prompt": "not lead to mate? White does not have enough power. At the end of White's combination, Black has a useful interposition. At the end of White's combination, Black has a flight square.",
+    "board_img": "book_output/boards/page_180_frame_138.png",
+    "ans_img": "book_output/answers/page_180_frame_138_ans.png"
+  },
+  {
+    "id": 114,
+    "frame": 139,
+    "pdf_page": 181,
+    "fen": "2r3k1/5ppp/1p1n4/p6n/Pb6/1P6/2Q2PPP/4R1K1 w - - 0 1",
+    "prompt": "not lead to mate? White does not have enough power. At the end of White's combination, Black has a useful interposition. At the end of White's combination, Black has a flight square.",
+    "board_img": "book_output/boards/page_181_frame_139.png",
+    "ans_img": "book_output/answers/page_181_frame_139_ans.png"
+  },
+  {
+    "id": 115,
+    "frame": 140,
+    "pdf_page": 182,
+    "fen": "2bR1rk1/1p3pp1/2p4p/6r1/p5q1/2P5/PPB2PPP/3RQ1K1 w - - 0 1",
+    "prompt": "At the end of White's combination, Biack has a useful interposition. (The Knight capture will uncover the Black Bishop.) Does White have a mating combination beginning with Rook-takes-Rook-check? yes",
+    "board_img": "book_output/boards/page_182_frame_140.png",
+    "ans_img": "book_output/answers/page_182_frame_140_ans.png"
+  },
+  {
+    "id": 116,
+    "frame": 141,
+    "pdf_page": 183,
+    "fen": "4R1rk/5p1p/5PpQ/6r1/8/8/5nPP/4R2K w - - 0 1",
+    "prompt": "some problems for the defender. White is threatening to play Rook-takes-Rook, followed by mate. It's Black's move. Surprisingly enough, he has only one good defense: Rook takes Rook, as shown Pawn advances one or two squares, as shown",
+    "board_img": "book_output/boards/page_183_frame_141.png",
+    "ans_img": "book_output/answers/page_183_frame_141_ans.png"
+  },
+  {
+    "id": 117,
+    "frame": 142,
+    "pdf_page": 184,
+    "fen": "1kr2r2/p1p5/1pP1Q3/1P5p/5qp1/7P/4RPP1/4R1K1 w - - 0 1",
+    "prompt": "fleeing square is Black's dnly defense.) Suppose that White plays Queen-takes-Rook-check (as shown). Black's only saving move is to recapture with: his King his Rook",
+    "board_img": "book_output/boards/page_184_frame_142.png",
+    "ans_img": "book_output/answers/page_184_frame_142_ans.png"
+  },
+  {
+    "id": 118,
+    "frame": 144,
+    "pdf_page": 187,
+    "fen": "r1Q4k/p5pp/1p2p2r/3p1p1q/3Pn3/1P2P1P1/P4PBP/2R2RK1 b - - 0 1",
+    "prompt": "NO ANSWER REQUIRED Draw an arrow to show how Black saves himself from checkmate:",
+    "board_img": "book_output/boards/page_187_frame_144.png",
+    "ans_img": "book_output/answers/page_187_frame_144_ans.png"
+  },
+  {
+    "id": 119,
+    "frame": 146,
+    "pdf_page": 188,
+    "fen": "r1Q4k/1p4pp/1pr5/8/P4R2/8/6PP/5R1K b - - 0 1",
+    "prompt": "Draw an arrow to show Black's correct defense: FOR THE CORRECT ANSWER TO FRAME 146, TURN THE PAGE AND THEN TURN THE BOOK AROUND",
+    "board_img": "book_output/boards/page_188_frame_146.png",
+    "ans_img": "book_output/answers/page_188_frame_146_ans.png"
+  },
+  {
+    "id": 120,
+    "frame": 146,
+    "pdf_page": 189,
+    "fen": "r1R4k/pp4pp/3r1p2/3pp3/3P4/P3P2P/1P3PP1/2R3K1 b - - 0 1",
+    "prompt": "(Capture by the other Rook would leave one defender of the back rank to two attackers.) Draw the usual arrow to show Black's saving shot:",
+    "board_img": "book_output/boards/page_189_frame_146.png",
+    "ans_img": "book_output/answers/page_189_frame_146_ans.png"
+  },
+  {
+    "id": 121,
+    "frame": 148,
+    "pdf_page": 190,
+    "fen": "1r1R2k1/2b2pp1/7p/8/8/6P1/2B2P1P/4R1K1 b - - 0 1",
+    "prompt": "This one is a little different Draw an arrow to show Black's correct defense:",
+    "board_img": "book_output/boards/page_190_frame_148.png",
+    "ans_img": "book_output/answers/page_190_frame_148_ans.png"
+  },
+  {
+    "id": 122,
+    "frame": 148,
+    "pdf_page": 191,
+    "fen": "1kR1r3/ppp2p2/q1b2B2/8/4p3/P3P3/1PPR4/2KQ4 b - - 0 1",
+    "prompt": "(The Rook capture protects the back rank.) Draw an arrow to show Slack's defense:",
+    "board_img": "book_output/boards/page_191_frame_148.png",
+    "ans_img": "book_output/answers/page_191_frame_148_ans.png"
+  },
+  {
+    "id": 123,
+    "frame": 149,
+    "pdf_page": 192,
+    "fen": "2R3k1/1p3pp1/7p/p2p4/1n1P4/5NPb/PP2rP1P/1B4K1 b - - 0 1",
+    "prompt": "ii mtu m (The King capture would lead to mate after Rook checks.)",
+    "board_img": "book_output/boards/page_192_frame_149.png",
+    "ans_img": "book_output/answers/page_192_frame_149_ans.png"
+  },
+  {
+    "id": 124,
+    "frame": 150,
+    "pdf_page": 193,
+    "fen": "5rk1/p1p2ppp/2B2p2/PP3b2/1QP5/3q2P1/5P1P/4R1K1 w - - 0 1",
+    "prompt": "Now you will be asked to decide whether or not White has one of the back-rank mating combinations you have learned. Can White force mate? yes If he can, draw an arrow to show his key first move.",
+    "board_img": "book_output/boards/page_193_frame_150.png",
+    "ans_img": "book_output/answers/page_193_frame_150_ans.png"
+  },
+  {
+    "id": 125,
+    "frame": 151,
+    "pdf_page": 194,
+    "fen": "r5kQ/5ppp/3p4/p1bP4/8/1Q3P2/PR3PKP/4q3 b - - 0 1",
+    "prompt": "be followed by Rook mate on Black's back rank.) in this position: White can mate White can't mate If he can, show his key first move.",
+    "board_img": "book_output/boards/page_194_frame_151.png",
+    "ans_img": "book_output/answers/page_194_frame_151_ans.png"
+  },
+  {
+    "id": 126,
+    "frame": 152,
+    "pdf_page": 195,
+    "fen": "qr4k1/5pp1/7p/4Q3/n1p5/1r4P1/1P2RP1P/1B2R1K1 w - - 0 1",
+    "prompt": "White can't mate (After the Queen check, Black's Queen interposes.) Can White mate? yes If he can, show his key first move.",
+    "board_img": "book_output/boards/page_195_frame_152.png",
+    "ans_img": "book_output/answers/page_195_frame_152_ans.png"
+  },
+  {
+    "id": 127,
+    "frame": 153,
+    "pdf_page": 196,
+    "fen": "1r1r2k1/1p3ppb/p1p4p/2P5/P7/1q6/4QPPP/B2RR1K1 w - - 0 1",
+    "prompt": "In this position: White can mate White can't mate If he can mate, show his key first move.",
+    "board_img": "book_output/boards/page_196_frame_153.png",
+    "ans_img": "book_output/answers/page_196_frame_153_ans.png"
+  },
+  {
+    "id": 128,
+    "frame": 154,
+    "pdf_page": 197,
+    "fen": "q5rk/2p3p1/5pPp/3Qn3/4P2P/r7/PRP5/KR6 w - - 0 1",
+    "prompt": "reply with a Queen check on the back rank.) In this position: White can mate White can't mate If he can, show his key first move.",
+    "board_img": "book_output/boards/page_197_frame_154.png",
+    "ans_img": "book_output/answers/page_197_frame_154_ans.png"
+  },
+  {
+    "id": 129,
+    "frame": 155,
+    "pdf_page": 198,
+    "fen": "3r2k1/pp3ppp/2n3q1/2pQ4/2P5/1P6/P5PP/4R1K1 b - - 0 1",
+    "prompt": "at the lower left— if Black captures with the Rook next to his King, White will have enough power to mate.) In this position: White can mate White can't mate If he can, show his first key move.",
+    "board_img": "book_output/boards/page_198_frame_155.png",
+    "ans_img": "book_output/answers/page_198_frame_155_ans.png"
+  },
+  {
+    "id": 130,
+    "frame": 156,
+    "pdf_page": 199,
+    "fen": "4r1k1/1p3ppp/2b5/5n2/pp6/8/P4PPP/2R1R1K1 b - - 0 1",
+    "prompt": "White can mate . followed by Rook mates.) In this position: White can mate White can't mate If he can, show his key first move.",
+    "board_img": "book_output/boards/page_199_frame_156.png",
+    "ans_img": "book_output/answers/page_199_frame_156_ans.png"
+  },
+  {
+    "id": 131,
+    "frame": 157,
+    "pdf_page": 200,
+    "fen": "4r2b/5R2/p5p1/1p4P1/1P2p3/2P2P1k/1P3B2/5K2 b - - 0 1",
+    "prompt": "White can't mate Here's a back-rank mate sideways! Draw an arrow showing how White mates:",
+    "board_img": "book_output/boards/page_200_frame_157.png",
+    "ans_img": "book_output/answers/page_200_frame_157_ans.png"
+  },
+  {
+    "id": 132,
+    "frame": 159,
+    "pdf_page": 205,
+    "fen": "6k1/5ppp/2n5/8/4b3/8/r4PPP/1R1R2K1 w - - 0 1",
+    "prompt": "NO ANSWER REQUIRED Which move should White make to begin a mating combination here? move A move B",
+    "board_img": "book_output/boards/page_205_frame_159.png",
+    "ans_img": "book_output/answers/page_205_frame_159_ans.png"
+  },
+  {
+    "id": 133,
+    "frame": 160,
+    "pdf_page": 206,
+    "fen": "1k6/p1p2q2/1p4r1/4b1p1/5p2/2P3P1/PPK2PB1/3R3R w - - 0 1",
+    "prompt": "(And<the remaining Rook will deliver the mate after the Knight captures.) Suppose the White Rook checks as shown. Black couid only save himself by capturing with his: Bishop Knight",
+    "board_img": "book_output/boards/page_206_frame_160.png",
+    "ans_img": "book_output/answers/page_206_frame_160_ans.png"
+  },
+  {
+    "id": 134,
+    "frame": 161,
+    "pdf_page": 207,
+    "fen": "2r3k1/5ppp/4b3/3p2n1/8/8/5PPP/2R1R1K1 w - - 0 1",
+    "prompt": "Bishop (Black must not allow his Knight to be drawn away.) A similar theme- Draw an arrow to show the first move in White's mat- ing combination:",
+    "board_img": "book_output/boards/page_207_frame_161.png",
+    "ans_img": "book_output/answers/page_207_frame_161_ans.png"
+  },
+  {
+    "id": 135,
+    "frame": 163,
+    "pdf_page": 209,
+    "fen": "1k6/pp4p1/3b2n1/2pN2p1/P1P5/1P5R/4r1P1/5RK1 w - - 0 1",
+    "prompt": "If he can, draw an arrow to show White's key first move. (After White tries Queen check on the back rank, Black plays Queen-takes- Queen.)",
+    "board_img": "book_output/boards/page_209_frame_163.png",
+    "ans_img": "book_output/answers/page_209_frame_163_ans.png"
+  },
+  {
+    "id": 136,
+    "frame": 164,
+    "pdf_page": 210,
+    "fen": "7k/1p4pp/1pn5/q4p2/2P2Q1P/bP3P2/6P1/3R3K w - - 0 1",
+    "prompt": "if Black's Knight is drawn away, Black's Bishop holds the position.) Can White mate by first drawing away a Black de- fender? yes If he can, draw an arrow to show his key first move.",
+    "board_img": "book_output/boards/page_210_frame_164.png",
+    "ans_img": "book_output/answers/page_210_frame_164_ans.png"
+  },
+  {
+    "id": 137,
+    "frame": 165,
+    "pdf_page": 211,
+    "fen": "4r2k/6pp/p4n2/1pp5/3b4/5p2/B5PP/4RR1K w - - 0 1",
+    "prompt": "Can White mate here? yes If he can, draw an arrow to show White's key first move.",
+    "board_img": "book_output/boards/page_211_frame_165.png",
+    "ans_img": "book_output/answers/page_211_frame_165_ans.png"
+  },
+  {
+    "id": 138,
+    "frame": 166,
+    "pdf_page": 212,
+    "fen": "6k1/5pp1/3n4/8/8/4RN1P/rq4P1/2Q3K1 w - - 0 1",
+    "prompt": "Rook-takes-Knight will be mate.) Can White mate by first drawing away a Black de- fender? yes If he can, draw an arrow to show his key first move.",
+    "board_img": "book_output/boards/page_212_frame_166.png",
+    "ans_img": "book_output/answers/page_212_frame_166_ans.png"
+  },
+  {
+    "id": 139,
+    "frame": 168,
+    "pdf_page": 215,
+    "fen": "2k4r/1pp2p2/p4pq1/4p3/P7/7p/1PPQ1PPP/3R2K1 b - - 0 1",
+    "prompt": "NO ANSWER REQUIRED Can White mate if he first checks (as shown) in this position? yes ?05",
+    "board_img": "book_output/boards/page_215_frame_168.png",
+    "ans_img": "book_output/answers/page_215_frame_168_ans.png"
+  },
+  {
+    "id": 140,
+    "frame": 169,
+    "pdf_page": 216,
+    "fen": "3r2k1/pQ3ppp/3p4/2pPp2b/q1P1P3/P1PB4/6PP/5RK1 b - - 0 1",
+    "prompt": "(Driving away the King does not work. Black's King forced away but will have an escape square.) If the White Queen checks (as shown), will White be able to mate? yes",
+    "board_img": "book_output/boards/page_216_frame_169.png",
+    "ans_img": "book_output/answers/page_216_frame_169_ans.png"
+  },
+  {
+    "id": 141,
+    "frame": 171,
+    "pdf_page": 220,
+    "fen": "4Rrk1/1pp2p1p/5p2/1p6/5P2/2P5/rPK2P1P/4R3 w - - 0 1",
+    "prompt": "NO ANSWER REQUIRED Draw an arrow to show the correct move for White;",
+    "board_img": "book_output/boards/page_220_frame_171.png",
+    "ans_img": "book_output/answers/page_220_frame_171_ans.png"
+  },
+  {
+    "id": 142,
+    "frame": 172,
+    "pdf_page": 221,
+    "fen": "r1b1Qqk1/1p4pp/1np2P2/p7/7N/1P6/P1P3PP/4R2K w - - 0 1",
+    "prompt": "mtm . driving the King into the corner to allow Rook- takes-Rook-m ate. Again, draw an arrow to show the correct move for White:",
+    "board_img": "book_output/boards/page_221_frame_172.png",
+    "ans_img": "book_output/answers/page_221_frame_172_ans.png"
+  },
+  {
+    "id": 143,
+    "frame": 173,
+    "pdf_page": 222,
+    "fen": "r2br1k1/1bq3pp/p1n5/1pp1p3/P3P2N/2P2Q2/1PB3PP/R1B2RK1 b - - 0 1",
+    "prompt": "Let's look at some simple defenses against displacing attempts. How does Black defend against the check by White's Bishop (as shown at square A)? How does Black defend against the White's Queen check, as shown?",
+    "board_img": "book_output/boards/page_222_frame_173.png",
+    "ans_img": "book_output/answers/page_222_frame_173_ans.png"
+  },
+  {
+    "id": 144,
+    "frame": 174,
+    "pdf_page": 223,
+    "fen": "4r1k1/q5pp/8/1n6/1pp5/6P1/1P3QBP/5R1K w - - 0 1",
+    "prompt": "Black Queen takes White Queen. In this position, White has various tries, but only one move works. What is the correct White move? Bishop to square A Queen to square B",
+    "board_img": "book_output/boards/page_223_frame_174.png",
+    "ans_img": "book_output/answers/page_223_frame_174_ans.png"
+  },
+  {
+    "id": 145,
+    "frame": 175,
+    "pdf_page": 224,
+    "fen": "2k2r2/ppp4Q/5p2/4p3/8/qP6/P1P5/1K1R4 b - - 0 1",
+    "prompt": "Bishop to square A (Queen-takes-Queen would be Black's reply to the White Queen check.) How should White's Queen move? to square A to square B",
+    "board_img": "book_output/boards/page_224_frame_175.png",
+    "ans_img": "book_output/answers/page_224_frame_175_ans.png"
+  },
+  {
+    "id": 146,
+    "frame": 176,
+    "pdf_page": 225,
+    "fen": "6k1/3r2pp/2pb4/r3q3/8/7P/P4QP1/1R3R1K b - - 0 1",
+    "prompt": "(Then White will mate on the back rank From square A White would not have enough power to mate on the back rank.) Here White could try to displace either the King or another defender. Draw an arrow to show his correct move:",
+    "board_img": "book_output/boards/page_225_frame_176.png",
+    "ans_img": "book_output/answers/page_225_frame_176_ans.png"
+  },
+  {
+    "id": 147,
+    "frame": 177,
+    "pdf_page": 226,
+    "fen": "r1n1Qqk1/p4ppp/3p4/1pp2N2/3b4/PB6/1PP2PPP/R5K1 w - - 0 1",
+    "prompt": "(Queen-check would lose to Bishop-takes-Queen.)",
+    "board_img": "book_output/boards/page_226_frame_177.png",
+    "ans_img": "book_output/answers/page_226_frame_177_ans.png"
+  },
+  {
+    "id": 148,
+    "frame": 178,
+    "pdf_page": 227,
+    "fen": "2k2r2/ppp3pp/1b6/8/qP3p2/6P1/2PQ1PBP/3R2K1 w - - 0 1",
+    "prompt": "(Black must move his King into the corner; then White mates by playing Queen-takes-Queen.) Draw an arrow to show the winning move for White:",
+    "board_img": "book_output/boards/page_227_frame_178.png",
+    "ans_img": "book_output/answers/page_227_frame_178_ans.png"
+  },
+  {
+    "id": 149,
+    "frame": 179,
+    "pdf_page": 228,
+    "fen": "2k4r/ppp4q/1b3pn1/2N1r1p1/1PP4p/6P1/1P1Q1PBP/R2R2K1 w - - 0 1",
+    "prompt": "guards the important square.) Unless you look closely at this one, you won't see all of White's attempts and you'll miss the winning move. Draw an arrow to show the move for White that leads to mate:",
+    "board_img": "book_output/boards/page_228_frame_179.png",
+    "ans_img": "book_output/answers/page_228_frame_179_ans.png"
+  },
+  {
+    "id": 150,
+    "frame": 181,
+    "pdf_page": 231,
+    "fen": "2R2bk1/5pp1/4pN1p/r2n4/p1R5/P2B1P1P/1rP3PK/8 b - - 0 1",
+    "prompt": "NO ANSWER REQUIRED White's Knight has checked. Black can save himself by playing: King moves Pawn captures Knight captures",
+    "board_img": "book_output/boards/page_231_frame_181.png",
+    "ans_img": "book_output/answers/page_231_frame_181_ans.png"
+  },
+  {
+    "id": 151,
+    "frame": 182,
+    "pdf_page": 232,
+    "fen": "r3Rrk1/pp3ppp/3p4/q1p5/1nP3N1/4Q3/PP3PPP/2R4K w - - 0 1",
+    "prompt": "Does a check by White's Knight at square A lead to mate? yes Does a check by White's Knight at square B lead to mate? yes",
+    "board_img": "book_output/boards/page_232_frame_182.png",
+    "ans_img": "book_output/answers/page_232_frame_182_ans.png"
+  },
+  {
+    "id": 152,
+    "frame": 183,
+    "pdf_page": 233,
+    "fen": "1Q3qk1/5ppp/4p3/3r4/n2pR1N1/3P2PP/2P2P2/6K1 w - - 0 1",
+    "prompt": "Here White attempts to drive away the Black King, beginning with Knight checks. Decide whether the move succeeds. Does the White Knight's check (as shown) lead to mate? yes",
+    "board_img": "book_output/boards/page_233_frame_183.png",
+    "ans_img": "book_output/answers/page_233_frame_183_ans.png"
+  },
+  {
+    "id": 153,
+    "frame": 184,
+    "pdf_page": 234,
+    "fen": "1kr4R/ppp5/4ppq1/5b2/3N1P2/P1P5/1P6/2KQ4 w - - 0 1",
+    "prompt": "Wm BTW ^ if2* .vJm&Jm mr mmmsmsm Does the White Knight check work here? yes",
+    "board_img": "book_output/boards/page_234_frame_184.png",
+    "ans_img": "book_output/answers/page_234_frame_184_ans.png"
+  },
+  {
+    "id": 154,
+    "frame": 185,
+    "pdf_page": 235,
+    "fen": "2k2n1r/ppp2pp1/2q5/4p3/1P5p/P2QP3/4BPPP/3R2K1 w - - 0 1",
+    "prompt": "next series of frames. Sometimes he does so in one move, sometimes by a back-rank combination, some- times by a move that displaces the enemy King or an enemy piece. Draw an arrow to show the correct move for White in his mating combination:",
+    "board_img": "book_output/boards/page_235_frame_185.png",
+    "ans_img": "book_output/answers/page_235_frame_185_ans.png"
+  },
+  {
+    "id": 155,
+    "frame": 186,
+    "pdf_page": 236,
+    "fen": "r5k1/5ppp/8/8/3q4/1Q6/p5PP/5R1K w - - 0 1",
+    "prompt": "Knight can interpose at square X, thereby stop- ping ail mates.) Draw an arrow to show the first move for White in his mating combination:",
+    "board_img": "book_output/boards/page_236_frame_186.png",
+    "ans_img": "book_output/answers/page_236_frame_186_ans.png"
+  },
+  {
+    "id": 156,
+    "frame": 187,
+    "pdf_page": 237,
+    "fen": "q1r3k1/2Q2ppp/3p3n/1p1Pp3/1n2P3/1P4N1/rP4PP/2R2R1K w - - 0 1",
+    "prompt": "(White forces the Black King into the corner, thereby giving himself enough power to mate.) Draw an arrow to show the first move for White in his mating combination:",
+    "board_img": "book_output/boards/page_237_frame_187.png",
+    "ans_img": "book_output/answers/page_237_frame_187_ans.png"
+  },
+  {
+    "id": 157,
+    "frame": 189,
+    "pdf_page": 238,
+    "fen": "R4rk1/1bq2pp1/1p1p3p/2nPp3/2P1N2Q/8/1PB2PPP/6K1 b - - 0 1",
+    "prompt": "Draw an arrow to show the first move for White in his mating combination:",
+    "board_img": "book_output/boards/page_238_frame_189.png",
+    "ans_img": "book_output/answers/page_238_frame_189_ans.png"
+  },
+  {
+    "id": 158,
+    "frame": 189,
+    "pdf_page": 239,
+    "fen": "1R3rk1/3r1ppp/6b1/2pN4/2P5/1R6/5PPP/6K1 b - - 0 1",
+    "prompt": "If the King moves into the corner immediately, Rook-takes-Rook is mate.) Draw an arrow to show the first move for White in his mating combination:",
+    "board_img": "book_output/boards/page_239_frame_189.png",
+    "ans_img": "book_output/answers/page_239_frame_189_ans.png"
+  },
+  {
+    "id": 159,
+    "frame": 191,
+    "pdf_page": 240,
+    "fen": "2k5/1p3p2/p1p2bp1/B3p3/2P1Pn2/8/PP2BqP1/2KR3R w - - 0 1",
+    "prompt": "Draw an arrow to show the first move for White in his mating combination:",
+    "board_img": "book_output/boards/page_240_frame_191.png",
+    "ans_img": "book_output/answers/page_240_frame_191_ans.png"
+  },
+  {
+    "id": 160,
+    "frame": 191,
+    "pdf_page": 241,
+    "fen": "4Rrk1/4Rppp/1bp5/1pn5/p5N1/P6P/BPPr1PP1/6K1 w - - 0 1",
+    "prompt": "(The Black Bishop cap- turps the Rook; then the remaining White Rook will mate.) Draw an arrow to show the first move for White in his mating combination:",
+    "board_img": "book_output/boards/page_241_frame_191.png",
+    "ans_img": "book_output/answers/page_241_frame_191_ans.png"
+  },
+  {
+    "id": 161,
+    "frame": 193,
+    "pdf_page": 242,
+    "fen": "1r4k1/1rp3pp/n7/p7/1p6/2P4B/PP3RPP/5R1K b - - 0 1",
+    "prompt": "Black's King must there- fore move into the corner. Then Rook-takes-Rook is mate.) Draw an arrow to show the first move for White in his mating combination:",
+    "board_img": "book_output/boards/page_242_frame_193.png",
+    "ans_img": "book_output/answers/page_242_frame_193_ans.png"
+  },
+  {
+    "id": 162,
+    "frame": 193,
+    "pdf_page": 243,
+    "fen": "2k4r/ppp3p1/1b5p/4p2q/P6Q/2P3P1/1P1Q1PBP/3R2K1 b - - 0 1",
+    "prompt": "(First the King is driven into the corner; then White has power to mate on the back rank.) Draw an arrow to show the first move for White in his mating combination:",
+    "board_img": "book_output/boards/page_243_frame_193.png",
+    "ans_img": "book_output/answers/page_243_frame_193_ans.png"
+  },
+  {
+    "id": 163,
+    "frame": 196,
+    "pdf_page": 249,
+    "fen": "6rk/1Q4pp/8/8/8/P7/1P1q3Q/K3R3 w - - 0 1",
+    "prompt": "In the next four positions, you will have to determine whether a sacrifice similar to the one that you've just seen will lead to mate. Does the White move of Queen-takes-Pawn-check (as shown) lead to mate? yes",
+    "board_img": "book_output/boards/page_249_frame_196.png",
+    "ans_img": "book_output/answers/page_249_frame_196_ans.png"
+  },
+  {
+    "id": 164,
+    "frame": 197,
+    "pdf_page": 250,
+    "fen": "6rk/1Q4pp/8/8/8/P1B5/1Pq4Q/K3R3 w - - 0 1",
+    "prompt": "no* (Black's King or Rook can safely take the Queen. An important element of the theme—the White Bishop— is missing.) Does Queen-takes-Pawn-check lead to mate here? yes",
+    "board_img": "book_output/boards/page_250_frame_197.png",
+    "ans_img": "book_output/answers/page_250_frame_197_ans.png"
+  },
+  {
+    "id": 165,
+    "frame": 198,
+    "pdf_page": 251,
+    "fen": "1kq4Q/ppp5/r3p1p1/Q6p/4P3/2P3B1/b5PP/5R1K w - - 0 1",
+    "prompt": "yes (Here the Bishop is present. When Black plays Rook- takes-Queen, the White Rook will mate.) Does the White move of Queen-takes-Pawn-check (as shown) lead to mate? yes",
+    "board_img": "book_output/boards/page_251_frame_198.png",
+    "ans_img": "book_output/answers/page_251_frame_198_ans.png"
+  },
+  {
+    "id": 166,
+    "frame": 199,
+    "pdf_page": 252,
+    "fen": "1b3rk1/1p3p1p/2p3p1/8/2B5/1P1R1Q2/P4PPq/5K2 w - - 0 1",
+    "prompt": "(A mate for White! If Black plays Queen-takes-Queen, then the White Rook mates.) Does the White move of Queen-takes-Pawn-check (as shown) lead to mate? yes",
+    "board_img": "book_output/boards/page_252_frame_199.png",
+    "ans_img": "book_output/answers/page_252_frame_199_ans.png"
+  },
+  {
+    "id": 167,
+    "frame": 200,
+    "pdf_page": 253,
+    "fen": "kr6/pp3Q2/5p2/6p1/1n4P1/1P2PB2/q1PPK3/7R w - - 0 1",
+    "prompt": "(White does not mate since Black's King has a flight square. Black should play Rook-takes-Queen and then flee with his King when White dhecks with his Rook.) Does the White move of Queen-takes-Pawn-check (as shown) lead to mate? yes",
+    "board_img": "book_output/boards/page_253_frame_200.png",
+    "ans_img": "book_output/answers/page_253_frame_200_ans.png"
+  },
+  {
+    "id": 168,
+    "frame": 201,
+    "pdf_page": 254,
+    "fen": "6qk/2p3pp/1p4p1/8/6p1/1bB3QP/r5P1/5R1K w - - 0 1",
+    "prompt": "(The sacrifice works—White mates.) Here are some positions where the theme you have learned does not apply. In each case, you wilt be asked to explain why this is so. A White move of Queen-takes-Pawn-check does not lead to mate because",
+    "board_img": "book_output/boards/page_254_frame_201.png",
+    "ans_img": "book_output/answers/page_254_frame_201_ans.png"
+  },
+  {
+    "id": 169,
+    "frame": 202,
+    "pdf_page": 255,
+    "fen": "5rk1/1p3ppp/p7/5Qn1/7q/1B5P/P5PK/2R5 b - - 0 1",
+    "prompt": "Black's Bishop will be able to interpose (After Black plays Queen-takes-Queen, White Rook checks and Black saves himself as above.) A White move of Queen-takes-Pawn-check does not lead to mate because",
+    "board_img": "book_output/boards/page_255_frame_202.png",
+    "ans_img": "book_output/answers/page_255_frame_202_ans.png"
+  },
+  {
+    "id": 170,
+    "frame": 203,
+    "pdf_page": 256,
+    "fen": "1kq5/ppp5/8/Q3B3/7Q/5b2/PP6/K5Rr w - - 0 1",
+    "prompt": "Black's Knight captures the Queen (Otherwise, Black will be mated.) A White move of Queen-takes-Pawn-check does not lead to mate because",
+    "board_img": "book_output/boards/page_256_frame_203.png",
+    "ans_img": "book_output/answers/page_256_frame_203_ans.png"
+  },
+  {
+    "id": 171,
+    "frame": 204,
+    "pdf_page": 257,
+    "fen": "3rr3/R6p/2Q1Bppk/8/2P5/4b3/PP1q1PPP/5RK1 b - - 0 1",
+    "prompt": "(It is pinned.) From a game of mine. If you were Black what would you play here? Think! Black has two threats—one is obvious, but the other Draw an arrow showing Black s best move.",
+    "board_img": "book_output/boards/page_257_frame_204.png",
+    "ans_img": "book_output/answers/page_257_frame_204_ans.png"
+  },
+  {
+    "id": 172,
+    "frame": 206,
+    "pdf_page": 260,
+    "fen": "rn3rk1/1pp2Qpp/1b6/p7/2P5/P4BN1/1q3PPP/R3R1K1 b - - 0 1",
+    "prompt": "ficed (as shown). It looks as if the sacrifice will work, but it doesn't. Black saves himself by capturing the Queen with his",
+    "board_img": "book_output/boards/page_260_frame_206.png",
+    "ans_img": "book_output/answers/page_260_frame_206_ans.png"
+  },
+  {
+    "id": 173,
+    "frame": 208,
+    "pdf_page": 263,
+    "fen": "kr6/pp4p1/5p2/2r5/q1p5/2Pp1QP1/PP3PB1/K2R3R w - - 0 1",
+    "prompt": "NO ANSWER REQUIRED Check the following position to see if all of the elements for the mating combination are present:",
+    "board_img": "book_output/boards/page_263_frame_208.png",
+    "ans_img": "book_output/answers/page_263_frame_208_ans.png"
+  },
+  {
+    "id": 174,
+    "frame": 209,
+    "pdf_page": 264,
+    "fen": "5rk1/RQ1P1ppp/1p5q/2p5/2pP3Q/1P4P1/1P2PPBr/6K1 w - - 0 1",
+    "prompt": "yes Does the sacrifice work here? yes",
+    "board_img": "book_output/boards/page_264_frame_209.png",
+    "ans_img": "book_output/answers/page_264_frame_209_ans.png"
+  },
+  {
+    "id": 175,
+    "frame": 210,
+    "pdf_page": 265,
+    "fen": "r4qk1/1pp2ppp/r7/3Q1p2/1n3Pn1/pB1R2P1/1PP5/2KRQ3 w - - 0 1",
+    "prompt": "not be a mate. So on this one, I'll ask you something else. After the Queen check, how can Black save himself? by moving his King away by playing Queen-takes-Queen",
+    "board_img": "book_output/boards/page_265_frame_210.png",
+    "ans_img": "book_output/answers/page_265_frame_210_ans.png"
+  },
+  {
+    "id": 176,
+    "frame": 211,
+    "pdf_page": 266,
+    "fen": "r1b3k1/1p3Q1p/2p5/5p2/2pP4/P1N2p2/1P4PP/4RRK1 b - - 0 1",
+    "prompt": "and Black's Rook captures. White's Rook checks and Black's Rook must interpose. (continued)",
+    "board_img": "book_output/boards/page_266_frame_211.png",
+    "ans_img": "book_output/answers/page_266_frame_211_ans.png"
+  },
+  {
+    "id": 177,
+    "frame": 212,
+    "pdf_page": 268,
+    "fen": "6rk/R2Q1Ppp/8/2p2p2/2Pp1B1P/1r4P1/5PK1/3q4 w - - 0 1",
+    "prompt": "NO ANSWER REQUIRED One other variation; 1. White's Queen takes Pawn, giving check (Black's Rook must capture). 2. White's Rook checks, etc. What White piece actually delivers the mate?",
+    "board_img": "book_output/boards/page_268_frame_212.png",
+    "ans_img": "book_output/answers/page_268_frame_212_ans.png"
+  },
+  {
+    "id": 178,
+    "frame": 213,
+    "pdf_page": 269,
+    "fen": "5rk1/pp3ppp/7q/n3p3/2Q1P1n1/1B3N2/PP3PPP/2R3K1 w - - 0 1",
+    "prompt": "Queen-takes-Pawn-check draws a defender from the back rank and leads to mate. In this series of frames, you will be asked to work out the whole combination and to circle the White piece that delivers the check- mate- Assume, here, that Black captures the Queen.",
+    "board_img": "book_output/boards/page_269_frame_213.png",
+    "ans_img": "book_output/answers/page_269_frame_213_ans.png"
+  },
+  {
+    "id": 179,
+    "frame": 214,
+    "pdf_page": 270,
+    "fen": "1kr5/1ppR4/4p3/4Q1p1/8/1P2PpPq/1BP1bP1P/R5K1 w - - 0 1",
+    "prompt": "m m (After Queen-takes-Pawn- check, Rook-takes-Queen, Rook down leads to mate.) Circle the White piece that administers mate: mSmamfm4",
+    "board_img": "book_output/boards/page_270_frame_214.png",
+    "ans_img": "book_output/answers/page_270_frame_214_ans.png"
+  },
+  {
+    "id": 180,
+    "frame": 215,
+    "pdf_page": 271,
+    "fen": "6rk/2p3pp/p1p3P1/3p1N1P/P3Pq2/3Pb3/1Q4P1/1R5K w - - 0 1",
+    "prompt": "check followed by Rook- takes-Queen, Rook [in qenter] checks, Rook interposes and Bishop gives mate.) Circle the White piece that administers mate:",
+    "board_img": "book_output/boards/page_271_frame_215.png",
+    "ans_img": "book_output/answers/page_271_frame_215_ans.png"
+  },
+  {
+    "id": 181,
+    "frame": 216,
+    "pdf_page": 272,
+    "fen": "5rk1/RQ3p1p/6p1/2p5/1p3bn1/1P6/1BPq1PPP/5BK1 w - - 0 1",
+    "prompt": "Queen-takes-Pawn-check, Rook takes Queen, Rook interposes and White pushes up his Pawn, checkmate.) Circle the White piece that administers mate:",
+    "board_img": "book_output/boards/page_272_frame_216.png",
+    "ans_img": "book_output/answers/page_272_frame_216_ans.png"
+  },
+  {
+    "id": 182,
+    "frame": 217,
+    "pdf_page": 273,
+    "fen": "5rk1/5ppp/7q/p4p2/1p1p4/P2P4/1P2RQPP/2r2R1K w - - 0 1",
+    "prompt": "positions are useless], and the Bishop next to the King moves up and mates on square X.) Circle the White piece that administers mate, assuming Black captures the Queen:",
+    "board_img": "book_output/boards/page_273_frame_217.png",
+    "ans_img": "book_output/answers/page_273_frame_217_ans.png"
+  },
+  {
+    "id": 183,
+    "frame": 219,
+    "pdf_page": 276,
+    "fen": "1q3r1k/2p3pp/6p1/2pB4/3p4/P5P1/KPb3P1/5R1Q w - - 0 1",
+    "prompt": "Decide whether the type of sacrifice shown in the previous frame works in each of the five positions that follow. Does White have a mating combination beginning with Queen-takes-Pawn-check (as shown)? yes",
+    "board_img": "book_output/boards/page_276_frame_219.png",
+    "ans_img": "book_output/answers/page_276_frame_219_ans.png"
+  },
+  {
+    "id": 184,
+    "frame": 220,
+    "pdf_page": 277,
+    "fen": "5r1k/q1p1Nppp/8/p7/1bR1Q3/1P4P1/P4PP1/6K1 w - - 0 1",
+    "prompt": "yes (White mates: Queen-takes-Pawn-check; King-takes- Queen; Rook over to the right; checkmate.) Does White have a mating combination beginning with Queen-takes-Pawn (as shown)? yes",
+    "board_img": "book_output/boards/page_277_frame_220.png",
+    "ans_img": "book_output/answers/page_277_frame_220_ans.png"
+  },
+  {
+    "id": 185,
+    "frame": 221,
+    "pdf_page": 278,
+    "fen": "1q4rk/p5pp/4p3/3p3Q/1ppP4/2P2PP1/PP3PK1/5R2 w - - 0 1",
+    "prompt": "yes (White matek Here the White Knight keeps the Black King from fleeing.) Does White have a mating combination beginning with Queen-takes-Pawn-check (as shown)? yes",
+    "board_img": "book_output/boards/page_278_frame_221.png",
+    "ans_img": "book_output/answers/page_278_frame_221_ans.png"
+  },
+  {
+    "id": 186,
+    "frame": 222,
+    "pdf_page": 279,
+    "fen": "kr1q4/pp6/1p6/4r3/8/QPP5/2KP4/3R3R w - - 0 1",
+    "prompt": "Does White have a mating combination beginning with Queen-takes-Pawn (as shown)? yes",
+    "board_img": "book_output/boards/page_279_frame_222.png",
+    "ans_img": "book_output/answers/page_279_frame_222_ans.png"
+  },
+  {
+    "id": 187,
+    "frame": 223,
+    "pdf_page": 280,
+    "fen": "4rrqk/1pp3pp/6p1/p2p4/P2P3Q/1P4R1/2P2PP1/R5K1 w - - 0 1",
+    "prompt": "Pawn-check, Black's King takes Queen and the Rook moves over to the left, giving check, Black can inter- pose with his Rook.) Does White have a mating combination beginning with Queen-takes-Pawn (as shown)? yes",
+    "board_img": "book_output/boards/page_280_frame_223.png",
+    "ans_img": "book_output/answers/page_280_frame_223_ans.png"
+  },
+  {
+    "id": 188,
+    "frame": 224,
+    "pdf_page": 281,
+    "fen": "1kr5/ppp4R/8/5p2/4bQ2/RP6/1B3qr1/K7 w - - 0 1",
+    "prompt": "King-takes-Queen, White would mate.) In some of the following positions, White utilizes the theme you have just learned in order to mate. In others, he mates in a different way. Draw an arrow to show the first move in the White mating combination:",
+    "board_img": "book_output/boards/page_281_frame_224.png",
+    "ans_img": "book_output/answers/page_281_frame_224_ans.png"
+  },
+  {
+    "id": 189,
+    "frame": 225,
+    "pdf_page": 282,
+    "fen": "q6k/6pp/1n6/rNp5/2PpQ1P1/Pb3N2/1P6/2K1R3 w - - 0 1",
+    "prompt": "tp King interposes; Bishop checks; and mate next move by Rook-takes- Rook.) Draw an arrow to show the first move in the White mating combination:",
+    "board_img": "book_output/boards/page_282_frame_225.png",
+    "ans_img": "book_output/answers/page_282_frame_225_ans.png"
+  },
+  {
+    "id": 190,
+    "frame": 226,
+    "pdf_page": 283,
+    "fen": "1q3r1k/6pp/8/p1p1pP2/3bP1P1/1B1Q4/PP4K1/7R w - - 0 1",
+    "prompt": ". and mate on the next move.) Draw an arrow to show the first move in the White mating combination:",
+    "board_img": "book_output/boards/page_283_frame_226.png",
+    "ans_img": "book_output/answers/page_283_frame_226_ans.png"
+  },
+  {
+    "id": 191,
+    "frame": 227,
+    "pdf_page": 284,
+    "fen": "kr6/pp2n3/8/2P5/3p2qp/3P2P1/R1PK2Q1/1R6 w - - 0 1",
+    "prompt": "check, King-takes-Rook, the Queen moves four sqtfares to the right to give mate.) Draw an arrow to show the first move in the White mating combination:",
+    "board_img": "book_output/boards/page_284_frame_227.png",
+    "ans_img": "book_output/answers/page_284_frame_227_ans.png"
+  },
+  {
+    "id": 192,
+    "frame": 229,
+    "pdf_page": 287,
+    "fen": "b5rk/5Qpp/8/8/1P5N/P7/1Brq2P1/5RK1 w - - 0 1",
+    "prompt": "each allows for a different type of mating combination by White. What is White's key first move in this position? Knight checks Queen-takes-Pawn-check Queentakes-Rook-check",
+    "board_img": "book_output/boards/page_287_frame_229.png",
+    "ans_img": "book_output/answers/page_287_frame_229_ans.png"
+  },
+  {
+    "id": 193,
+    "frame": 230,
+    "pdf_page": 288,
+    "fen": "q5rk/5Qpp/1rb5/8/1P5N/P4P2/B5K1/4R3 w - - 0 1",
+    "prompt": "Queen-takes-Pawn-check (Then on Rook-takes-Queen, Rook down mates.) What is White's key first move in this position? Knight checks Queen-takes-Pawn-check Queen-takes-Rook-check",
+    "board_img": "book_output/boards/page_288_frame_230.png",
+    "ans_img": "book_output/answers/page_288_frame_230_ans.png"
+  },
+  {
+    "id": 194,
+    "frame": 231,
+    "pdf_page": 289,
+    "fen": "1b4rk/2q2Qpp/2r5/8/1P1n3N/P4R2/6K1/2B2R2 w - - 0 1",
+    "prompt": "of his heavy pieces—Queen or, as here, Rook—to give mate.) What is White's key first move in this position? Knight checks Queen-takes-Pawn-check Queen-takes-Rook-check",
+    "board_img": "book_output/boards/page_289_frame_231.png",
+    "ans_img": "book_output/answers/page_289_frame_231_ans.png"
+  },
+  {
+    "id": 195,
+    "frame": 232,
+    "pdf_page": 290,
+    "fen": "2r2rk1/5ppp/p1Np4/1p2b3/2P5/4P1P1/PP3PP1/2KR3R w - - 0 1",
+    "prompt": "three moves by first driving the King into the corner, and then mating with one of the themes you have learned. What is White's first move? What is the second White move?",
+    "board_img": "book_output/boards/page_290_frame_232.png",
+    "ans_img": "book_output/answers/page_290_frame_232_ans.png"
+  },
+  {
+    "id": 196,
+    "frame": 234,
+    "pdf_page": 292,
+    "fen": "1kr1r1b1/ppp3p1/5p2/2Npp2p/2PP4/R1R1PP2/PP4PP/K7 w - - 0 1",
+    "prompt": "yes Can White mate? yes If so, draw an arrow to show his first move.",
+    "board_img": "book_output/boards/page_292_frame_234.png",
+    "ans_img": "book_output/answers/page_292_frame_234_ans.png"
+  },
+  {
+    "id": 197,
+    "frame": 235,
+    "pdf_page": 293,
+    "fen": "5r1k/pbq3pp/1p2Q3/n1p1n3/4P3/3PP3/PPPN4/2K3RR w - - 0 1",
+    "prompt": "Then Rook-takes-Pawn- check; King-takes-Rook; Rook over mates.) Can White mate? yes If so, draw an arrow to show his first move.",
+    "board_img": "book_output/boards/page_293_frame_235.png",
+    "ans_img": "book_output/answers/page_293_frame_235_ans.png"
+  },
+  {
+    "id": 198,
+    "frame": 236,
+    "pdf_page": 294,
+    "fen": "3r3k/1b4pp/1q2Bp2/4pP1Q/pp6/8/PPP5/1K3R2 w - - 0 1",
+    "prompt": "is needed to cover the two potential fleeing squares at X and Y.) Can White mate? yes If so, draw an arrow to show his first move.",
+    "board_img": "book_output/boards/page_294_frame_236.png",
+    "ans_img": "book_output/answers/page_294_frame_236_ans.png"
+  },
+  {
+    "id": 199,
+    "frame": 237,
+    "pdf_page": 295,
+    "fen": "4r2k/p4p1p/1q2p1pP/2p1P1Q1/3nB1P1/P7/1P3P2/2R3K1 w - - 0 1",
+    "prompt": "(The Queen sacrifice does not work. At the end, the Black Bishop is waiting to capture White's Rook.) White has forced Black to make a Pawn weakness in front of his King. Draw an arrow showing White's first move in a mating combination:",
+    "board_img": "book_output/boards/page_295_frame_237.png",
+    "ans_img": "book_output/answers/page_295_frame_237_ans.png"
+  },
+  {
+    "id": 200,
+    "frame": 238,
+    "pdf_page": 296,
+    "fen": "2n3rk/6pp/2q1p3/pp2Ppn1/2p2N2/2P3P1/PPB2P2/K2RR3 w - - 0 1",
+    "prompt": "at the cost of giving up material, and lost soon anyway.) Can White mate? yes if so, draw an arrow to show his first move.",
+    "board_img": "book_output/boards/page_296_frame_238.png",
+    "ans_img": "book_output/answers/page_296_frame_238_ans.png"
+  },
+  {
+    "id": 201,
+    "frame": 244,
+    "pdf_page": 311,
+    "fen": "4r1rk/1pp2Qpp/p1qp4/6b1/8/1P1P4/PBP2RPP/5R1K w - - 0 1",
+    "prompt": "NO ANSWER REQUIRED Can White mate? yes If he can mate, draw an arrow to show his key first move.",
+    "board_img": "book_output/boards/page_311_frame_244.png",
+    "ans_img": "book_output/answers/page_311_frame_244_ans.png"
+  },
+  {
+    "id": 202,
+    "frame": 245,
+    "pdf_page": 312,
+    "fen": "5rk1/1p1q1p2/1bn3pp/p7/2B1Q3/1P5P/PB3PP1/4R1K1 b - - 0 1",
+    "prompt": "Can White mate? yes If \"yes,\" draw an arrow to show his first move.",
+    "board_img": "book_output/boards/page_312_frame_245.png",
+    "ans_img": "book_output/answers/page_312_frame_245_ans.png"
+  },
+  {
+    "id": 203,
+    "frame": 246,
+    "pdf_page": 313,
+    "fen": "2r3k1/p4pp1/1p2bn1p/8/8/6B1/PP2r1PP/1BRR2K1 b - - 0 1",
+    "prompt": "yes Can White mate? yes Don't forget to draw an arrow showing White's key first move, if any.",
+    "board_img": "book_output/boards/page_313_frame_246.png",
+    "ans_img": "book_output/answers/page_313_frame_246_ans.png"
+  },
+  {
+    "id": 204,
+    "frame": 247,
+    "pdf_page": 314,
+    "fen": "1k5r/1pp4r/1n4n1/1P4p1/4p2p/Q2qP1PB/7P/R4RK1 w - - 0 1",
+    "prompt": "remaining White Rook checks and Black interposes with his Rook.) mm. Can White mate? yes If he can mate, draw an arrow to show his move.",
+    "board_img": "book_output/boards/page_314_frame_247.png",
+    "ans_img": "book_output/answers/page_314_frame_247_ans.png"
+  },
+  {
+    "id": 205,
+    "frame": 248,
+    "pdf_page": 315,
+    "fen": "2r1r2k/3nq1pp/b7/pN3p2/Pp2nN2/1Q6/4BPP1/3R1KQR w - - 0 1",
+    "prompt": "Does White mate? yes If \"yes,\" draw an arrow to show his move.",
+    "board_img": "book_output/boards/page_315_frame_248.png",
+    "ans_img": "book_output/answers/page_315_frame_248_ans.png"
+  },
+  {
+    "id": 206,
+    "frame": 249,
+    "pdf_page": 316,
+    "fen": "r5k1/q4ppp/3b4/3Np3/1pQpP3/p2P4/1P3PPP/2R3K1 b - - 0 1",
+    "prompt": "yes Can White mate? yes If he can mate, show his first move with an arrow.",
+    "board_img": "book_output/boards/page_316_frame_249.png",
+    "ans_img": "book_output/answers/page_316_frame_249_ans.png"
+  },
+  {
+    "id": 207,
+    "frame": 249,
+    "pdf_page": 317,
+    "fen": "r6k/6pp/1b6/8/1pQ2N2/1P4P1/p2q1P1P/2R3K1 w - - 0 1",
+    "prompt": "(Black should take White's Queen and then interpose with his Bishop.) Does White mate? yes If \"yes,\" draw an arrow showing his first move.",
+    "board_img": "book_output/boards/page_317_frame_249.png",
+    "ans_img": "book_output/answers/page_317_frame_249_ans.png"
+  },
+  {
+    "id": 208,
+    "frame": 251,
+    "pdf_page": 318,
+    "fen": "r3b1rk/4q1pp/2p2p2/pp1pn2Q/4PN2/2PB4/PPP5/1K2R1R1 w - - 0 1",
+    "prompt": "Can White mate? yes If he can, draw an arrow to show his move.",
+    "board_img": "book_output/boards/page_318_frame_251.png",
+    "ans_img": "book_output/answers/page_318_frame_251_ans.png"
+  },
+  {
+    "id": 209,
+    "frame": 252,
+    "pdf_page": 319,
+    "fen": "4r1k1/r2b2pp/ppn4q/2p5/P3p3/2P1N3/1PB2QPP/3R1R1K w - - 0 1",
+    "prompt": "his Bishop and is then mated by the Rook.) Can White mate? yes If he can, draw an arrow to show his first move.",
+    "board_img": "book_output/boards/page_319_frame_252.png",
+    "ans_img": "book_output/answers/page_319_frame_252_ans.png"
+  },
+  {
+    "id": 210,
+    "frame": 253,
+    "pdf_page": 320,
+    "fen": "2k1r3/1pp3pp/p5q1/2b5/2P4P/1P4p1/P2Q1PB1/3R2K1 w - - 0 1",
+    "prompt": "sacrifices his Queen in order to force mate on the back rank.) Does White mate? yes If \"yes,\" draw an arrow to show his first move.",
+    "board_img": "book_output/boards/page_320_frame_253.png",
+    "ans_img": "book_output/answers/page_320_frame_253_ans.png"
+  },
+  {
+    "id": 211,
+    "frame": 254,
+    "pdf_page": 321,
+    "fen": "r1bR1rkQ/pp3ppp/2p2n2/4p1B1/4P3/8/PqP2PPP/RN1Q2K1 b - - 0 1",
+    "prompt": "left, the King will have access to a fleeing square, preventing the back-rank mate.) Can White mate? yes If White can mate, draw an arrow to show his first move.",
+    "board_img": "book_output/boards/page_321_frame_254.png",
+    "ans_img": "book_output/answers/page_321_frame_254_ans.png"
+  },
+  {
+    "id": 212,
+    "frame": 255,
+    "pdf_page": 322,
+    "fen": "6rk/1ppR1Qpp/1b6/2q1p3/3nP2N/r6P/P1P3PB/5R1K w - - 0 1",
+    "prompt": "op checks on square K, followed by Queen-takes- Knight-mate.) Can White mate? yes If White can mate, show his first move with an arrow.",
+    "board_img": "book_output/boards/page_322_frame_255.png",
+    "ans_img": "book_output/answers/page_322_frame_255_ans.png"
+  },
+  {
+    "id": 213,
+    "frame": 256,
+    "pdf_page": 323,
+    "fen": "r1r3k1/1q3pp1/7p/2bp4/1pnB2Q1/p1P5/PP2RPPP/1B2R1K1 b - - 0 1",
+    "prompt": "yes Does White mate? yes If \"yes,\" show his first move with an arrow.",
+    "board_img": "book_output/boards/page_323_frame_256.png",
+    "ans_img": "book_output/answers/page_323_frame_256_ans.png"
+  },
+  {
+    "id": 214,
+    "frame": 257,
+    "pdf_page": 324,
+    "fen": "2r3k1/6pp/p7/1br4Q/q1p5/8/1P2RPPP/2B1R1K1 w - - 0 1",
+    "prompt": "(Queen-takes-Pawn- checkmate!) Can White mate? yes If he can, draw an arrow indicating the first move.",
+    "board_img": "book_output/boards/page_324_frame_257.png",
+    "ans_img": "book_output/answers/page_324_frame_257_ans.png"
+  },
+  {
+    "id": 215,
+    "frame": 258,
+    "pdf_page": 325,
+    "fen": "2b4k/r3q1pp/ppn5/2p1p3/P1B1Nr2/2P4R/1P1R1PPP/3Q2K1 w - - 0 1",
+    "prompt": "(Black has enough pieces protecting the crucial square on his back rank.) Can White mate? yes If \"yes,\" draw an arrow showing his first move.",
+    "board_img": "book_output/boards/page_325_frame_258.png",
+    "ans_img": "book_output/answers/page_325_frame_258_ans.png"
+  },
+  {
+    "id": 216,
+    "frame": 259,
+    "pdf_page": 326,
+    "fen": "6kQ/5ppp/1bq5/1p1n1p2/1Pb4Q/2P5/5PPP/R3R1K1 b - - 0 1",
+    "prompt": "Can White mate? yes If he can, show the first move by an arrow.",
+    "board_img": "book_output/boards/page_326_frame_259.png",
+    "ans_img": "book_output/answers/page_326_frame_259_ans.png"
+  },
+  {
+    "id": 217,
+    "frame": 260,
+    "pdf_page": 327,
+    "fen": "3r1rk1/pp3pb1/1q4p1/2p5/2P4Q/2B5/PP2R1PP/4R1K1 w - - 0 1",
+    "prompt": "(Black's back rank is adequately protected.) Does White mate? yes If \"yes,\" show his first move with an arrow.",
+    "board_img": "book_output/boards/page_327_frame_260.png",
+    "ans_img": "book_output/answers/page_327_frame_260_ans.png"
+  },
+  {
+    "id": 218,
+    "frame": 261,
+    "pdf_page": 328,
+    "fen": "r5k1/5ppp/pn4b1/1pp1r3/7q/1BP2Q2/PP1R1PPP/3R1NK1 w - - 0 1",
+    "prompt": "Can White mate? yes If he can, draw an arrow to show his first move.",
+    "board_img": "book_output/boards/page_328_frame_261.png",
+    "ans_img": "book_output/answers/page_328_frame_261_ans.png"
+  },
+  {
+    "id": 219,
+    "frame": 262,
+    "pdf_page": 329,
+    "fen": "1kr1b2r/pppQR3/8/4Npnq/P1P3pp/2P5/5PPP/3R1NK1 w - - 0 1",
+    "prompt": "yes Does White mate? yes If \"yes,\" show his first move with an arrow.",
+    "board_img": "book_output/boards/page_329_frame_262.png",
+    "ans_img": "book_output/answers/page_329_frame_262_ans.png"
+  },
+  {
+    "id": 220,
+    "frame": 263,
+    "pdf_page": 330,
+    "fen": "6k1/q4ppp/3p4/3P1QN1/8/1p4PP/6PK/r7 b - - 0 1",
+    "prompt": "thereby enabling White to play Queen-takes-Rook- mate.) Does White mate? yes If \"yes,\" show his first move with an arrow.",
+    "board_img": "book_output/boards/page_330_frame_263.png",
+    "ans_img": "book_output/answers/page_330_frame_263_ans.png"
+  },
+  {
+    "id": 221,
+    "frame": 264,
+    "pdf_page": 331,
+    "fen": "1k3r1r/1pp3p1/p1p3q1/4b3/2P1P2p/3QB1P1/PP5P/3R1RK1 w - - 0 1",
+    "prompt": "yes Can White mate? yes if he can, draw an arrow to show the correct move.",
+    "board_img": "book_output/boards/page_331_frame_264.png",
+    "ans_img": "book_output/answers/page_331_frame_264_ans.png"
+  },
+  {
+    "id": 222,
+    "frame": 265,
+    "pdf_page": 332,
+    "fen": "3R4/1q4pk/2b1p3/pn2P1P1/1p6/2p1B3/PPP5/2K3R1 w - - 0 1",
+    "prompt": "Black's first move from the position shown. Work it out!) Does White mate? yes If \"yes,\" draw an arrow to show his move.",
+    "board_img": "book_output/boards/page_332_frame_265.png",
+    "ans_img": "book_output/answers/page_332_frame_265_ans.png"
+  },
+  {
+    "id": 223,
+    "frame": 266,
+    "pdf_page": 333,
+    "fen": "R4nk1/2q2pp1/4p2p/2ppP3/1r1P4/1P1Q4/2B2PPP/6K1 b - - 0 1",
+    "prompt": "yes Does White mate? yes If \"yes\" draw an arrow showing his move.",
+    "board_img": "book_output/boards/page_333_frame_266.png",
+    "ans_img": "book_output/answers/page_333_frame_266_ans.png"
+  },
+  {
+    "id": 224,
+    "frame": 267,
+    "pdf_page": 334,
+    "fen": "r6k/p4ppp/4p3/3pP3/q1p1n3/P1P2N2/1QP2PPP/1R4K1 w - - 0 1",
+    "prompt": "mnm am m Can White mate? yes If he can, show the correct move with an arrow.",
+    "board_img": "book_output/boards/page_334_frame_267.png",
+    "ans_img": "book_output/answers/page_334_frame_267_ans.png"
+  },
+  {
+    "id": 225,
+    "frame": 268,
+    "pdf_page": 335,
+    "fen": "1b3rk1/p4ppp/2p5/1pN5/1P3nq1/PB6/5PPP/4R1K1 w - - 0 1",
+    "prompt": "(On Queen-checks, Black interposes with his Queen — but if he plays Rook-takes-Queen, White mates.) Can White mate? yes If he can, draw an arrow showing his first move.",
+    "board_img": "book_output/boards/page_335_frame_268.png",
+    "ans_img": "book_output/answers/page_335_frame_268_ans.png"
+  },
+  {
+    "id": 226,
+    "frame": 269,
+    "pdf_page": 336,
+    "fen": "1r4k1/q4pp1/b3p2p/3p4/pr1P3Q/3B4/PPR2PPP/2R3K1 b - - 0 1",
+    "prompt": "yes Does White mate? yes If \"yes,\" show his correct move with an arrow.",
+    "board_img": "book_output/boards/page_336_frame_269.png",
+    "ans_img": "book_output/answers/page_336_frame_269_ans.png"
+  },
+  {
+    "id": 227,
+    "frame": 270,
+    "pdf_page": 337,
+    "fen": "r4rk1/pp2Qppp/1qp5/5n1b/2BP4/1P2RN1P/P4PP1/4R1K1 w - - 0 1",
+    "prompt": "White mates by moving his Queen to square X.) ill IF W W Does White mate? yes If \"yes,\" show his first move with an arrow.",
+    "board_img": "book_output/boards/page_337_frame_270.png",
+    "ans_img": "book_output/answers/page_337_frame_270_ans.png"
+  },
+  {
+    "id": 228,
+    "frame": 271,
+    "pdf_page": 338,
+    "fen": "r6k/7p/3p4/3PpB2/1K2P3/1P1bbR1N/1P5P/8 b - - 0 1",
+    "prompt": "(If Queen-takes-Pawn-check, the Bishop takes the Queen and Black says \"Thank you!\") Here's a finish from one of my games: Can Black mate? yes If he can, draw an arrow showing the correct move.",
+    "board_img": "book_output/boards/page_338_frame_271.png",
+    "ans_img": "book_output/answers/page_338_frame_271_ans.png"
+  },
+  {
+    "id": 229,
+    "frame": 272,
+    "pdf_page": 339,
+    "fen": "7k/1p4pp/1n3r2/3p4/3Pp1pq/QP2P3/5PPP/2RN2K1 w - - 0 1",
+    "prompt": "yes Does White mate? yes If \"yes/ 1 show the correct move by an arrow.",
+    "board_img": "book_output/boards/page_339_frame_272.png",
+    "ans_img": "book_output/answers/page_339_frame_272_ans.png"
+  },
+  {
+    "id": 230,
+    "frame": 273,
+    "pdf_page": 340,
+    "fen": "5rk1/4Qppp/1p3n2/q5n1/8/P1r1R1P1/B4PNP/3R2K1 w - - 0 1",
+    "prompt": "with one useless inter- position before check- mate.) Does White mate? yes If \"yes,\" draw an arrow showing his first move.",
+    "board_img": "book_output/boards/page_340_frame_273.png",
+    "ans_img": "book_output/answers/page_340_frame_273_ans.png"
+  },
+  {
+    "id": 231,
+    "frame": 274,
+    "pdf_page": 341,
+    "fen": "6k1/2p2ppp/1p5q/p1bQ4/8/P1P5/1PB2PPP/6K1 w - - 0 1",
+    "prompt": "the lower left checks, with mate on the next move.) Can White mate? yes If he can, draw an arrow to show his first move.",
+    "board_img": "book_output/boards/page_341_frame_274.png",
+    "ans_img": "book_output/answers/page_341_frame_274_ans.png"
+  },
+  {
+    "id": 232,
+    "frame": 275,
+    "pdf_page": 342,
+    "fen": "r6k/pp1b2p1/3Np2p/r3P3/1q1p1PRQ/3B4/2PK1B1P/4R3 w - - 0 1",
+    "prompt": "(The Black Bishop can interpose safely.) From Fischer-Ben ko, 1962: Can White mate? yes",
+    "board_img": "book_output/boards/page_342_frame_275.png",
+    "ans_img": "book_output/answers/page_342_frame_275_ans.png"
+  }
+]
