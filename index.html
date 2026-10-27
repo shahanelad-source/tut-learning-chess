@@ -3,27 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Bobby Fischer Teaches Chess — Practice</title>
+  <title>Bobby Fischer Teaches Chess</title>
 
   <!-- Chessboard.js CSS -->
   <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css" />
 
   <style>
     :root {
-      --bg: #0f172a;
-      --surface: #1e293b;
-      --surface-2: #334155;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --accent: #3b82f6;
-      --accent-hover: #2563eb;
-      --success: #10b981;
-      --success-bg: rgba(16, 185, 129, 0.15);
-      --error: #ef4444;
-      --error-bg: rgba(239, 68, 68, 0.15);
-      --warning: #f59e0b;
-      --border: #334155;
-      --radius: 12px;
+      --bg-paper: #fbf8f2;
+      --header-bg: #f5f0e6;
+      --card-bg: #f2ece0;
+      --card-border: #dcd3c2;
+      --text-main: #1f1b18;
+      --text-muted: #5c5346;
+      --board-light: #f0d9b5;
+      --board-dark: #b58863;
+      --board-border: #3a2e25;
+      --btn-tan: #b69574;
+      --btn-tan-hover: #a38261;
+      --btn-sage: #6b7d76;
+      --btn-sage-hover: #596963;
+      --success: #2e7d32;
+      --success-bg: #e8f5e9;
+      --error: #c62828;
+      --error-bg: #ffebee;
     }
 
     * {
@@ -34,8 +37,8 @@
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
+      background-color: var(--bg-paper);
+      color: var(--text-main);
       min-height: 100dvh;
       display: flex;
       flex-direction: column;
@@ -43,139 +46,148 @@
 
     /* Top Navigation Bar */
     header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 10px 16px;
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--card-border);
+      padding: 10px 20px;
       position: sticky;
       top: 0;
       z-index: 30;
     }
 
-    .header-top {
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      max-width: 1100px;
-      margin: 0 auto;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
     .brand {
-      font-weight: 700;
-      font-size: 1rem;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--text-main);
       display: flex;
       align-items: center;
       gap: 8px;
-      white-space: nowrap;
     }
 
-    .progress-pill {
-      background: var(--surface-2);
-      color: var(--text);
-      font-size: 0.8rem;
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .frame-label {
+      font-size: 0.92rem;
       font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 999px;
-      white-space: nowrap;
-    }
-
-    .progress-bar-track {
-      max-width: 1100px;
-      margin: 8px auto 0;
-      height: 5px;
-      background: var(--surface-2);
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      background: var(--success);
-      width: 0%;
-      transition: width 0.3s ease;
-    }
-
-    /* Controls Bar */
-    .controls-bar {
-      max-width: 1100px;
-      margin: 8px auto 0;
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    select, button, input[type="text"] {
-      font-family: inherit;
-      font-size: 0.9rem;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      color: var(--text);
-      padding: 7px 10px;
+      color: var(--text-main);
     }
 
     select {
-      flex: 1;
-      min-width: 0;
-      text-overflow: ellipsis;
+      font-family: inherit;
+      font-size: 0.9rem;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid #c9bfae;
+      background: #fdfbf7;
+      color: var(--text-main);
+      min-width: 160px;
+      max-width: 240px;
+      cursor: pointer;
+    }
+
+    .solved-pill {
+      background: #e6dfd1;
+      border: 1px solid #cfc5b3;
+      color: var(--text-main);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      white-space: nowrap;
     }
 
     .icon-btn {
-      background: var(--surface-2);
-      border: none;
-      color: var(--text);
-      padding: 7px 11px;
+      background: #e6dfd1;
+      border: 1px solid #cfc5b3;
+      color: var(--text-main);
+      padding: 5px 9px;
+      border-radius: 6px;
       cursor: pointer;
+      font-size: 0.85rem;
       font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      transition: background 0.15s;
     }
 
     .icon-btn:hover {
-      background: #475569;
+      background: #dad1c0;
     }
 
-    /* Main Workspace */
+    /* Main 2-Column Layout */
     main {
       flex: 1;
-      max-width: 1100px;
+      max-width: 1120px;
       width: 100%;
       margin: 0 auto;
-      padding: 16px;
+      padding: 24px 20px 40px;
       display: grid;
-      grid-template-columns: minmax(280px, 460px) 1fr;
-      gap: 24px;
+      grid-template-columns: minmax(300px, 520px) minmax(300px, 420px);
+      justify-content: center;
+      gap: 40px;
       align-items: start;
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 860px) {
       main {
         grid-template-columns: 1fr;
-        padding: 12px 12px 84px 12px;
-        gap: 14px;
+        gap: 20px;
+        padding: 16px 14px 32px;
+      }
+      .header-inner {
+        justify-content: space-between;
+      }
+      .frame-label {
+        display: none;
+      }
+      select {
+        min-width: 130px;
+        flex: 1;
       }
     }
 
-    /* Board Container */
-    .board-section {
+    /* Left Column: Board Area */
+    .board-column {
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
     }
 
-    .board-wrapper {
+    .board-heading {
+      margin: 0 0 14px 0;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-main);
+      text-align: center;
+      letter-spacing: -0.02em;
+    }
+
+    @media (max-width: 600px) {
+      .board-heading {
+        font-size: 1.35rem;
+        margin-bottom: 10px;
+      }
+    }
+
+    .board-frame {
       width: 100%;
-      max-width: 440px;
+      max-width: 480px;
       aspect-ratio: 1 / 1;
-      position: relative;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-      /* Prevents page scrolling while dragging pieces on mobile */
+      border: 2px solid var(--board-border);
+      background: var(--board-light);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
       touch-action: none;
       user-select: none;
     }
@@ -185,40 +197,38 @@
       height: 100%;
     }
 
-    .board-toolbar {
-      width: 100%;
-      max-width: 440px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 8px;
-      font-size: 0.85rem;
-      color: var(--text-muted);
+    /* Remove Chessboard.js inner border so our crisp 2px outer border matches the screenshot */
+    .board-b72b1 {
+      border: none !important;
     }
 
-    .turn-indicator {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+    /* Classic Warm Tan & Brown Squares */
+    .white-1e1d7 {
+      background-color: var(--board-light) !important;
+      color: var(--board-dark) !important;
+    }
+
+    .black-3c85d {
+      background-color: var(--board-dark) !important;
+      color: var(--board-light) !important;
+    }
+
+    /* Make coordinates crisp like the screenshot */
+    .notation-322f9 {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
       font-weight: 600;
-      color: var(--text);
     }
 
-    .turn-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      display: inline-block;
-      border: 2px solid var(--border);
+    /* Subtle 3D drop-shadow on pieces matching your screenshot */
+    #board img.piece-417db {
+      filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.42));
     }
-
-    .turn-dot.white { background: #ffffff; }
-    .turn-dot.black { background: #1e293b; border-color: #94a3b8; }
 
     /* Square Highlights for Tap-to-Move & Last Move */
     .highlight-selected {
-      box-shadow: inset 0 0 0 4px #f59e0b !important;
-      background-color: rgba(245, 158, 11, 0.35) !important;
+      box-shadow: inset 0 0 0 4px #d97706 !important;
+      background-color: rgba(245, 158, 11, 0.4) !important;
     }
 
     .highlight-legal {
@@ -228,142 +238,187 @@
     .highlight-legal::after {
       content: "";
       position: absolute;
-      width: 28%;
-      height: 28%;
-      background: rgba(16, 185, 129, 0.75);
+      width: 26%;
+      height: 26%;
+      background: rgba(30, 27, 24, 0.35);
       border-radius: 50%;
-      top: 36%;
-      left: 36%;
+      top: 37%;
+      left: 37%;
       pointer-events: none;
     }
 
     .highlight-last-move {
-      background-color: rgba(59, 130, 246, 0.35) !important;
+      box-shadow: inset 0 0 0 3px rgba(46, 125, 50, 0.65) !important;
     }
 
-    /* Tutor / Instruction Panel */
-    .tutor-panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .frame-meta {
+    .board-subcontrols {
+      width: 100%;
+      max-width: 480px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
     }
 
-    .chapter-badge {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--accent);
-      font-weight: 700;
+    /* Right Column: Book Instruction Card */
+    .tutor-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-left: 4px solid #dfd6c3;
+      border-radius: 8px;
+      padding: 26px 24px 20px;
+      box-shadow: 0 8px 24px rgba(60, 45, 30, 0.09);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 44px;
     }
 
-    .solved-badge {
-      font-size: 0.78rem;
+    @media (max-width: 860px) {
+      .tutor-card {
+        margin-top: 0;
+        padding: 20px 18px;
+      }
+    }
+
+    .chapter-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      line-height: 1.35;
+      color: var(--text-main);
+      margin: 0;
+    }
+
+    .frame-subtitle {
+      font-size: 0.95rem;
       font-weight: 700;
-      padding: 3px 9px;
-      border-radius: 999px;
+      color: var(--text-main);
+      margin: -6px 0 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .solved-tag {
+      font-size: 0.78rem;
       background: var(--success-bg);
       color: var(--success);
+      border: 1px solid #a5d6a7;
+      padding: 2px 8px;
+      border-radius: 4px;
       display: none;
     }
 
-    .solved-badge.visible {
+    .solved-tag.visible {
       display: inline-block;
     }
 
-    .frame-title {
-      margin: 0;
-      font-size: 1.2rem;
-      font-weight: 700;
-    }
-
     .prompt-text {
-      font-size: 1.02rem;
-      line-height: 1.6;
-      color: #e2e8f0;
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--text-main);
       white-space: pre-line;
+      margin: 0;
     }
 
-    /* Multiple Choice & Input Area */
-    .options-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 10px;
+    /* Choice Options (Book style A / B list) */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
-    .option-btn {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 12px 14px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 0.95rem;
+    .option-item {
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid #cfc5b3;
+      border-radius: 6px;
+      padding: 10px 12px;
+      font-size: 0.96rem;
+      font-weight: 500;
+      color: var(--text-main);
+      text-align: left;
       cursor: pointer;
-      text-align: center;
-      transition: all 0.15s;
+      transition: background 0.15s, border-color 0.15s;
     }
 
-    .option-btn:hover {
-      border-color: var(--accent);
-      background: rgba(59, 130, 246, 0.1);
+    .option-item:hover {
+      background: #ffffff;
+      border-color: #9e8f77;
     }
 
-    .option-btn.correct {
+    .option-item.correct {
       background: var(--success-bg);
       border-color: var(--success);
       color: var(--success);
+      font-weight: 700;
     }
 
-    .option-btn.wrong {
+    .option-item.wrong {
       background: var(--error-bg);
       border-color: var(--error);
       color: var(--error);
     }
 
-    .text-answer-row {
+    /* Boxed Move Input Container */
+    .move-input-box {
+      border: 1px solid #b5ab99;
+      border-radius: 6px;
+      background: #f9f6f0;
+      padding: 10px 12px;
       display: flex;
+      flex-direction: column;
       gap: 8px;
     }
 
-    .text-answer-row input {
+    .move-input-label {
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    .move-input-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .move-input-row input {
       flex: 1;
-      padding: 10px 12px;
-      font-size: 0.95rem;
+      border: 1px solid #d5ccb9;
+      background: #ffffff;
+      border-radius: 4px;
+      padding: 7px 10px;
+      font-size: 0.92rem;
+      color: var(--text-main);
+      outline: none;
     }
 
-    .primary-btn {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 8px;
+    .move-input-row input:focus {
+      border-color: #8c7a60;
+    }
+
+    .check-btn {
+      background: #e2dacb;
+      border: 1px solid #bfb5a2;
+      color: var(--text-main);
       font-weight: 600;
+      font-size: 0.88rem;
+      padding: 7px 14px;
+      border-radius: 4px;
       cursor: pointer;
-      transition: background 0.15s;
     }
 
-    .primary-btn:hover {
-      background: var(--accent-hover);
+    .check-btn:hover {
+      background: #d5cbb8;
     }
 
-    /* Feedback & Explanation Box */
+    /* Feedback & Explanation */
     .feedback-box {
-      padding: 12px 14px;
-      border-radius: 10px;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 0.92rem;
       font-weight: 600;
-      font-size: 0.95rem;
       display: none;
       line-height: 1.45;
     }
@@ -371,32 +426,31 @@
     .feedback-box.success {
       display: block;
       background: var(--success-bg);
-      border: 1px solid var(--success);
-      color: #6ee7b7;
+      border: 1px solid #81c784;
+      color: var(--success);
     }
 
     .feedback-box.error {
       display: block;
       background: var(--error-bg);
-      border: 1px solid var(--error);
-      color: #fca5a5;
+      border: 1px solid #e57373;
+      color: var(--error);
     }
 
     .feedback-box.info {
       display: block;
-      background: rgba(59, 130, 246, 0.15);
-      border: 1px solid var(--accent);
-      color: #93c5fd;
+      background: #e8e2d5;
+      border: 1px solid #c5bba8;
+      color: var(--text-main);
     }
 
     .explanation-box {
-      background: rgba(255, 255, 255, 0.04);
-      border-left: 4px solid var(--accent);
-      padding: 12px 14px;
-      border-radius: 0 8px 8px 0;
-      font-size: 0.95rem;
-      line-height: 1.55;
-      color: #cbd5e1;
+      background: #fbf9f4;
+      border-left: 3px solid var(--btn-tan);
+      padding: 10px 12px;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      color: var(--text-main);
       display: none;
       white-space: pre-line;
     }
@@ -405,60 +459,71 @@
       display: block;
     }
 
-    /* Action Buttons (Hint, Solution, Navigation) */
-    .helper-actions {
+    /* Full-Width Action Buttons (Hint & Show Answer) */
+    .action-stack {
       display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      padding-top: 4px;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
     }
 
-    /* Bottom Navigation Bar (Sticky on Mobile) */
-    .nav-bar {
+    .full-btn {
+      width: 100%;
+      padding: 11px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.15s;
+    }
+
+    .btn-hint {
+      background: var(--btn-tan);
+    }
+
+    .btn-hint:hover {
+      background: var(--btn-tan-hover);
+    }
+
+    .btn-answer {
+      background: var(--btn-sage);
+    }
+
+    .btn-answer:hover {
+      background: var(--btn-sage-hover);
+    }
+
+    /* Card Footer Navigation (← Prev / Next →) */
+    .card-nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
-      margin-top: 8px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
+      padding-top: 8px;
+      margin-top: 4px;
     }
 
-    @media (max-width: 800px) {
-      .nav-bar {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: var(--surface);
-        padding: 10px 16px;
-        margin: 0;
-        z-index: 30;
-        box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.35);
-      }
-    }
-
-    .nav-btn {
-      flex: 1;
-      padding: 12px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 0.95rem;
+    .text-nav-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      font-size: 0.98rem;
+      font-weight: 600;
+      padding: 6px 4px;
       cursor: pointer;
-      border: 1px solid var(--border);
-      background: var(--surface-2);
-      color: var(--text);
-      text-align: center;
     }
 
-    .nav-btn.next-highlight {
-      background: var(--success);
-      border-color: var(--success);
-      color: #052e16;
+    .text-nav-btn:hover:not(:disabled) {
+      text-decoration: underline;
     }
 
-    .nav-btn:disabled {
-      opacity: 0.4;
+    .text-nav-btn:disabled {
+      opacity: 0.35;
       cursor: not-allowed;
     }
 
@@ -469,91 +534,80 @@
 </head>
 <body>
 
+  <!-- Top Header -->
   <header>
-    <div class="header-top">
+    <div class="header-inner">
       <div class="brand">
-        <span>♟️ Fischer Chess Practice</span>
+        <span>♟ Bobby Fischer Teaches Chess</span>
       </div>
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <span id="progressPill" class="progress-pill">0 / 0 Solved</span>
-        <button class="icon-btn" id="uploadJsonBtn" title="Load custom exercises.json file">📂</button>
-        <button class="icon-btn" id="resetProgressBtn" title="Reset Solved Progress">🗑️</button>
+
+      <div class="header-controls">
+        <span class="frame-label">Frame:</span>
+        <select id="exerciseSelect" aria-label="Select Frame"></select>
+        <span id="progressPill" class="solved-pill">0 / 0 Solved</span>
+        <button class="icon-btn" id="uploadJsonBtn" title="Load local exercises.json">📂</button>
+        <button class="icon-btn" id="resetProgressBtn" title="Reset progress">↺</button>
         <input type="file" id="jsonFileInput" accept=".json" class="hidden" />
       </div>
     </div>
-
-    <div class="progress-bar-track">
-      <div id="progressBarFill" class="progress-bar-fill"></div>
-    </div>
-
-    <div class="controls-bar">
-      <select id="filterSelect" style="max-width: 125px;" aria-label="Filter exercises">
-        <option value="all">All Frames</option>
-        <option value="unsolved">Unsolved</option>
-        <option value="solved">Solved ✓</option>
-      </select>
-      <select id="exerciseSelect" aria-label="Jump to exercise"></select>
-    </div>
   </header>
 
+  <!-- Main Content -->
   <main>
-    <!-- Left / Top: Interactive Board -->
-    <section class="board-section" id="boardSection">
-      <div class="board-wrapper">
+    <!-- Left Column: Heading + Crisp Board -->
+    <section class="board-column" id="boardSection">
+      <h1 class="board-heading" id="boardHeading">1. Interactive Board</h1>
+
+      <div class="board-frame">
         <div id="board"></div>
       </div>
-      <div class="board-toolbar">
-        <div class="turn-indicator" id="turnIndicator">
-          <span class="turn-dot white" id="turnDot"></span>
-          <span id="turnText">White to move</span>
-        </div>
+
+      <div class="board-subcontrols">
+        <span id="turnText">White to move</span>
         <div style="display: flex; gap: 6px;">
-          <button class="icon-btn" id="resetBoardBtn" title="Reset board position">↺ Reset</button>
-          <button class="icon-btn" id="flipBoardBtn" title="Flip board">⇅ Flip</button>
+          <button class="icon-btn" id="resetBoardBtn">Reset Position</button>
+          <button class="icon-btn" id="flipBoardBtn">Flip Board</button>
         </div>
       </div>
     </section>
 
-    <!-- Right / Bottom: Programmed Instruction Panel -->
-    <section class="tutor-panel">
-      <div>
-        <div class="frame-meta">
-          <span class="chapter-badge" id="chapterBadge">Chapter 1</span>
-          <span class="solved-badge" id="solvedBadge">✓ SOLVED</span>
-        </div>
-        <h1 class="frame-title" id="frameTitle">Loading exercises...</h1>
+    <!-- Right Column: Book Instruction Card -->
+    <section class="tutor-card">
+      <h2 class="chapter-title" id="chapterTitle">Chapter 1 — Elements of Checkmate</h2>
+
+      <div class="frame-subtitle">
+        <span id="frameSubtitle">Frame 1</span>
+        <span id="solvedBadge" class="solved-tag">✓ Solved</span>
       </div>
 
-      <div class="prompt-text" id="promptText">
-        Fetching exercises.json...
-      </div>
+      <p class="prompt-text" id="promptText">Loading exercises.json...</p>
 
       <!-- Multiple Choice Options -->
-      <div id="optionsContainer" class="options-grid hidden"></div>
+      <div id="optionsContainer" class="options-list hidden"></div>
 
-      <!-- Free Text / Move Notation Input (fallback or optional) -->
-      <div id="textInputContainer" class="text-answer-row hidden">
-        <input type="text" id="answerInput" placeholder="Type move (e.g. Qxh7#) or answer..." autocomplete="off" />
-        <button class="primary-btn" id="submitAnswerBtn">Check</button>
+      <!-- Move / Text Input Box -->
+      <div id="textInputContainer" class="move-input-box">
+        <span class="move-input-label">Or type your move (e.g., Qxh7#)</span>
+        <div class="move-input-row">
+          <input type="text" id="answerInput" placeholder="" autocomplete="off" />
+          <button class="check-btn" id="submitAnswerBtn">Check</button>
+        </div>
       </div>
 
-      <!-- Feedback Banner -->
+      <!-- Feedback & Book Explanation -->
       <div id="feedbackBox" class="feedback-box"></div>
-
-      <!-- Book Explanation -->
       <div id="explanationBox" class="explanation-box"></div>
 
-      <!-- Helper Actions -->
-      <div class="helper-actions">
-        <button class="icon-btn" id="hintBtn">💡 Hint</button>
-        <button class="icon-btn" id="solutionBtn">👁️ Show Answer</button>
-        <button class="icon-btn hidden" id="markReadBtn">✓ Mark Completed</button>
+      <!-- Hint & Show Answer Buttons -->
+      <div class="action-stack">
+        <button class="full-btn btn-hint" id="hintBtn">💡 Hint</button>
+        <button class="full-btn btn-answer" id="solutionBtn">👁 Show Answer</button>
       </div>
 
-      <!-- Prev / Next Navigation -->
-      <div class="nav-bar">
-        <button class="nav-btn" id="prevBtn">← Prev</button>
-        <button class="nav-btn" id="nextBtn">Next →</button>
+      <!-- Prev / Next Footer -->
+      <div class="card-nav">
+        <button class="text-nav-btn" id="prevBtn">← Prev</button>
+        <button class="text-nav-btn" id="nextBtn">Next →</button>
       </div>
     </section>
   </main>
@@ -564,20 +618,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
 
   <script>
-    /********************************************************************
-     * 1. STATE & PROGRESS PERSISTENCE
-     ********************************************************************/
     const STORAGE_KEY = 'bftc_practice_progress_v1';
 
     let exercises = [];
-    let filteredIndices = [];
-    let currentIndex = 0; // index inside `exercises`
-
+    let currentIndex = 0;
     let game = new Chess();
     let board = null;
     let selectedSquare = null;
-    let currentStepIndex = 0; // For multi-move sequences
-    let exerciseSolvedInSession = false;
+    let currentStepIndex = 0;
 
     let progress = loadProgress();
 
@@ -590,9 +638,7 @@
             solvedIds: saved.solvedIds.map(String)
           };
         }
-      } catch (e) {
-        console.warn('Could not parse saved progress:', e);
-      }
+      } catch (e) {}
       return { currentIndex: 0, solvedIds: [] };
     }
 
@@ -607,51 +653,41 @@
       if (!progress.solvedIds.includes(idStr)) {
         progress.solvedIds.push(idStr);
       }
-      exerciseSolvedInSession = true;
       saveProgress();
       document.getElementById('solvedBadge').classList.add('visible');
-      document.getElementById('nextBtn').classList.add('next-highlight');
       populateDropdown();
     }
 
-    /********************************************************************
-     * 2. FLEXIBLE JSON SCHEMA ADAPTER
-     ********************************************************************/
     function normalizeExercise(raw, idx) {
-      // Support user_correction overrides if present from review tool
       const corr = (raw.user_correction && typeof raw.user_correction === 'object')
         ? raw.user_correction
         : {};
 
       const id = raw.id ?? raw.frame ?? (idx + 1);
       const frame = raw.frame ?? raw.id ?? (idx + 1);
-      const chapter = corr.chapter || raw.chapter || (raw.pdf_page ? `Page ${raw.pdf_page}` : 'Bobby Fischer Teaches Chess');
-      const title = corr.title || raw.title || `Frame #${frame}`;
-      const prompt = corr.prompt || corr.text || raw.prompt || raw.text || raw.question || 'Find the best continuation.';
+      const chapter = corr.chapter || raw.chapter || 'Chapter 1 — Elements of Checkmate';
+      const title = corr.title || raw.title || `${frame}. Interactive Board`;
+      const prompt = corr.prompt || corr.text || raw.prompt || raw.text || raw.question || 'Make the best move on the board or choose below:';
       const fen = (corr.fen ?? raw.fen ?? '').trim();
       const explanation = corr.explanation || raw.explanation || '';
 
-      // Extract solution(s)
       let rawSol = corr.solution ?? corr.correct ?? raw.solution ?? raw.correct ?? raw.bestMove ?? [];
       let solutions = [];
       if (Array.isArray(rawSol)) {
         solutions = rawSol.map(s => String(s).trim()).filter(Boolean);
       } else if (typeof rawSol === 'string' || typeof rawSol === 'number') {
-        // Split comma or slash separated alternatives if not a single phrase
         const str = String(rawSol).trim();
         solutions = str ? [str] : [];
       }
 
-      // Extract options
       let options = Array.isArray(corr.options || raw.options)
         ? (corr.options || raw.options).map(String)
         : [];
 
-      // Auto-detect Yes/No questions if options aren't explicitly listed
       if (options.length === 0 && solutions.length === 1) {
         const lowerSol = solutions[0].toLowerCase();
         if (lowerSol === 'yes' || lowerSol === 'no') {
-          options = ['Yes', 'No'];
+          options = ['A) Yes', 'B) No'];
         }
       }
 
@@ -664,14 +700,10 @@
         fen,
         solutions,
         options,
-        explanation,
-        type: corr.type || raw.type || 'auto'
+        explanation
       };
     }
 
-    /********************************************************************
-     * 3. LOAD EXERCISES.JSON (WITH CACHE BUSTING)
-     ********************************************************************/
     async function loadExercisesFromServer() {
       try {
         const response = await fetch(`./exercises.json?t=${Date.now()}`);
@@ -679,10 +711,21 @@
         const data = await response.json();
         initDataset(data);
       } catch (err) {
-        console.warn('Could not auto-fetch ./exercises.json:', err);
-        document.getElementById('frameTitle').textContent = 'Could not load exercises.json';
-        document.getElementById('promptText').textContent =
-          'Make sure exercises.json is uploaded in the same folder as index.html on GitHub, or tap the 📂 folder icon in the top bar to load your exercises.json file directly.';
+        // Fallback demo frame matching your screenshot if exercises.json isn't loaded yet
+        initDataset([{
+          id: "2",
+          frame: 2,
+          chapter: "Chapter 1 — Elements of Checkmate",
+          title: "2. Interactive Board",
+          fen: "7k/6pQ/8/5B2/8/8/8/4K3 w - - 0 1",
+          prompt: "Can White checkmate the Black King in one move? Make the move on the board or choose below:",
+          options: [
+            "A) Yes, play Qxh7# (Checkmate)",
+            "B) No, checkmate is not possible."
+          ],
+          solution: ["Qxh7#", "Yes", "A) Yes, play Qxh7# (Checkmate)"],
+          explanation: "White plays Qxh7# (or Qxg7#), checkmating the Black King since the Bishop on f5 protects the Queen."
+        }]);
       }
     }
 
@@ -692,11 +735,7 @@
         : (data.exercises || data.frames || Object.values(data));
 
       exercises = rawList.map((item, idx) => normalizeExercise(item, idx));
-
-      if (exercises.length === 0) {
-        document.getElementById('frameTitle').textContent = 'No exercises found in JSON';
-        return;
-      }
+      if (!exercises.length) return;
 
       if (progress.currentIndex >= exercises.length || progress.currentIndex < 0) {
         progress.currentIndex = 0;
@@ -708,25 +747,22 @@
       renderExercise(currentIndex);
     }
 
-    /********************************************************************
-     * 4. CHESSBOARD & TAP-TO-MOVE INITIALIZATION
-     ********************************************************************/
     function initBoard() {
-      const config = {
+      board = Chessboard('board', {
         draggable: true,
         position: 'start',
+        showNotation: true,
         pieceTheme: 'https://chessboardjs.com/img/chesspieces/wikipedia/{piece}.png',
         onDragStart: onDragStart,
         onDrop: onDrop,
         onSnapEnd: onSnapEnd
-      };
-      board = Chessboard('board', config);
+      });
 
       window.addEventListener('resize', () => {
         if (board) board.resize();
       });
 
-      // Enable Tap-to-Move on squares (essential for mobile comfort)
+      // Tap-to-move support for mobile & desktop
       $('#board').on('click', '.square-55d63', function () {
         const square = $(this).attr('data-square');
         if (square) handleSquareTap(square);
@@ -749,21 +785,17 @@
     function handleSquareTap(square) {
       if (game.game_over()) return;
 
-      // If a square is already selected, try moving to the tapped square
       if (selectedSquare) {
         if (selectedSquare === square) {
           clearHighlights();
           return;
         }
         const pieceOnTarget = game.get(square);
-        // If tapping another friendly piece, switch selection to it
         if (pieceOnTarget && pieceOnTarget.color === game.turn()) {
           selectPieceSquare(square);
           return;
         }
-
-        // Attempt move
-        const moveAttempt = tryMakeMove(selectedSquare, square);
+        const moveAttempt = game.move({ from: selectedSquare, to: square, promotion: 'q' });
         clearHighlights();
         if (moveAttempt) {
           board.position(game.fen());
@@ -772,7 +804,6 @@
         return;
       }
 
-      // Otherwise, select the square if it contains a piece of the side to move
       const piece = game.get(square);
       if (piece && piece.color === game.turn()) {
         selectPieceSquare(square);
@@ -783,7 +814,6 @@
       clearHighlights();
       selectedSquare = square;
       $(`#board .square-${square}`).addClass('highlight-selected');
-
       const legalMoves = game.moves({ square: square, verbose: true });
       legalMoves.forEach(m => {
         $(`#board .square-${m.to}`).addClass('highlight-legal');
@@ -801,34 +831,17 @@
     function onDrop(source, target) {
       clearHighlights();
       if (source === target) return;
-
-      const move = tryMakeMove(source, target);
+      const move = game.move({ from: source, to: target, promotion: 'q' });
       if (move === null) return 'snapback';
-
-      // Defer validation slightly so snap finishes cleanly
-      setTimeout(() => validateBoardMove(move), 50);
+      setTimeout(() => validateBoardMove(move), 40);
     }
 
     function onSnapEnd() {
       board.position(game.fen());
     }
 
-    function tryMakeMove(from, to) {
-      return game.move({
-        from: from,
-        to: to,
-        promotion: 'q' // Default auto-queen for smooth mobile touch play
-      });
-    }
-
-    /********************************************************************
-     * 5. MOVE & ANSWER VALIDATION ENGINE
-     ********************************************************************/
     function cleanNotation(str) {
-      return String(str)
-        .trim()
-        .replace(/[+#?!x=\-\s]/g, '')
-        .toLowerCase();
+      return String(str).trim().replace(/^[a-d]\)\s*/i, '').replace(/[+#?!x=\-\s]/g, '').toLowerCase();
     }
 
     function isMoveMatchingTarget(moveObj, targetStr) {
@@ -836,14 +849,15 @@
       const cleanTarget = cleanNotation(targetStr);
       const cleanSan = cleanNotation(moveObj.san);
       const uci = (moveObj.from + moveObj.to).toLowerCase();
-      const uciPromo = (moveObj.from + moveObj.to + (moveObj.promotion || '')).toLowerCase();
+      return cleanSan === cleanTarget || uci === cleanTarget;
+    }
 
-      return (
-        cleanSan === cleanTarget ||
-        uci === cleanTarget ||
-        uciPromo === cleanTarget ||
-        moveObj.san.toLowerCase() === targetStr.trim().toLowerCase()
-      );
+    function playMoveByString(moveStr) {
+      const legalMoves = game.moves({ verbose: true });
+      for (const m of legalMoves) {
+        if (isMoveMatchingTarget(m, moveStr)) return game.move(m);
+      }
+      return null;
     }
 
     function validateBoardMove(moveObj) {
@@ -852,70 +866,79 @@
       updateTurnIndicator();
 
       const sols = ex.solutions;
-
-      // Case 1: No explicit solution recorded — accept any checkmate, or accept move
       if (sols.length === 0) {
         if (game.in_checkmate()) {
-          handleCorrectMove(ex, `Checkmate with ${moveObj.san}!`);
+          handleCorrect(ex, `Checkmate with ${moveObj.san}!`);
         } else {
           showFeedback('info', `Played ${moveObj.san}.`);
         }
         return;
       }
 
-      // Determine if solutions array is a multi-move sequence or alternative 1st moves
-      const expectedTarget = sols[currentStepIndex] || sols[0];
-      const matchesCurrentStep = isMoveMatchingTarget(moveObj, expectedTarget);
-      const matchesAnyAlternative = currentStepIndex === 0 && sols.some(s => isMoveMatchingTarget(moveObj, s));
+      const expected = sols[currentStepIndex] || sols[0];
+      const matchesStep = isMoveMatchingTarget(moveObj, expected);
+      const matchesAny = currentStepIndex === 0 && sols.some(s => isMoveMatchingTarget(moveObj, s));
+      const isMateAlternative = (game.in_checkmate() && sols.some(s => s.includes('#')));
 
-      // Also accept if the puzzle is a 1-move checkmate and the user found a valid mate-in-1
-      const isMateInOneAlternative = (sols.length === 1 && game.in_checkmate() && expectedTarget.includes('#'));
-
-      if (matchesCurrentStep || matchesAnyAlternative || isMateInOneAlternative) {
-        // Check if there is a sequential reply move in `sols`
-        if (matchesCurrentStep && currentStepIndex + 1 < sols.length) {
-          const nextMoveStr = sols[currentStepIndex + 1];
-          // Test if `nextMoveStr` is a legal move for the opponent now
-          const opponentReply = playMoveByString(nextMoveStr);
-          if (opponentReply) {
+      if (matchesStep || matchesAny || isMateAlternative) {
+        if (matchesStep && currentStepIndex + 1 < sols.length) {
+          const reply = playMoveByString(sols[currentStepIndex + 1]);
+          if (reply) {
             currentStepIndex += 2;
-            showFeedback('info', `Good move (${moveObj.san})! Opponent replies ${opponentReply.san}. Find the next move...`);
+            showFeedback('info', `Good! Opponent replies ${reply.san}. Continue...`);
             setTimeout(() => {
               board.position(game.fen());
-              highlightLastMove(opponentReply.from, opponentReply.to);
+              highlightLastMove(reply.from, reply.to);
               updateTurnIndicator();
               if (currentStepIndex >= sols.length) {
-                handleCorrectMove(ex, `Correct sequence completed!`);
+                handleCorrect(ex, 'Correct sequence completed!');
               }
             }, 450);
             return;
           }
         }
-
-        handleCorrectMove(ex, `Correct! ${moveObj.san} is the right move.`);
+        handleCorrect(ex, `Correct! ${moveObj.san} is the right move.`);
       } else {
-        // Wrong move on the board: show feedback and undo after brief pause
-        showFeedback('error', `${moveObj.san} is not the move Fischer is looking for. Try again!`);
+        showFeedback('error', `${moveObj.san} is not the best move here. Try again!`);
         setTimeout(() => {
           game.undo();
           board.position(game.fen());
           highlightLastMove(null, null);
           updateTurnIndicator();
-        }, 750);
+        }, 700);
       }
     }
 
-    function playMoveByString(moveStr) {
-      const legalMoves = game.moves({ verbose: true });
-      for (const m of legalMoves) {
-        if (isMoveMatchingTarget(m, moveStr)) {
-          return game.move(m);
+    function checkTextOrOptionAnswer(userAnswer, btnElement = null) {
+      const ex = exercises[currentIndex];
+      const cleanUser = cleanNotation(userAnswer);
+
+      if (ex.fen) {
+        const boardMove = playMoveByString(userAnswer);
+        if (boardMove) {
+          board.position(game.fen());
+          validateBoardMove(boardMove);
+          return;
         }
       }
-      return null;
+
+      const isCorrect = ex.solutions.some(sol => {
+        const cleanSol = cleanNotation(sol);
+        return cleanSol === cleanUser ||
+               cleanUser.includes(cleanSol) ||
+               sol.trim().toLowerCase() === userAnswer.trim().toLowerCase();
+      });
+
+      if (isCorrect) {
+        if (btnElement) btnElement.classList.add('correct');
+        handleCorrect(ex, 'Correct!');
+      } else {
+        if (btnElement) btnElement.classList.add('wrong');
+        showFeedback('error', 'Not quite right. Try again!');
+      }
     }
 
-    function handleCorrectMove(ex, msg) {
+    function handleCorrect(ex, msg) {
       showFeedback('success', msg);
       if (ex.explanation) {
         const expBox = document.getElementById('explanationBox');
@@ -925,58 +948,26 @@
       markSolved(ex.id);
     }
 
-    function checkTextOrOptionAnswer(userAnswer, btnElement = null) {
-      const ex = exercises[currentIndex];
-      const cleanUser = cleanNotation(userAnswer);
-
-      // First check if the user typed a legal board move
-      if (ex.fen) {
-        const matchingBoardMove = playMoveByString(userAnswer);
-        if (matchingBoardMove) {
-          board.position(game.fen());
-          validateBoardMove(matchingBoardMove);
-          return;
-        }
-      }
-
-      const isCorrect = ex.solutions.some(sol => {
-        return cleanNotation(sol) === cleanUser ||
-               sol.trim().toLowerCase() === userAnswer.trim().toLowerCase();
-      });
-
-      if (isCorrect) {
-        if (btnElement) btnElement.classList.add('correct');
-        handleCorrectMove(ex, `Correct! (${userAnswer})`);
-      } else {
-        if (btnElement) btnElement.classList.add('wrong');
-        showFeedback('error', `"${userAnswer}" is not quite right. Try again or check the board!`);
-      }
-    }
-
-    /********************************************************************
-     * 6. RENDERING THE EXERCISE UI
-     ********************************************************************/
     function renderExercise(index) {
       if (!exercises.length) return;
       currentIndex = Math.max(0, Math.min(index, exercises.length - 1));
       currentStepIndex = 0;
-      exerciseSolvedInSession = false;
       clearHighlights();
       highlightLastMove(null, null);
 
       const ex = exercises[currentIndex];
       saveProgress();
 
-      // Header & Meta
-      document.getElementById('chapterBadge').textContent = ex.chapter;
-      document.getElementById('frameTitle').textContent = ex.title;
+      // Update headings to match screenshot & mockup
+      const headingText = /^\d/.test(ex.title) ? ex.title : `${ex.frame}. Interactive Board`;
+      document.getElementById('boardHeading').textContent = headingText;
+      document.getElementById('chapterTitle').textContent = ex.chapter;
+      document.getElementById('frameSubtitle').textContent = `Frame ${ex.frame}`;
       document.getElementById('promptText').textContent = ex.prompt;
 
       const isSolved = progress.solvedIds.includes(ex.id);
       document.getElementById('solvedBadge').classList.toggle('visible', isSolved);
-      document.getElementById('nextBtn').classList.remove('next-highlight');
 
-      // Reset Feedback & Explanation
       const feedbackBox = document.getElementById('feedbackBox');
       feedbackBox.className = 'feedback-box';
       feedbackBox.textContent = '';
@@ -985,17 +976,13 @@
       expBox.classList.remove('visible');
       expBox.textContent = '';
 
-      // Setup Board or Hide if Text-Only Frame
       const boardSection = document.getElementById('boardSection');
       if (ex.fen) {
         boardSection.classList.remove('hidden');
-        const loaded = game.load(ex.fen);
-        if (!loaded) {
-          // Fallback if FEN is missing move counters
+        if (!game.load(ex.fen)) {
           game.load(ex.fen + ' 0 1');
         }
-        const turnColor = game.turn() === 'b' ? 'black' : 'white';
-        board.orientation(turnColor);
+        board.orientation(game.turn() === 'b' ? 'black' : 'white');
         board.position(game.fen(), false);
         setTimeout(() => board.resize(), 20);
         updateTurnIndicator();
@@ -1003,15 +990,15 @@
         boardSection.classList.add('hidden');
       }
 
-      // Setup Multiple Choice Options
       const optionsContainer = document.getElementById('optionsContainer');
       optionsContainer.innerHTML = '';
       if (ex.options && ex.options.length > 0) {
         optionsContainer.classList.remove('hidden');
-        ex.options.forEach(opt => {
+        ex.options.forEach((opt, i) => {
           const btn = document.createElement('button');
-          btn.className = 'option-btn';
-          btn.textContent = opt;
+          btn.className = 'option-item';
+          const prefix = /^[A-D]\)/i.test(opt) ? '' : `${String.fromCharCode(65 + i)}) `;
+          btn.textContent = prefix + opt;
           btn.onclick = () => checkTextOrOptionAnswer(opt, btn);
           optionsContainer.appendChild(btn);
         });
@@ -1019,42 +1006,17 @@
         optionsContainer.classList.add('hidden');
       }
 
-      // Show text input if there are no options and either no board or non-move text solution
-      const textInputContainer = document.getElementById('textInputContainer');
-      const answerInput = document.getElementById('answerInput');
-      answerInput.value = '';
-
-      const markReadBtn = document.getElementById('markReadBtn');
-      if (!ex.fen && ex.options.length === 0 && ex.solutions.length === 0) {
-        // Pure instructional reading frame
-        textInputContainer.classList.add('hidden');
-        markReadBtn.classList.remove('hidden');
-        if (ex.explanation) {
-          expBox.textContent = ex.explanation;
-          expBox.classList.add('visible');
-        }
-      } else {
-        markReadBtn.classList.add('hidden');
-        // Show text box if no multiple choice options exist
-        textInputContainer.classList.toggle('hidden', ex.options.length > 0);
-      }
-
-      // Sync dropdown and Prev/Next buttons
+      document.getElementById('answerInput').value = '';
       document.getElementById('exerciseSelect').value = String(currentIndex);
       document.getElementById('prevBtn').disabled = (currentIndex === 0);
       document.getElementById('nextBtn').disabled = (currentIndex === exercises.length - 1);
     }
 
     function updateTurnIndicator() {
-      const turn = game.turn();
-      const dot = document.getElementById('turnDot');
-      const text = document.getElementById('turnText');
-
-      dot.className = 'turn-dot ' + (turn === 'w' ? 'white' : 'black');
-      let status = turn === 'w' ? 'White to move' : 'Black to move';
+      let status = game.turn() === 'w' ? 'White to move' : 'Black to move';
       if (game.in_checkmate()) status = 'Checkmate!';
-      else if (game.in_check()) status += ' (in Check)';
-      text.textContent = status;
+      else if (game.in_check()) status += ' (Check)';
+      document.getElementById('turnText').textContent = status;
     }
 
     function showFeedback(type, message) {
@@ -1067,73 +1029,37 @@
       const total = exercises.length;
       const solvedCount = exercises.filter(e => progress.solvedIds.includes(e.id)).length;
       document.getElementById('progressPill').textContent = `${solvedCount} / ${total} Solved`;
-      const pct = total > 0 ? Math.round((solvedCount / total) * 100) : 0;
-      document.getElementById('progressBarFill').style.width = `${pct}%`;
     }
 
     function populateDropdown() {
-      const filter = document.getElementById('filterSelect').value;
       const select = document.getElementById('exerciseSelect');
       select.innerHTML = '';
-      filteredIndices = [];
-
       exercises.forEach((ex, idx) => {
-        const isSolved = progress.solvedIds.includes(ex.id);
-        if (filter === 'unsolved' && isSolved) return;
-        if (filter === 'solved' && !isSolved) return;
-
-        filteredIndices.push(idx);
         const opt = document.createElement('option');
         opt.value = String(idx);
-        const check = isSolved ? '✓ ' : '';
-        opt.textContent = `${check}Frame ${ex.frame}: ${ex.title}`;
+        const solvedMark = progress.solvedIds.includes(ex.id) ? ' ✓' : '';
+        opt.textContent = `Frame ${ex.frame}${solvedMark}`;
         select.appendChild(opt);
       });
-
-      // Keep current selection visible even if filtered
-      if (filteredIndices.includes(currentIndex)) {
-        select.value = String(currentIndex);
-      } else if (filteredIndices.length > 0) {
-        select.value = String(filteredIndices[0]);
-      }
+      select.value = String(currentIndex);
     }
 
-    /********************************************************************
-     * 7. UI EVENT LISTENERS
-     ********************************************************************/
     window.addEventListener('DOMContentLoaded', () => {
       initBoard();
       loadExercisesFromServer();
-
-      // Dropdown & Filter changes
-      document.getElementById('filterSelect').addEventListener('change', () => {
-        populateDropdown();
-        if (filteredIndices.length > 0 && !filteredIndices.includes(currentIndex)) {
-          renderExercise(filteredIndices[0]);
-        }
-      });
 
       document.getElementById('exerciseSelect').addEventListener('change', (e) => {
         renderExercise(Number(e.target.value));
       });
 
-      // Prev / Next buttons (respects active filter)
       document.getElementById('prevBtn').addEventListener('click', () => {
-        const pos = filteredIndices.indexOf(currentIndex);
-        if (pos > 0) renderExercise(filteredIndices[pos - 1]);
-        else if (currentIndex > 0) renderExercise(currentIndex - 1);
+        if (currentIndex > 0) renderExercise(currentIndex - 1);
       });
 
       document.getElementById('nextBtn').addEventListener('click', () => {
-        const pos = filteredIndices.indexOf(currentIndex);
-        if (pos !== -1 && pos + 1 < filteredIndices.length) {
-          renderExercise(filteredIndices[pos + 1]);
-        } else if (currentIndex + 1 < exercises.length) {
-          renderExercise(currentIndex + 1);
-        }
+        if (currentIndex + 1 < exercises.length) renderExercise(currentIndex + 1);
       });
 
-      // Submit text answer
       document.getElementById('submitAnswerBtn').addEventListener('click', () => {
         const val = document.getElementById('answerInput').value.trim();
         if (val) checkTextOrOptionAnswer(val);
@@ -1146,25 +1072,13 @@
         }
       });
 
-      // Board controls
-      document.getElementById('flipBoardBtn').addEventListener('click', () => {
-        board.flip();
-      });
+      document.getElementById('flipBoardBtn').addEventListener('click', () => board.flip());
+      document.getElementById('resetBoardBtn').addEventListener('click', () => renderExercise(currentIndex));
 
-      document.getElementById('resetBoardBtn').addEventListener('click', () => {
-        renderExercise(currentIndex);
-      });
-
-      // Hint Button
       document.getElementById('hintBtn').addEventListener('click', () => {
         const ex = exercises[currentIndex];
         const target = ex.solutions[currentStepIndex] || ex.solutions[0];
-        if (!target) {
-          showFeedback('info', 'Look for checks, captures, or back-rank weaknesses.');
-          return;
-        }
-        // Check if target corresponds to a legal move to highlight its starting square
-        if (ex.fen) {
+        if (ex.fen && target) {
           const legalMoves = game.moves({ verbose: true });
           const match = legalMoves.find(m => isMoveMatchingTarget(m, target));
           if (match) {
@@ -1173,16 +1087,14 @@
             return;
           }
         }
-        showFeedback('info', `Hint: The answer starts with "${target.charAt(0)}..."`);
+        showFeedback('info', target ? `Hint: Starts with "${target.charAt(0)}..."` : 'Look for checks or undefended pieces.');
       });
 
-      // Show Solution Button
       document.getElementById('solutionBtn').addEventListener('click', () => {
         const ex = exercises[currentIndex];
-        const solText = ex.solutions.length > 0 ? ex.solutions.join(' → ') : 'See explanation below.';
-        showFeedback('info', `Solution: ${solText}`);
-
-        if (ex.fen && ex.solutions.length > 0) {
+        const solText = ex.solutions.length ? ex.solutions.join(' → ') : 'See explanation below.';
+        showFeedback('info', `Answer: ${solText}`);
+        if (ex.fen && ex.solutions.length) {
           const m = playMoveByString(ex.solutions[currentStepIndex] || ex.solutions[0]);
           if (m) {
             board.position(game.fen());
@@ -1190,7 +1102,6 @@
             updateTurnIndicator();
           }
         }
-
         if (ex.explanation) {
           const expBox = document.getElementById('explanationBox');
           expBox.textContent = ex.explanation;
@@ -1198,13 +1109,6 @@
         }
       });
 
-      // Mark Read Button (for pure text frames)
-      document.getElementById('markReadBtn').addEventListener('click', () => {
-        const ex = exercises[currentIndex];
-        handleCorrectMove(ex, 'Frame completed!');
-      });
-
-      // Manual JSON Upload (for quick local testing)
       document.getElementById('uploadJsonBtn').addEventListener('click', () => {
         document.getElementById('jsonFileInput').click();
       });
@@ -1215,9 +1119,7 @@
         const reader = new FileReader();
         reader.onload = (evt) => {
           try {
-            const parsed = JSON.parse(evt.target.result);
-            initDataset(parsed);
-            showFeedback('success', `Loaded ${exercises.length} exercises from ${file.name}`);
+            initDataset(JSON.parse(evt.target.result));
           } catch (err) {
             alert('Invalid JSON file: ' + err.message);
           }
@@ -1225,9 +1127,8 @@
         reader.readAsText(file);
       });
 
-      // Reset Progress
       document.getElementById('resetProgressBtn').addEventListener('click', () => {
-        if (confirm('Reset all solved exercises progress?')) {
+        if (confirm('Reset your solved progress?')) {
           progress = { currentIndex: 0, solvedIds: [] };
           saveProgress();
           populateDropdown();
